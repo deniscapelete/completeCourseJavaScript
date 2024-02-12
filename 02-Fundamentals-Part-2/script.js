@@ -1,10 +1,12 @@
 'use strict'
-
+/*
 let hasDriversLicense = false;
 const passTest = true;
 
 if (passTest) hasDriversLicense = true;
 if (hasDriversLicense) console.log('I can drive :D');
+
+*/
 
 // const interface = 'Audio'; (a palavra 'interface' é reservada para um recurso no JS)
 
@@ -13,6 +15,8 @@ if (hasDriversLicense) console.log('I can drive :D');
 
 
 // Function declaration (função são apenas valores)
+
+/*
 
 function fruitProcessor(alimento1, alimento2) { 
   console.log(alimento1, alimento2);
@@ -56,3 +60,20 @@ const calcAge2 = function (birthYeah) {
 }
 const age2 = calcAge2 (1995);
 console.log (age2);
+
+*/
+
+// Arrow function (função de seta não obtém a palavra chave)
+const calcAge3 = birthYeah => 2037 - birthYeah;
+const age3 = calcAge3(1991);
+console.log(age3); 
+
+const yearsUntilRetirement = (birthYeah, firstName) => {
+  const age = 2037 - birthYeah;
+  const retirement = 65 - age;
+  // return retirement;
+  return `${firstName} retires in ${retirement} years`
+}
+
+console.log (yearsUntilRetirement(1995, "Dênis"));
+console.log (yearsUntilRetirement(1996, "Ariel"));
