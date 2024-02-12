@@ -63,6 +63,9 @@ console.log (age2);
 
 */
 
+
+/*
+
 // Arrow function (função de seta não obtém a palavra chave)
 const calcAge3 = birthYeah => 2037 - birthYeah;
 const age3 = calcAge3(1991);
@@ -77,3 +80,21 @@ const yearsUntilRetirement = (birthYeah, firstName) => {
 
 console.log (yearsUntilRetirement(1995, "Dênis"));
 console.log (yearsUntilRetirement(1996, "Ariel"));
+
+*/
+
+// Functions Calling Other Functions
+
+function cutFruitPieces(fruit) {
+  return fruit * 4;
+}
+
+function fruitProcessor(apples, oranges) {
+  const applePieces = cutFruitPieces(apples);
+  const orangePieces = cutFruitPieces(oranges);
+
+  const juice =`Juice with ${applePieces} piece of apple and ${orangePieces} pieces of orange.`
+  return juice;
+}
+
+console.log(fruitProcessor(2, 3));
