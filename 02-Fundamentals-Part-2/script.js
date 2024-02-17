@@ -151,3 +151,40 @@ scoreDolphins = calcAverage(85, 54, 41);
 scoreKoalas = calcAverage(23, 34, 27);
 
 checkWinner(scoreDolphins,scoreKoalas);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const idade = ano => 2024 - ano;
+
+console.log(idade(1995));
+
+
+
+const maiorIdade = function(ano, nome){
+  
+  idade(ano);
+
+  console.log(idade(ano));
+  
+  if (idade>=18) {
+    console.log(`${nome} é maior de idade`)
+    return 2
+  } else {
+    console.log(`${nome} é menor de idade`)
+    return 1
+  }
+}
+
+
+console.log(maiorIdade(1995, "Denis"))
