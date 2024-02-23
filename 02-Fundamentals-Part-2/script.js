@@ -285,3 +285,53 @@ const totals = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
 
 console.log(bills, tips, totals);
 */
+
+/*
+const jonasArray = [
+  'Jonas',
+  'Santos',
+  2024 - 1991,
+  'teacher',
+  ['Michel', 'Peter', 'Steven']
+];
+
+*/
+
+
+// Introduction to Objects
+
+const jonas = {
+  firstName: 'Jonas',
+  lastName: 'Santos',
+  age: 'teacher',
+  job: 'teacher',
+  friends: ['Michel', 'Peter', 'Steven']
+}
+console.log(jonas);
+
+console.log(jonas.lastName); // notação de pontos para recuperar elementos de um objeto
+console.log(jonas['lastName']); // notação de colchetes para recuperar elementos de um objeto
+
+const nameKey = 'Name';
+console.log(jonas['first' + nameKey]) // notação de colchetes para recuperar elementos de um objeto
+console.log(jonas['last' + nameKey])
+
+// console.log(jonas.'last' + nameKey) assim não funciona
+
+const interestedIn = prompt('What do you want to know about Jonas? Choose between firstName, lastName, age, job, and friends');
+
+if (jonas[interestedIn]) {
+  console.log(jonas[interestedIn])
+} else {
+  console.log('Wrong request! Choose between firstName, lastName, age, job, and friends');
+  }
+
+  jonas.location = 'Portugal'; // notação de pontos para propriedades ao objeto.
+  jonas['twitter'] = '@jonassantos'; // notação de colchetes para adicionar propriedades ao objeto.
+
+  console.log(jonas);
+
+  // Challenge
+  //"Jonas has 3 friends, and his best friend is called Michael"
+  console.log(`${jonas.firstName} has ${jonas.friends.length} friends, and his best friend is called ${jonas.friends[0]}`)
+
