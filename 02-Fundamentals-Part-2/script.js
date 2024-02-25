@@ -18,7 +18,7 @@ if (hasDriversLicense) console.log('I can drive :D');
 
 /*
 
-function fruitProcessor(alimento1, alimento2) { 
+function fruitProcessor(alimento1, alimento2) {
   console.log(alimento1, alimento2);
 const juice = `Suco de ${alimento1} com ${alimento2} !!!`;
 return juice;
@@ -34,7 +34,7 @@ console.log(suco);
 
 function calculateBmi (peso, altura) {
   return peso/(altura*altura)
-  
+
 };
 
 const imc = calculateBmi (67, 1.82);
@@ -69,7 +69,7 @@ console.log (age2);
 // Arrow function (função de seta não obtém a palavra chave)
 const calcAge3 = birthYeah => 2037 - birthYeah;
 const age3 = calcAge3(1991);
-console.log(age3); 
+console.log(age3);
 
 const yearsUntilRetirement = (birthYeah, firstName) => {
   const age = 2037 - birthYeah;
@@ -123,7 +123,7 @@ if (retirement >0 ) {
 }
 */
 
-// 
+//
 
 /*
 
@@ -163,11 +163,11 @@ console.log(idade(1995));
 
 
 const maiorIdade = function(ano, nome){
-  
+
   idade(ano);
 
   console.log(idade(ano));
-  
+
   if (idade>=18) {
     console.log(`${nome} é maior de idade`)
     return 2
@@ -337,6 +337,8 @@ if (jonas[interestedIn]) {
 
 */
 
+/*
+
 const jonas = {
   firstName: 'Jonas',
   lastName: 'Santos',
@@ -374,10 +376,82 @@ console.log(jonas.calcAge());
 
 
 console.log(jonas.age);
+console.log(jonas.age);
+console.log(jonas.age);
 
 //Challenge
 //"Jonas is a 46-year old teacher. anda he has a driver's license"
 
-const getSummary = console.log(`${jonas.firstName} is a ${jonas.age}-year old ${jonas.job}, and he has a driver's license`);
 
 console.log(jonas.getSummary());
+
+*/
+
+
+/* CHALLENGE #3
+Let's go back to Mark and John comparing their BMIs!
+
+This time, let's use objects to implement the calculations! Remember: BMI = mass / (height * height) (mass in kg and height in meters).
+
+Your tasks:
+
+For each of them, create an object with properties for their full name, mass, and height (Mark Miller and John Smith). Name these objects as mark and john, and their properties exactly as fullName, mass and height.
+
+Create a calcBMI method on each object to calculate the BMI (the same method on both objects). Assign the BMI value to a property, and also return it from the method.
+
+Log to the console who has the higher BMI, together with the full name and the respective BMI. Example: "John Smith's BMI (28.3) is higher than Mark Miller's (23.9)!".
+
+TEST DATA: Marks weighs 78 kg and is 1.69 m tall. John weighs 92 kg and is 1.95 m tall.
+
+
+
+👋 OPTIONAL: You can watch my solution in video format in the next lecture
+
+
+
+IMPORTANT: The ** operator is not supported in this editor. Please make sure to use exactly this formula mass / (height * height), and not this one mass / (height ** 2).
+*/
+/*
+const mark = {
+  fullName: 'Mark Miller',
+  mass: 78,
+  height: 1.69,
+
+  calcBMI() {
+    this.bmi = this.mass / this.height ** 2;
+    return this.bmi;
+  }
+};
+
+const john = {
+  fullName: 'John Smith',
+  mass: 92,
+  height: 1.95,
+  calcBMI() {
+    this.bmi = this.mass / this.height ** 2;
+    return this.bmi;
+  }
+};
+
+mark.calcBMI();
+john.calcBMI();
+
+
+
+if (mark.bmi > john.bmi) {
+  console.log(`${mark.fullName}'s BMI (${mark.bmi}) is higher than ${john.fullName}'s ("${john.bmi})!`)
+
+} else if (john.bmi > mark.bmi) {
+  console.log(`${john.fullName}'s BMI (${john.bmi}) is higher than ${mark.fullName}'s ("${mark.bmi})!`)
+}
+
+console.log(mark.bmi, john.bmi);
+*/
+
+/*
+  console.log(mark.bmi < john.bmi ? `${john.fullName}'s BMI (${john.bmi}) is higher than ${mark.fullName}'s ("${mark.bmi})!` : `${mark.fullName}'s BMI (${mark.bmi}) is higher than ${john.fullName}'s ("${john.bmi})!`);
+
+*/
+
+
+
