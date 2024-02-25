@@ -297,13 +297,13 @@ const jonasArray = [
 
 */
 
-
 // Introduction to Objects
 
+/*
 const jonas = {
   firstName: 'Jonas',
   lastName: 'Santos',
-  age: 'teacher',
+  age: '2024-1991',
   job: 'teacher',
   friends: ['Michel', 'Peter', 'Steven']
 }
@@ -335,3 +335,49 @@ if (jonas[interestedIn]) {
   //"Jonas has 3 friends, and his best friend is called Michael"
   console.log(`${jonas.firstName} has ${jonas.friends.length} friends, and his best friend is called ${jonas.friends[0]}`)
 
+*/
+
+const jonas = {
+  firstName: 'Jonas',
+  lastName: 'Santos',
+  birthYeah: '1991',
+  job: 'teacher',
+  friends: ['Michel', 'Peter', 'Steven'],
+  hasDriversLicense: true,
+
+  // calcAge: function (birthYeah) { --- FORMA INCORRETA
+  //   return 2037 - birthYeah; --- FORMA INCORRETA
+  // } --- FORMA INCORRETA
+
+  // calcAge: function () {
+  //   //console.log(this);
+  //   return 2037 - this.birthYeah;
+  // }
+
+  calcAge: function () {
+    this.age = 2037 - this.birthYeah;
+    return this.age;
+  }, // desse jeito é melhor pois faz o calculo apenas uma vez caso precise ser chamado mais vezes no futuro
+
+  getSummary: function () {
+
+    return `${this.firstName} is a ${this.age}-year old ${this.job}, and he has ${this.hasDriversLicense ? 'a' : 'no'} driver's license.`
+  }
+
+};
+
+// console.log(jonas.calcAge(jonas.birthYeah));--- FORMA INCORRETA
+// console.log(jonas.calcAge(1991));--- FORMA INCORRETA
+// console.log(jonas['calcAge'](1991));--- FORMA INCORRETA
+
+console.log(jonas.calcAge());
+
+
+console.log(jonas.age);
+
+//Challenge
+//"Jonas is a 46-year old teacher. anda he has a driver's license"
+
+const getSummary = console.log(`${jonas.firstName} is a ${jonas.age}-year old ${jonas.job}, and he has a driver's license`);
+
+console.log(jonas.getSummary());
