@@ -455,3 +455,9 @@ console.log(mark.bmi, john.bmi);
 
 
 
+//Loop
+
+// o loop continua em execução enquanto a condição for verdadeira
+for (let rep = 1; rep <= 10; rep++) {
+  console.log(`Liftinf weigths repetition ${rep}`);
+}
