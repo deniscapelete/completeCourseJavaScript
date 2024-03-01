@@ -461,3 +461,55 @@ console.log(mark.bmi, john.bmi);
 for (let rep = 1; rep <= 10; rep++) {
   console.log(`Liftinf weigths repetition ${rep}`);
 }
+
+
+const jonasArray = [
+  'Jonas',
+  'Jose',
+  2037 - 1995,
+  'teacher',
+  ['Michel', 'Peter', 'Steven'],
+  true
+];
+
+const types = [];
+
+for (let i = 0; i < jonasArray.length; i++) {
+  //Leitura da matriz jonas Array
+  console.log(jonasArray[i], typeof jonasArray[i])
+
+  //Preenchendo a matriz types
+  //types[i] = typeof jonasArray[i];
+
+  // Preenchendo a matriz atraves do metodo push (adiciona no final da matriz)
+  types.push(typeof jonasArray[i]);
+};
+
+console.log(types);
+
+const years = [1991, 2007, 1969, 2020];
+const ages = [];
+
+for (let i = 0; i < years.length; i++) {
+  ages.push(2037 - years[i]);
+}
+console.log(ages);
+
+// continuar e interromper
+console.log('--- ONLY STRINGS ---')
+
+for (let i = 0; i < jonasArray.length; i++) {
+  if (typeof jonasArray[i] !== 'string') continue; // continue é o mesmo que "pular para o próximo" ele continua o loop até o fim pulando onde a condição for verdadeira.
+
+  console.log(jonasArray[i], typeof jonasArray[i])
+};
+
+console.log('--- BREAK WITH NUMBER ---')
+
+for (let i = 0; i < jonasArray.length; i++) {
+  if (typeof jonasArray[i] === 'number') break; // assim que a condição for verdadeira ele para todo o processo e não continua o loop"
+
+  console.log(jonasArray[i], typeof jonasArray[i])
+};
+
+
