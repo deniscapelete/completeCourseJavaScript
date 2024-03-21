@@ -454,4 +454,185 @@ console.log(mark.bmi, john.bmi);
 */
 
 
+/*
 
+//Loop
+
+// o loop continua em execução enquanto a condição for verdadeira
+for (let rep = 1; rep <= 10; rep++) {
+  console.log(`Liftinf weigths repetition ${rep}`);
+}
+
+
+const jonasArray = [
+  'Jonas',
+  'Jose',
+  2037 - 1995,
+  'teacher',
+  ['Michel', 'Peter', 'Steven'],
+  true
+];
+
+const types = [];
+
+for (let i = 0; i < jonasArray.length; i++) {
+  //Leitura da matriz jonas Array
+  console.log(jonasArray[i], typeof jonasArray[i])
+
+  //Preenchendo a matriz types
+  //types[i] = typeof jonasArray[i];
+
+  // Preenchendo a matriz atraves do metodo push (adiciona no final da matriz)
+  types.push(typeof jonasArray[i]);
+};
+
+console.log(types);
+
+const years = [1991, 2007, 1969, 2020];
+const ages = [];
+
+for (let i = 0; i < years.length; i++) {
+  ages.push(2037 - years[i]);
+}
+console.log(ages);
+
+// continuar e interromper
+console.log('--- ONLY STRINGS ---')
+
+for (let i = 0; i < jonasArray.length; i++) {
+  if (typeof jonasArray[i] !== 'string') continue; // continue é o mesmo que "pular para o próximo" ele continua o loop até o fim pulando onde a condição for verdadeira.
+
+  console.log(jonasArray[i], typeof jonasArray[i])
+};
+
+console.log('--- BREAK WITH NUMBER ---')
+
+for (let i = 0; i < jonasArray.length; i++) {
+  if (typeof jonasArray[i] === 'number') break; // assim que a condição for verdadeira ele para todo o processo e não continua o loop"
+
+  console.log(jonasArray[i], typeof jonasArray[i])
+};
+
+
+
+let valor = 0.01;
+
+for (let dia = 1; dia <= 30; dia++) {
+  console.log("Dia " + dia + ": " + valor);
+  valor = valor * 2;
+}
+*/
+
+
+/*  Looping Backwards and Loops in Loops
+const jonasArray = [
+  'Jonas',
+  'Jose',
+  2037 - 1995,
+  'teacher',
+  ['Michel', 'Peter', 'Steven'],
+  true
+];
+
+// 0, 1, ..., 4
+// 4, 3, ..., 0
+
+for (let i = jonasArray.length - 1; i >= 0; i--) {
+  console.log(i, jonasArray[i]);
+}
+
+
+for (let exercise = 1; exercise < 4; exercise++) {
+  console.log(`---------Starting exercise ${exercise}`);
+
+  for (let rep = 1; rep < 6; rep++) {
+    console.log(`Lifting weight repetition ${exercise}.${rep}`)
+  }
+}
+*/
+
+/*
+
+for (let rep = 1; rep <= 10; rep++) {
+  console.log(`Liftinf weigths repetition ${rep}`);
+}
+
+//While
+let rep = 1;
+while (rep <= 10) {
+  console.log(`Liftinf weigths repetition ${rep}`);
+  rep++;
+}
+
+let dice = Math.trunc(Math.random() * 6) + 1;
+console.log(dice);
+
+while (dice !== 6) {
+  console.log(`You rolled  a ${dice}`);
+  dice = Math.trunc(Math.random() * 6) + 1;
+  if (dice == 6) console.log('Loop is about to end...')
+}
+
+*/
+
+/*
+CHALLENGE #4
+Let's improve Steven's tip calculator even more, this time using loops!
+
+Your tasks:
+
+Create an array called bills containing all 10 test bill values.
+
+Create empty arrays for the tips and the totals (tips and totals)
+
+Use the calcTip function we wrote before (included in the starter code) to calculate tips and total values (bill + tip) for every bill value in the bills array. Use a for loop to perform the 10 calculations!
+
+
+
+TEST DATA: 22, 295, 176, 440, 37, 105, 10, 1100, 86, and 52.
+
+
+
+BONUS:
+
+Write a function calcAverage which takes an array called arr as an argument. This function calculates the average of all numbers in the given array. This is a DIFFICULT challenge (we haven't done this before)! Here is how to solve it if you feel like it:
+
+First, you will need to add up all values in the array. To do the addition, start by creating a variable sum that starts at 0. Then loop over the array using a for loop. In each iteration, add the current value to the sum variable. This way, by the end of the loop, you have all values added together.
+
+To calculate the average, divide the sum you calculated before by the length of the array (because that's the number of elements).
+
+Call the function with the totals array.
+
+
+
+👋 OPTIONAL: You can watch my solution in video format in the next lecture
+*/
+
+let bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52]; //conta
+
+let tips = []; //gorjetas
+let totals = []; // totais
+
+
+const calcTip = function (bill) {
+  return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+}
+
+for (let i = 0; i < bills.length; i++) {
+  tips.push(calcTip(bills[i]));
+  totals.push(tips[i] + bills[i]);
+  console.log(tips[i]);
+  console.log(totals[i]);
+}
+
+
+const calcAverage = function (arr) {
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+  }
+  return sum / arr.length;
+}
+
+console.log(calcAverage(totals));
+console.log(calcAverage(tips));
