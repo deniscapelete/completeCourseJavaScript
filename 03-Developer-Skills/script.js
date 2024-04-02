@@ -88,7 +88,7 @@ console.log(tempAmplitudeNew);
 
 
 
-/*--------------- 61. Debugging with the console and breakpoints ---------------*/
+/*--------------- 61. Debugging with the console and breakpoints ---------------
 
 const measureKelvin = function () {
     const measurement = {
@@ -125,7 +125,7 @@ const calcTempAmplitudeBug = function (t1, t2) {
     const temps = t1.concat(t2);
     console.log(temps);
     let max = 0;
-    let min = 0;
+    let min = 0; // Ao iniciar com o valor zero corre o risco de não ter nenhum número menor no array, logo terá um bug pois no final ira retornar 'min' com o valor 0 que é um número que não foi passado pela matriz
     for (let i = 0; i < temps.length; i++) {
         const curTemp = temps[i];
         if (typeof curTemp !== 'number') continue;
@@ -142,5 +142,44 @@ const calcTempAmplitudeBug = function (t1, t2) {
 
 const amplitudeBug = calcTempAmplitudeBug([2, 4, 6], [1, 3, 5]);
 
+// A) IDENTIFY
 console.log(amplitudeBug)
 
+*/
+
+
+
+/*--------------- 62. COding Challenge #1 --------------- */
+// Coding Challenge #1
+
+/*
+Given an array of forecasted maximum temperatures, the thermometer displays a string with these temperatures.
+
+Example: [17, 21, 23] will print "... 17ºC in 1 days ... 21ºC in 2 days ... 23ºC in 3 days ..."
+
+Create a function 'printForecast' which takes in an array 'arr' and logs a string like the above to the console.
+
+Use the problem-solving framework: Understand the problem and break it up into sub-problems!
+
+TEST DATA 1: [17, 21, 23]
+TEST DATA 2: [12, 5, -5, 0, 4]
+*/
+
+const data1 = [17, 21, 23]
+const data2 = [12, 5, -5, 0, 4]
+
+const printForecat = function (arr) {
+    let temp = '';
+    let day = 1
+
+    for (let i = 0; i < arr.length; i++) {
+
+
+        temp += `... ${arr[i]}ºC in ${day} days`;
+        day++;
+    }
+    console.log(temp + '...');
+};
+printForecat(data1);
+
+printForecat(data2);
