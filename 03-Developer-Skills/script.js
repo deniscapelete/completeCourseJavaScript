@@ -3,7 +3,7 @@
 
 // Using Google, StackOverflow and MDN
 
-
+/* --------------- 59. Using Google, StackOverflow and MDN ---------------
 
 // PROBLEM 1:
 // We work for a company building a smart home thermometer. Our most recent task is this: "Given an array of temperatures of one day, calculate the temperature amplitude. Keep in mind that sometimes there might be a sensor error."
@@ -79,3 +79,41 @@ const calcTempAmplitudeNew = function (t1, t2) {
 
 const tempAmplitudeNew = calcTempAmplitudeNew([1, 2, 3], [4, 5, 6]);
 console.log(tempAmplitudeNew);
+
+*/
+
+
+
+/* --------------- 60. Debugging (Fixing Errors) --------------- */
+
+
+
+/*--------------- 61. Debugging with the console and breakpoints ---------------*/
+
+const measureKelvin = function () {
+    const measurement = {
+        type: 'temp',
+        unit: 'celsius',
+
+        // C) FIX
+        value: Number(prompt('Degrees celsius:')), // a função prompt sempre retornar uma string)
+    };
+
+    console.log(measurement.value); // verificamos se o value está retornando o valor esperado ( Aparentemente está ok)
+    // console.warn(measurement.value);
+    // console.error(measurement.value);
+
+    // B) FIND
+    console.log(measurement); // verificamos todo o objeto ( o value está sendo retornado como uma string)
+    console.table(measurement); // mostra os dados do objeto no console em formato de tabela
+
+
+    const kelvin = measurement.value + 273; // operador + quando vê uma string ele converte ambos para string e os concatena
+
+    return kelvin;
+};
+
+// A) IDENTIFY
+console.log(measureKelvin());
+
+
