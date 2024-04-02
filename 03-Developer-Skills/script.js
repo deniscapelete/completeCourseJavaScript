@@ -96,7 +96,9 @@ const measureKelvin = function () {
         unit: 'celsius',
 
         // C) FIX
-        value: Number(prompt('Degrees celsius:')), // a função prompt sempre retornar uma string)
+        //  value: Number(prompt('Degrees celsius:')), // a função prompt sempre retornar uma string)
+
+        value: 10,
     };
 
     console.log(measurement.value); // verificamos se o value está retornando o valor esperado ( Aparentemente está ok)
@@ -116,4 +118,29 @@ const measureKelvin = function () {
 // A) IDENTIFY
 console.log(measureKelvin());
 
+
+
+// Using a debugger
+const calcTempAmplitudeBug = function (t1, t2) {
+    const temps = t1.concat(t2);
+    console.log(temps);
+    let max = 0;
+    let min = 0;
+    for (let i = 0; i < temps.length; i++) {
+        const curTemp = temps[i];
+        if (typeof curTemp !== 'number') continue;
+
+        //debugger; (abre o depurador se o console estiver aberto no navegador)
+        if (curTemp > max) { max = curTemp }
+        if (curTemp < min) { min = curTemp }
+    }
+
+    console.log(max, min);
+    return max - min;
+
+};
+
+const amplitudeBug = calcTempAmplitudeBug([2, 4, 6], [1, 3, 5]);
+
+console.log(amplitudeBug)
 
