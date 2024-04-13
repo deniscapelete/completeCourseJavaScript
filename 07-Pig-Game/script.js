@@ -1,4 +1,5 @@
 'use strict';
+let playerNumber = 0;
 let dice;
 let current = function (current, currentPlayer) {
     document.querySelector('#current--' + currentPlayer).textContent = current;
@@ -7,7 +8,10 @@ let playerActive = function (playerNumber) {
     return document.querySelector('.player--' + playerNumber).classList;
 }
 
-let playerNumber = 0;
+var scoreElements = document.querySelectorAll('.score');
+var currentScore = document.querySelectorAll('.current-score')
+
+
 
 document.querySelector('.btn--roll').addEventListener('click', function () {
 
@@ -42,4 +46,21 @@ document.querySelector('.btn--hold').addEventListener('click', function () {
     }
 });
 
+
+document.querySelector('.btn--new').addEventListener('click', function () {
+    player = 0;
+    playerActive(0).add('player--active');
+    playerActive(1).remove('player--active');
+
+
+    for (let i = 0; i < scoreElements.length; i++) {
+        scoreElements[i].textContent = '0';
+    }
+
+    for (let i = 0; i < currentScore.length; i++) {
+        currentScore[i].textContent = '0';
+    }
+
+
+})
 
