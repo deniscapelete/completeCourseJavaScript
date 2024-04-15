@@ -1,92 +1,40 @@
 'use strict';
-let playerNumber = 0;
-let dice;
-let current = function (current, currentPlayer) {
-    document.querySelector('#current--' + currentPlayer).textContent = current;
-}
-let playerActive = function (playerNumber) {
-    return document.querySelector('.player--' + playerNumber).classList;
-}
-var scoreElements = document.querySelectorAll('.score');
-var currentScore = document.querySelectorAll('.current-score');
-
-document.querySelector('.btn--roll').addEventListener('click', function () {
-
-    dice = Math.trunc(Math.random() * 6) + 1;
-
-    document.querySelector('.dice').setAttribute('src', 'dice-' + dice + '.png');
 
 
-    current(Number(document.querySelector('#current--' + playerNumber).textContent) + dice, playerNumber);
+// Selecionando elementos
+const score0El = document.querySelector('#score--0');
+const score1El = document.getElementById('score--1'); // uma forma mais rapida de pesquisa, faz diferença em caso de muitos dados.
+const current0El = document.getElementById('current--0');
+const current1El = document.getElementById('current--1');
+const diceEl = document.querySelector('.dice');
+const btnNew = document.querySelector('.btn--new');
+const btnRoll = document.querySelector('.btn--roll');
+const btnHold = document.querySelector('.btn--hold');
+let currentScore = 0;
 
 
-    if (dice === 1) {
-        current(0, playerNumber);
-    }
+// Funcionalidade de rolamento dos dados
+btnRoll.addEventListener('click', function () {
 
-});
+    // 1. Gerando uma jogada de dados aleatória
+    const dice = Math.trunc(Math.random() * 6) + 1;
 
-document.querySelector('.btn--hold').addEventListener('click', function () {
+    // 2. Exibição dos dados
+    diceEl.classList.remove('hidden');
+    diceEl.src = `dice-${dice}.png`;
 
-    document.querySelector('#score--' + playerNumber).textContent = document.querySelector('#current--' + playerNumber).textContent;
-    current(0, playerNumber);
-    playerActive(playerNumber).remove('player--active');
-
-
-    if (playerNumber == 1) {
-        playerNumber--;
-        playerActive(playerNumber).add('player--active');
+    // 3. Verificando se foi igual a um.
+    if (dice !== 1) {
+        //Adicionar os dados a pontuação atual
+        currentScore += dice;
+        current0El.textContent = currentScore; // Pontuação do atual jogador
     } else {
-        playerNumber++;
-        playerActive(playerNumber).add('player--active');
-
+        //Alterar para jogador 2
     }
 });
 
-document.querySelector('.btn--new').addEventListener('click', function () {
-    playerNumber = 0;
-    playerActive(0).add('player--active');
-    playerActive(1).remove('player--active');
-
-    for (let i = 0; i < scoreElements.length; i++) {
-        scoreElements[i].textContent = 0;
-    }
-
-    for (let i = 0; i < currentScore.length; i++) {
-        currentScore[i].textContent = 0;
-    }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /*
-
-    for (let i = 0; i < scoreElements.length; i++) {
-        scoreElements[i].textContent = '0';
-
-    }
-
-    for (let i = 0; i < currentScore.length; i++) {
-        currentScore[i].textContent = '0';
-    }
-
-    */
-
-
-});
 
