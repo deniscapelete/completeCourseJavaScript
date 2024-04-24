@@ -6,33 +6,77 @@ const score0El = document.querySelector('#score--0');
 const score1El = document.getElementById('score--1'); // uma forma mais rapida de pesquisa, faz diferença em caso de muitos dados.
 const current0El = document.getElementById('current--0');
 const current1El = document.getElementById('current--1');
+const player0El = document.querySelector('.player--0');
+const player1El = document.querySelector('.player--1');
 const diceEl = document.querySelector('.dice');
 const btnNew = document.querySelector('.btn--new');
 const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
+
+const switchPlayer = function () {
+
+    document.getElementById(`current--${activePlayer}`).textContent = 0;
+    activePlayer = (activePlayer === 0) ? 1 : 0;
+    currentScore = 0;
+    player0El.classList.toggle('player--active');
+    player1El.classList.toggle('player--active');
+}
+
+const scores = [0, 0];
 let currentScore = 0;
+let activePlayer = 0;
+let playing = true;
 
 
 // Funcionalidade de rolamento dos dados
 btnRoll.addEventListener('click', function () {
 
-    // 1. Gerando uma jogada de dados aleatória
-    const dice = Math.trunc(Math.random() * 6) + 1;
+    if (playing) {
 
-    // 2. Exibição dos dados
-    diceEl.classList.remove('hidden');
-    diceEl.src = `dice-${dice}.png`;
+        // 1. Gerando uma jogada de dados aleatória
+        const dice = Math.trunc(Math.random() * 6) + 1;
 
-    // 3. Verificando se foi igual a um.
-    if (dice !== 1) {
-        //Adicionar os dados a pontuação atual
-        currentScore += dice;
-        current0El.textContent = currentScore; // Pontuação do atual jogador
-    } else {
-        //Alterar para jogador 2
+        // 2. Exibição dos dados
+        diceEl.classList.remove('hidden');
+        diceEl.src = `dice-${dice}.png`;
+
+        // 3. Verificando se foi igual a um.
+        if (dice !== 1) {
+            //Adicionar os dados a pontuação atual
+            currentScore += dice;
+            document.getElementById(`current--${activePlayer}`).textContent = currentScore;
+        } else {
+            //Alterar para jogador 2
+            switchPlayer();
+
+        }
     }
 });
 
+btnHold.addEventListener('click', function () {
+    if (playing) {
+        /* 1. Adicionar a pontuação atual a pontuação do jogador ativo */
+        scores[activePlayer] += currentScore;
+
+        document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
+
+        /* 2. Verifica se a pontuação do jogador é maior o ou igual a 100 */
+        if (scores[activePlayer] >= 20) {
+            /* Termina o jogo */
+            playing = false;
+            diceEl.classList.add('hidden');
+            document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
+            document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
+
+        } else {
+            /* Alterana para o proximo jogador */
+            switchPlayer();
+        }
+
+
+    }
+
+});
 
 
 
