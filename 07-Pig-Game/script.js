@@ -99,4 +99,25 @@ btnNew.addEventListener('click', init);
 
 
 
+const obj = {
+    name: 'Joao',
+    greet: function () {
+        setTimeout(() => {
+            console.log('Hello, ' + this.name);
+        });
+    }
+};
+
+obj.greet(); // Output: Hello, Bob
+
+
+const obj2 = {
+    name: 'Bob',
+    greet: function () {
+        console.log('Hello, ' + this.name);
+        ;
+    }
+};
+
+obj2.greet(); // Output: Hello, Bob
 
