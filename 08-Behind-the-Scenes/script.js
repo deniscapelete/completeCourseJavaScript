@@ -107,7 +107,7 @@ function deleteShoppingCart() {
 //4- Sempre declare suas funções primeiro e a use somente após a declaração.
 
 //Para acessar o objeto janela digite 'Window' no console
-var x = 1; // Cria propriedade no objeto janela global.
+var x = 1; // Cria propriedade no objeto janela global. e isso pode ter implicações em alguns casos.
 let y = 2; // Não cria propriedade no objeto janela global.
 const z = 3; // Não cria propriedade no objeto janela global.
 
