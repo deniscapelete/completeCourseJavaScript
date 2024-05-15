@@ -56,6 +56,9 @@ calcAge(1991);
 */
 
 
+
+/*
+
 //Variables
 console.log(me); // indefinida - Como não foi declarada vem com indefinida
 //console.log(job); // ReferenceError - So pode ser utilizada a apos ser declarada
@@ -116,22 +119,31 @@ console.log(y === window.y);
 console.log(z === window.z);
 
 
+*/
+
 /* 'this' palavra-chave na prática */
 
-console.log(this);
+/*
+
+console.log(this); // aqui retorna o Window
 
 const calcAge = function (birthYear) {
     console.log(2037 - birthYear);
-    console.log(this);
+    console.log(this); 
 };
 
-calcAge(1991);
+calcAge(1991);// Função normal obtém sua própria palavra chave do disco e aqui é indefinido
+
+*************************
 
 const calcAgeArrow = birthYear => {
     console.log(2037 - birthYear);
-    console.log(this);
+    console.log(this); 
 };
-calcAgeArrow(1980);
+calcAgeArrow(1980);// retorna Window, a função seta não obtém sua própria palavra-chave de disco, ela usa a palavra chave lexical this,
+    // o que significa que usa a palavra chave disc de sua função pai ou seu escopo pai
+
+*************************
 
 const jonas = {
     year: 1991,
@@ -140,7 +152,10 @@ const jonas = {
         console.log(2037 - this.year);
     },
 };
-jonas.calcAge();
+jonas.calcAge(); // Quando temos uma chamada de método, a palavra-chave disco do métpdp será o objeto que está chamando o método.
+// neste caso esse é o objeto Jonas, aqui basicamente Jonas é o dono do método.
+
+*************************
 
 const matilda = {
     year: 2017,
@@ -150,4 +165,6 @@ matilda.calcAge = jonas.calcAge;
 matilda.calcAge();
 
 const f = jonas.calcAge;
-f();
+f(); // Retorna indefinido porque agora é uma chamda de uma função regular, não está ligada a nenhum objeto
+
+*/
