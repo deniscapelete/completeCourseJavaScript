@@ -1,3 +1,4 @@
+'use strict';
 /*
 function calcAge(birthYear) {
     const age = 2024 - birthYear;
@@ -168,3 +169,59 @@ const f = jonas.calcAge;
 f(); // Retorna indefinido porque agora é uma chamda de uma função regular, não está ligada a nenhum objeto
 
 */
+
+
+
+const jonas = {
+    firstName: 'Jonas',
+    year: 1991,
+    calcAge: function () {
+        console.log(this); // 'this' refere-se ao objeto jonas
+        console.log(2037 - this.year); // funciona corretamente, pois this.year é 1991
+
+
+        ///////////////////// 
+
+        // const isMillenial = function () {
+        //     console.log(this);
+        //     console.log(this.year >= 1981 && this.year <= 1996);
+        // };
+        // isMillenial(); // dentro de uma chamada de função regular a palavra chave é indefinida, (função dentro de função)
+        //a função regular obtém sua prorpia palavra chave por isso da erro
+        //////////////////////////  Abaixo segue duas maneiras para corrigir esse problema
+
+
+
+        ///////////////////// Solução 1 - antiga pré-ES6
+
+        // const self = this; // Criamos uma variavel para ter acesso as palavras-chave para jonas
+        // const isMillenial = function () {
+        //     console.log(self);
+        //     console.log(self.year >= 1981 && self.year <= 1996);
+        // };
+        // isMillenial(); 
+
+        /////////////////////
+
+
+
+
+        ///////////////////// Solução 1 - atual no ES6    
+        //funciona com a função de seta pois ela não tem sua propria palavra chave, ela usa do escopo pai, neste caso é de calcAge
+
+        const isMillenial = () => {
+            console.log(this);
+            console.log(this.year >= 1981 && this.year <= 1996);
+        };
+        isMillenial();
+
+
+
+
+    },
+
+    greet: () => console.log(`Hey ${this.firstName}`), // 'this' refere-se ao escopo global, nunca utilizar para definir um método (igual aqui)
+};
+
+jonas.greet();// 'this' refere-se ao escopo global, onde 'firstName' é undefined
+jonas.calcAge(); // 'this' refere-se a 'jonas', então o cálculo funciona corretamente 
