@@ -206,7 +206,7 @@ const jonas = {
 
 
 
-        ///////////////////// Solução 1 - atual no ES6    
+        ///////////////////// Solução 2 - atual no ES6    
         //funciona com a função de seta pois ela não tem sua propria palavra chave, ela usa do escopo pai, neste caso é de calcAge
 
         const isMillenial = () => {
@@ -225,3 +225,28 @@ const jonas = {
 
 jonas.greet();// 'this' refere-se ao escopo global, onde 'firstName' é undefined
 jonas.calcAge(); // 'this' refere-se a 'jonas', então o cálculo funciona corretamente 
+
+
+
+
+//argument keyword
+const addExpr = function (a, b) {
+    console.log(arguments);
+    return a + b;
+
+};
+
+
+addExpr(2, 5);
+addExpr(2, 5, 8, 12);
+//Com a palavra chave arguments, mesmo passando apenas dois parametros consigo incluir mais argumentos além desses dois, funciona apenas em função regular.
+
+
+var addArrow = (a, b) => {
+    console.log(arguments);
+    return a + b;
+}
+
+console.log(addArrow(2, 5, 8));
+
+//A palavra chaver arguments não funciona em função de seta, dessa forma os argumentos não são definidos 
