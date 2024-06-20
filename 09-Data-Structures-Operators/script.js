@@ -32,54 +32,89 @@ const restaurant = {
   },
 };
 
-const arr = [2, 3, 4];
+// Desestruturando Objetos
 
-const a = arr[0];
-const b = arr[1];
-const c = arr[2];
+//cria três variaveis novas com base no objeto restaurant
+const { name, openingHours, categories } = restaurant;
+console.log(name, openingHours, categories);
 
-// tarefa de desestruturação
-const [x, y, z] = arr;
-console.log(x, y, z); // retornou 2, 3, 4
+// renomeando o nome das variaveis
+const { name: restaurantName,
+  openingHours: hours,
+  categories: tags,
+} = restaurant;
+console.log(restaurantName, hours, tags);
 
-let [main, , secondary] = restaurant.categories; // com o segundo elemento vazio ele seleciona o proximo
-console.log(main, secondary); // retornou Italian, Vegetarian
+//Valor padrão - Definindo um valor padrão para caso a propriedade procurada não exista 
+const { menu = [], starterMenu: starters = [] } = restaurant;
 
+console.log(menu, starters)
 
-// // alternando duas variaveis sem desestruturação
-// const temp = main;
-// main = secondary;
-// secondary = temp;
-// console.log(main, secondary)
-
-
-// alternando as duas variaveis com desestruturação
-[main, secondary] = [secondary, main];
-console.log(main, secondary);  // retornou Vegetarian, Italian
+//Mutanting variables
+let a = 111;
+let b = 999;
+const obj = { a: 23, b: 7, c: 14 };
 
 
-restaurant.order(2, 0);
-console.log(restaurant.order(2, 0)); // retornou (2) ['Garlic Bread', 'Pizza']
+({ a, b } = obj);
+console.log(a, b);
+
+const { fri: { open, close }, } = openingHours;
+
+console.log(open, close);
 
 
-// Recebemons dois valores de retorno de uma função
-const [starter, mainCourse] = restaurant.order(2, 0);
-console.log(starter, mainCourse); // retornou Garlic Bread, Pizza
+///////////////////////////////////////////
+// Desestruturando Arrays
+
+// const arr = [2, 3, 4];
+
+// const a = arr[0];
+// const b = arr[1];
+// const c = arr[2];
+
+// // tarefa de desestruturação
+// const [x, y, z] = arr;
+// console.log(x, y, z); // retornou 2, 3, 4
+
+// let [main, , secondary] = restaurant.categories; // com o segundo elemento vazio ele seleciona o proximo
+// console.log(main, secondary); // retornou Italian, Vegetarian
 
 
-// Desestruturação de Arrays aninhados
-
-const nested = [2, 4, [5, 6]];
-// const [i, , j] = nested;
-// console.log(i, j); // retornou (2) [5, 6]
-// caso quisessemos todos os valores individuais, seria necessario uma desestruturação dentro da desestruturação
-
-
-const [i, , [j, k]] = nested;
-console.log(i, j, k);
+// // // alternando duas variaveis sem desestruturação
+// // const temp = main;
+// // main = secondary;
+// // secondary = temp;
+// // console.log(main, secondary)
 
 
-//definir valor padrão para as variaveis ao extrai-las
+// // alternando as duas variaveis com desestruturação
+// [main, secondary] = [secondary, main];
+// console.log(main, secondary);  // retornou Vegetarian, Italian
 
-const [p = 1, q = 1, r = 1] = [8, 9];
-console.log(p, q, r);
+
+// restaurant.order(2, 0);
+// console.log(restaurant.order(2, 0)); // retornou (2) ['Garlic Bread', 'Pizza']
+
+
+// // Recebemons dois valores de retorno de uma função
+// const [starter, mainCourse] = restaurant.order(2, 0);
+// console.log(starter, mainCourse); // retornou Garlic Bread, Pizza
+
+
+// // Desestruturação de Arrays aninhados
+
+// const nested = [2, 4, [5, 6]];
+// // const [i, , j] = nested;
+// // console.log(i, j); // retornou (2) [5, 6]
+// // caso quisessemos todos os valores individuais, seria necessario uma desestruturação dentro da desestruturação
+
+
+// const [i, , [j, k]] = nested;
+// console.log(i, j, k);
+
+
+// //definir valor padrão para as variaveis ao extrai-las
+
+// const [p = 1, q = 1, r = 1] = [8, 9];
+// console.log(p, q, r); // retornou 8 9 1
