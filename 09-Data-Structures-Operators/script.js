@@ -16,6 +16,12 @@ const restaurant = {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
 
+  //na função é realizada a desestruturação do objeto (a ordem dos elementos não precisa ser a mesma do objeto, porém os nomes devem ser iguais)
+  //Adicionei um valor padrão no mainIndex caso esse não possa ser desestruturado do objeto.
+  orderDelivery: function ({ starterIndex, mainIndex = 0, time, address }) {
+    console.log(`Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered ${address} at ${time}`);
+  },
+
   openingHours: {
     thu: {
       open: 12,
@@ -32,6 +38,25 @@ const restaurant = {
   },
 };
 
+///////////////////
+//Exemplo prático
+
+// passamos apenas um objeto (não são quatro argumentos)
+restaurant.orderDelivery({
+  time: '22:50',
+  address: 'Via del Sole, 22',
+  mainIndex: 2,
+  starterIndex: 3,
+});
+
+restaurant.orderDelivery({
+  time: '23:20',
+  address: 'Rua Nova, 10',
+  // não adicionei o mainIndex, então ele vai pegar o padrão adicionado na function
+  starterIndex: 2,
+});
+
+/////////////////////////
 // Desestruturando Objetos
 
 //cria três variaveis novas com base no objeto restaurant
@@ -62,6 +87,9 @@ console.log(a, b);
 const { fri: { open, close }, } = openingHours;
 
 console.log(open, close);
+
+
+
 
 
 ///////////////////////////////////////////
