@@ -44,41 +44,79 @@ const restaurant = {
 };
 
 
-//////////////// Operador de propagação
-// a propagação funciona em todos iteráveis em JavaScript (arrays, strings, maps(mapas) ou sets(conjunto), mas não em objetos)
+// 1) Desestruturing
+
+/////////// Padrão de repouso e parâmetros de repouso
+
+// SPREAD(PROPAGAÇÃO), porque no lado direito do operador de atribuição =
+const arr = [1, 2, ...[3, 4]];
+
+//REST(Repouso), porque no lado esquerdo do sinal
+// pega o restante dos elementos que não foram selecionados e os armazena em uma nova matriz
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+console.log(a, b, others); //retorna 1 2 (3) [3, 4, 5]
+
+//o REST coleta todo array após a última variavel, não inclui nenhum elemento ignorado 
+//( no exemplo abaixo ignoramos o segundo)
+// o Rest deve ser o último elemento
+const [pizza, , risotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+console.log(pizza, risotto, otherFood)
 
 
-const arr = [7, 8, 9];
-const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
-console.log(badNewArr); //retorna (5) [1, 2, 7, 8, 9]
+//Objetos
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(sat, weekdays);
 
 
-//Só pode utilizar em locais onde serapariamos o valores pode virgula caso escrevessemos
-//Operador de propagação (...arr), retira todos os elementos do array e os adiciona individualmente no novo array
-const newArr = [5, 6, ...arr]
-console.log(newArr) //retorna (5) [5, 6, 7, 8, 9]
+// 2) Function
+const add = function (...numbers) {
+  console.log(numbers);
+};
+
+add(2, 3);
+add(4, 5, 6, 7);
+add(8, 9, 10, 11, 12, 13);
+
+// //////////////// Operador de propagação
+// // a propagação funciona em todos iteráveis em JavaScript (arrays, strings, maps(mapas) ou sets(conjunto), mas não em objetos)
 
 
-console.log(...newArr); // retorna 5 6 7 8 9
-
-//Aqui estamos criando um array novo e não manipulando a matriz do mainMenu do restaurant
-const newMenu = [...restaurant.mainMenu, 'Gnocci'];
-console.log(newMenu); //retorna (4) ['Pizza', 'Pasta', 'Risotto', 'Gnocci']
-
-// Copia do Array
-const mainMenuCopy = [...restaurant.mainMenu];
-console.log(mainMenuCopy); //retorna (3) ['Pizza', 'Pasta', 'Risotto']
+// const arr = [7, 8, 9];
+// const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
+// console.log(badNewArr); //retorna (5) [1, 2, 7, 8, 9]
 
 
-// Unir dois arrays
-const menu = [...restaurant.mainMenu, ...newMenu];
-console.log(menu) // retorna (7) ['Pizza', 'Pasta', 'Risotto', 'Pizza', 'Pasta', 'Risotto', 'Gnocci'
+// //Só pode utilizar em locais onde serapariamos o valores pode virgula caso escrevessemos
+// //Operador de propagação (...arr), retira todos os elementos do array e os adiciona individualmente no novo array
+// const newArr = [5, 6, ...arr]
+// console.log(newArr) //retorna (5) [5, 6, 7, 8, 9]
 
 
-//propagação de string
-const str = 'Denis';
-const letters = [...str, ' ', 'C.'];
-console.log(letters)
+// console.log(...newArr); // retorna 5 6 7 8 9
+
+// //Aqui estamos criando um array novo e não manipulando a matriz do mainMenu do restaurant
+// const newMenu = [...restaurant.mainMenu, 'Gnocci'];
+// console.log(newMenu); //retorna (4) ['Pizza', 'Pasta', 'Risotto', 'Gnocci']
+
+// // Copia do Array
+// const mainMenuCopy = [...restaurant.mainMenu];
+// console.log(mainMenuCopy); //retorna (3) ['Pizza', 'Pasta', 'Risotto']
+
+
+// // Unir dois arrays
+// const menu = [...restaurant.mainMenu, ...newMenu];
+// console.log(menu) // retorna (7) ['Pizza', 'Pasta', 'Risotto', 'Pizza', 'Pasta', 'Risotto', 'Gnocci'
+
+
+// //propagação de string
+// const str = 'Denis';
+// const letters = [...str, ' ', 'C.'];
+// console.log(letters)
+
+
 
 
 //console.log(`${...str} Schmedtmann`) // retorna erro: Uncaught SyntaxError: Unexpected token
@@ -98,35 +136,20 @@ console.log(letters)
 
 
 
-//Objects
-const newRestaurant = {
-  foundedIn: 1998,
-  ...restaurant,
-  founder: 'Guiseppe'
-};
+// //Objects
+// const newRestaurant = {
+//   foundedIn: 1998,
+//   ...restaurant,
+//   founder: 'Guiseppe'
+// };
 
-console.log(newRestaurant)
+// console.log(newRestaurant)
 
-const restaurantCopy = { ...restaurant };
-restaurantCopy.name = 'Restaurante Brasil'
+// const restaurantCopy = { ...restaurant };
+// restaurantCopy.name = 'Restaurante Brasil'
 
-console.log(restaurant.name);
-console.log(restaurantCopy.name);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// console.log(restaurant.name);
+// console.log(restaurantCopy.name);
 
 
 
@@ -145,7 +168,7 @@ console.log(restaurantCopy.name);
 //   time: '23:20',
 //   address: 'Rua Nova, 10',
 //   // não adicionei o mainIndex, então ele vai pegar o padrão adicionado na function
-//   starterIndex: 2,
+//   starterIndex: 2,The Spread Operator (...)
 // });
 
 // /////////////////////////
