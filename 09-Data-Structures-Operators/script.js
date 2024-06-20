@@ -19,7 +19,12 @@ const restaurant = {
   //na função é realizada a desestruturação do objeto (a ordem dos elementos não precisa ser a mesma do objeto, porém os nomes devem ser iguais)
   //Adicionei um valor padrão no mainIndex caso esse não possa ser desestruturado do objeto.
   orderDelivery: function ({ starterIndex, mainIndex = 0, time, address }) {
-    console.log(`Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered ${address} at ${time}`);
+    console.log(`Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered ${address} at ${time}`
+    );
+  },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(`Here is your delicous pasta with ${ing1}, ${ing2} and ${ing3}`)
   },
 
   openingHours: {
@@ -38,55 +43,142 @@ const restaurant = {
   },
 };
 
-///////////////////
+
+//////////////// Operador de propagação
+// a propagação funciona em todos iteráveis em JavaScript (arrays, strings, maps(mapas) ou sets(conjunto), mas não em objetos)
+
+
+const arr = [7, 8, 9];
+const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
+console.log(badNewArr); //retorna (5) [1, 2, 7, 8, 9]
+
+
+//Só pode utilizar em locais onde serapariamos o valores pode virgula caso escrevessemos
+//Operador de propagação (...arr), retira todos os elementos do array e os adiciona individualmente no novo array
+const newArr = [5, 6, ...arr]
+console.log(newArr) //retorna (5) [5, 6, 7, 8, 9]
+
+
+console.log(...newArr); // retorna 5 6 7 8 9
+
+//Aqui estamos criando um array novo e não manipulando a matriz do mainMenu do restaurant
+const newMenu = [...restaurant.mainMenu, 'Gnocci'];
+console.log(newMenu); //retorna (4) ['Pizza', 'Pasta', 'Risotto', 'Gnocci']
+
+// Copia do Array
+const mainMenuCopy = [...restaurant.mainMenu];
+console.log(mainMenuCopy); //retorna (3) ['Pizza', 'Pasta', 'Risotto']
+
+
+// Unir dois arrays
+const menu = [...restaurant.mainMenu, ...newMenu];
+console.log(menu) // retorna (7) ['Pizza', 'Pasta', 'Risotto', 'Pizza', 'Pasta', 'Risotto', 'Gnocci'
+
+
+//propagação de string
+const str = 'Denis';
+const letters = [...str, ' ', 'C.'];
+console.log(letters)
+
+
+//console.log(`${...str} Schmedtmann`) // retorna erro: Uncaught SyntaxError: Unexpected token
+// Vários valores separados por uma vírgula geralmente são esperados apenas quando passamos argumentos para uma função ou quando construimos um novo array
+
+
+////////// Exemplo prático
+// const ingredients = [
+//   prompt('Lets\'s make pasta! Ingredient 1?'),
+//   prompt('Let\'s make pasta! Ingredient 2?'),
+//   prompt('Let\'s make pasta! Ingrediente 3?'),
+// ];
+
+// //Ambos abaixo produzem o mesmo resultado porém o segundo método é melhor pois em outros casos podem existir muito mais elementos
+// restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]);
+// restaurant.orderPasta(...ingredients);
+
+
+
+//Objects
+const newRestaurant = {
+  foundedIn: 1998,
+  ...restaurant,
+  founder: 'Guiseppe'
+};
+
+console.log(newRestaurant)
+
+const restaurantCopy = { ...restaurant };
+restaurantCopy.name = 'Restaurante Brasil'
+
+console.log(restaurant.name);
+console.log(restaurantCopy.name);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////// Desestruturação
 //Exemplo prático
 
-// passamos apenas um objeto (não são quatro argumentos)
-restaurant.orderDelivery({
-  time: '22:50',
-  address: 'Via del Sole, 22',
-  mainIndex: 2,
-  starterIndex: 3,
-});
+// // passamos apenas um objeto (não são quatro argumentos)
+// restaurant.orderDelivery({
+//   time: '22:50',
+//   address: 'Via del Sole, 22',
+//   mainIndex: 2,
+//   starterIndex: 3,
+// });
 
-restaurant.orderDelivery({
-  time: '23:20',
-  address: 'Rua Nova, 10',
-  // não adicionei o mainIndex, então ele vai pegar o padrão adicionado na function
-  starterIndex: 2,
-});
+// restaurant.orderDelivery({
+//   time: '23:20',
+//   address: 'Rua Nova, 10',
+//   // não adicionei o mainIndex, então ele vai pegar o padrão adicionado na function
+//   starterIndex: 2,
+// });
 
-/////////////////////////
-// Desestruturando Objetos
+// /////////////////////////
+// // Desestruturando Objetos
 
-//cria três variaveis novas com base no objeto restaurant
-const { name, openingHours, categories } = restaurant;
-console.log(name, openingHours, categories);
+// //cria três variaveis novas com base no objeto restaurant
+// const { name, openingHours, categories } = restaurant;
+// console.log(name, openingHours, categories);
 
-// renomeando o nome das variaveis
-const { name: restaurantName,
-  openingHours: hours,
-  categories: tags,
-} = restaurant;
-console.log(restaurantName, hours, tags);
+// // renomeando o nome das variaveis
+// const { name: restaurantName,
+//   openingHours: hours,
+//   categories: tags,
+// } = restaurant;
+// console.log(restaurantName, hours, tags);
 
-//Valor padrão - Definindo um valor padrão para caso a propriedade procurada não exista 
-const { menu = [], starterMenu: starters = [] } = restaurant;
+// //Valor padrão - Definindo um valor padrão para caso a propriedade procurada não exista 
+// const { menu = [], starterMenu: starters = [] } = restaurant;
 
-console.log(menu, starters)
+// console.log(menu, starters)
 
-//Mutanting variables
-let a = 111;
-let b = 999;
-const obj = { a: 23, b: 7, c: 14 };
+// //Mutanting variables
+// let a = 111;
+// let b = 999;
+// const obj = { a: 23, b: 7, c: 14 };
 
 
-({ a, b } = obj);
-console.log(a, b);
+// ({ a, b } = obj);
+// console.log(a, b);
 
-const { fri: { open, close }, } = openingHours;
+// const { fri: { open, close }, } = openingHours;
 
-console.log(open, close);
+// console.log(open, close);
 
 
 
