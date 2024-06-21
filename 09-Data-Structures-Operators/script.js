@@ -50,51 +50,64 @@ const restaurant = {
 };
 
 
-console.log('------------ OR ------------');
-// Operado OR (||)
-// Pode usar qualquer tipo de dado, e pode retornar qualquer tipo de dado, fazem curto-circuito
-// O operador OR para no primeiro que for verdadeiro (por isso do nome curto-circuito)
-// O operador OR caso todos forem falsos ele para no ultimo
-// Podemos utilizar o OR para definir os valores padrão
-console.log(3 || 'Denis'); // retorna - 3
-console.log('' || 'Denis'); // retorna - Denis
-console.log(true || 0); // retorna - true
-console.log(false || 0 || 1); // retorna - 1
-console.log(undefined || null); // retorna - null
-console.log(undefined || '' || 0 || 'Olá' || 23 || null); // retorna - Olá
+//O Operador Coalescente Nulo (??)
+//Trabalha com o conceito de valores nulos em vez de valores falsos
+
+restaurant.numGuests = 0;
+
+const guests = restaurant.numGuests || 10;
+console.log(guests);
+
+//Os valores nulos são nulos e indefinidos (isso nao inclui 0 e nem o string vazio '').
+//Basicamente é como se considerasse o 0 e '' como verdadeiros.
+const guestCorrect = restaurant.numGuests ?? 10;
+console.log(guestCorrect);
+
+////////////////////////////////////////////////////////////////
 
 
-restaurant.numGuests = 23;
-const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
-console.log(guests1);
-
-const guests2 = restaurant.numGuests || 10;
-console.log(guests2);
-
-
-console.log('------------ AND ------------');
-// entra em curto-circuito quando enconta o primeiro valor falso
-// O operador AND para no primeiro valor que for falso ( por isso do nome curto-circuito)
-// O operador AND caso todos forem verdadeiros ele para no último
-// Podemos utilizar o AND para executar o código no segundo operando se o primeiro for verdadeiro
-console.log(0 && 'Denis'); //retorna - 0
-console.log(7 && 'Denis'); //retorna - Denis
-
-console.log('Hello' && 23 && null && 'Denis');
-
-if (restaurant.orderPizza) {
-  restaurant.orderPizza('mushroom', 'spinach');
-}
+// console.log('------------ OR ------------');
+// // Operado OR (||)
+// // Pode usar qualquer tipo de dado, e pode retornar qualquer tipo de dado, fazem curto-circuito
+// // O operador OR para no primeiro que for verdadeiro (por isso do nome curto-circuito)
+// // O operador OR caso todos forem falsos ele para no ultimo
+// // Podemos utilizar o OR para definir os valores padrão
+// console.log(3 || 'Denis'); // retorna - 3
+// console.log('' || 'Denis'); // retorna - Denis
+// console.log(true || 0); // retorna - true
+// console.log(false || 0 || 1); // retorna - 1
+// console.log(undefined || null); // retorna - null
+// console.log(undefined || '' || 0 || 'Olá' || 23 || null); // retorna - Olá
 
 
-restaurant.order && restaurant.orderPizza('mushroom', 'spinach')
+// restaurant.numGuests = 23; // se o valor for 0, não iremos obter o resultado desejado, nesta caso utilizamos o operador coalescing (Coalescente)
+
+// const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+// console.log(guests1);
+
+// const guests2 = restaurant.numGuests || 10;
+// console.log(guests2);
 
 
+// console.log('------------ AND ------------');
+// // entra em curto-circuito quando enconta o primeiro valor falso
+// // O operador AND para no primeiro valor que for falso ( por isso do nome curto-circuito)
+// // O operador AND caso todos forem verdadeiros ele para no último
+// // Podemos utilizar o AND para executar o código no segundo operando se o primeiro for verdadeiro
+// console.log(0 && 'Denis'); //retorna - 0
+// console.log(7 && 'Denis'); //retorna - Denis
+
+// console.log('Hello' && 23 && null && 'Denis');
+
+// if (restaurant.orderPizza) {
+//   restaurant.orderPizza('mushroom', 'spinach');
+// }
 
 
+// restaurant.order && restaurant.orderPizza('mushroom', 'spinach')
 
 
-
+////////////////////////////////////////////////////////////////
 
 
 // // 1) Desestruturing
@@ -146,7 +159,7 @@ restaurant.order && restaurant.orderPizza('mushroom', 'spinach')
 // restaurant.orderPizza('mushroom', 'onion', 'olives', 'spinach');
 
 
-
+////////////////////////////////////////////////////////////////
 
 
 // //////////////// Operador de propagação
@@ -190,6 +203,7 @@ restaurant.order && restaurant.orderPizza('mushroom', 'spinach')
 
 //console.log(`${...str} Schmedtmann`) // retorna erro: Uncaught SyntaxError: Unexpected token
 // Vários valores separados por uma vírgula geralmente são esperados apenas quando passamos argumentos para uma função ou quando construimos um novo array
+
 
 
 ////////// Exemplo prático
