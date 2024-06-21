@@ -49,19 +49,59 @@ const restaurant = {
   },
 };
 
+const rest1 = {
+  name: 'Capri',
+  // numGuests: 20,
+  numGuests: 0,
+}
 
-//O Operador Coalescente Nulo (??)
-//Trabalha com o conceito de valores nulos em vez de valores falsos
+const rest2 = {
+  name: 'La Piazzai',
+  owner: 'Giovanni',
+}
 
-restaurant.numGuests = 0;
 
-const guests = restaurant.numGuests || 10;
-console.log(guests);
+// OR operador de atribuição
+// Atribui valor se ela estiver com problema
+// rest1.numGuests = rest1.numGuests || 10;
+// rest2.numGuests = rest2.numGuests || 10;
+// rest1.numGuests ||= 10;
+// rest2.numGuests ||= 10;
 
-//Os valores nulos são nulos e indefinidos (isso nao inclui 0 e nem o string vazio '').
-//Basicamente é como se considerasse o 0 e '' como verdadeiros.
-const guestCorrect = restaurant.numGuests ?? 10;
-console.log(guestCorrect);
+
+
+// nulllist assingnment operator (null or undefined)
+rest1.numGuests ??= 10;
+rest2.numGuests ??= 10;
+
+// AND operador de atribuição
+// rest1.owner = rest1.owner && '<ANONYMOUS>;'
+// rest2.owner = rest2.owner && '<ANONYMOUS>;'
+
+rest1.owner &&= '<ANONYMOUS>';
+rest2.owner &&= '<ANONYMOUS>';
+
+
+
+
+
+console.log(rest1);
+console.log(rest2);
+
+
+
+// //O Operador Coalescente Nulo (??)
+// //Trabalha com o conceito de valores nulos em vez de valores falsos
+
+// restaurant.numGuests = 0;
+
+// const guests = restaurant.numGuests || 10;
+// console.log(guests);
+
+// //Os valores nulos são nulos e indefinidos (isso nao inclui 0 e nem o string vazio '').
+// //Basicamente é como se considerasse o 0 e '' como verdadeiros.
+// const guestCorrect = restaurant.numGuests ?? 10;
+// console.log(guestCorrect);
 
 ////////////////////////////////////////////////////////////////
 
