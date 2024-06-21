@@ -27,6 +27,12 @@ const restaurant = {
     console.log(`Here is your delicous pasta with ${ing1}, ${ing2} and ${ing3}`)
   },
 
+  orderPizza: function (mainIngredients, ...otherIngredients) {
+    console.log(mainIngredients);
+    console.log(otherIngredients);
+  },
+
+
   openingHours: {
     thu: {
       open: 12,
@@ -44,41 +50,104 @@ const restaurant = {
 };
 
 
-// 1) Desestruturing
-
-/////////// Padrão de repouso e parâmetros de repouso
-
-// SPREAD(PROPAGAÇÃO), porque no lado direito do operador de atribuição =
-const arr = [1, 2, ...[3, 4]];
-
-//REST(Repouso), porque no lado esquerdo do sinal
-// pega o restante dos elementos que não foram selecionados e os armazena em uma nova matriz
-const [a, b, ...others] = [1, 2, 3, 4, 5];
-console.log(a, b, others); //retorna 1 2 (3) [3, 4, 5]
-
-//o REST coleta todo array após a última variavel, não inclui nenhum elemento ignorado 
-//( no exemplo abaixo ignoramos o segundo)
-// o Rest deve ser o último elemento
-const [pizza, , risotto, ...otherFood] = [
-  ...restaurant.mainMenu,
-  ...restaurant.starterMenu,
-];
-console.log(pizza, risotto, otherFood)
+console.log('------------ OR ------------');
+// Operado OR (||)
+// Pode usar qualquer tipo de dado, e pode retornar qualquer tipo de dado, fazem curto-circuito
+// O operador OR para no primeiro que for verdadeiro (por isso do nome curto-circuito)
+// O operador OR caso todos forem falsos ele para no ultimo
+// Podemos utilizar o OR para definir os valores padrão
+console.log(3 || 'Denis'); // retorna - 3
+console.log('' || 'Denis'); // retorna - Denis
+console.log(true || 0); // retorna - true
+console.log(false || 0 || 1); // retorna - 1
+console.log(undefined || null); // retorna - null
+console.log(undefined || '' || 0 || 'Olá' || 23 || null); // retorna - Olá
 
 
-//Objetos
-const { sat, ...weekdays } = restaurant.openingHours;
-console.log(sat, weekdays);
+restaurant.numGuests = 23;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1);
+
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2);
 
 
-// 2) Function
-const add = function (...numbers) {
-  console.log(numbers);
-};
+console.log('------------ AND ------------');
+// entra em curto-circuito quando enconta o primeiro valor falso
+// O operador AND para no primeiro valor que for falso ( por isso do nome curto-circuito)
+// O operador AND caso todos forem verdadeiros ele para no último
+// Podemos utilizar o AND para executar o código no segundo operando se o primeiro for verdadeiro
+console.log(0 && 'Denis'); //retorna - 0
+console.log(7 && 'Denis'); //retorna - Denis
 
-add(2, 3);
-add(4, 5, 6, 7);
-add(8, 9, 10, 11, 12, 13);
+console.log('Hello' && 23 && null && 'Denis');
+
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('mushroom', 'spinach');
+}
+
+
+restaurant.order && restaurant.orderPizza('mushroom', 'spinach')
+
+
+
+
+
+
+
+
+
+// // 1) Desestruturing
+
+// /////////// Padrão de repouso e parâmetros de repouso
+
+// // SPREAD(PROPAGAÇÃO), porque no lado direito do operador de atribuição =
+// const arr = [1, 2, ...[3, 4]];
+
+// //REST(Repouso), porque no lado esquerdo do sinal
+// // pega o restante dos elementos que não foram selecionados e os armazena em uma nova matriz
+// const [a, b, ...others] = [1, 2, 3, 4, 5];
+// console.log(a, b, others); //retorna 1 2 (3) [3, 4, 5]
+
+// //o REST coleta todo array após a última variavel, não inclui nenhum elemento ignorado 
+// //( no exemplo abaixo ignoramos o segundo)
+// // o Rest deve ser o último elemento
+// const [pizza, , risotto, ...otherFood] = [
+//   ...restaurant.mainMenu,
+//   ...restaurant.starterMenu,
+// ];
+// console.log(pizza, risotto, otherFood)
+
+
+// //Objetos
+// const { sat, ...weekdays } = restaurant.openingHours;
+// console.log(sat, weekdays);
+
+
+// // a sintaxe rest, é pegar varios números ou valores e, em seguida, empacotar todos em um único array.
+// // 2) Function
+// const add = function (...numbers) {
+//   let sum = 0;
+//   for (let i = 0; i < numbers.length; i++) sum += numbers[i];
+//   console.log(sum);
+//   console.log(numbers)
+// };
+
+// add(2, 3); // retona 5   -   retorna  (2) [2, 3]
+// add(4, 5, 6, 7); //retona 22   -   retorna  (4) [4, 5, 6, 7]
+// add(8, 9, 10, 11, 12, 13); // retona 63   -   retorna  (6) [8, 9, 10, 11, 12, 13]
+
+// const x = [23, 5, 7];
+// add(...x); // retona 35   -   retorna  (3) [23, 5, 7]
+
+
+
+
+// restaurant.orderPizza('mushroom', 'onion', 'olives', 'spinach');
+
+
+
+
 
 // //////////////// Operador de propagação
 // // a propagação funciona em todos iteráveis em JavaScript (arrays, strings, maps(mapas) ou sets(conjunto), mas não em objetos)
