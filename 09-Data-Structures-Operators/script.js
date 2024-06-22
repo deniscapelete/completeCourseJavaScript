@@ -69,24 +69,20 @@ const rest2 = {
 // rest2.numGuests ||= 10;
 
 
+// // nulllist assingnment operator (null or undefined)
+// rest1.numGuests ??= 10;
+// rest2.numGuests ??= 10;
 
-// nulllist assingnment operator (null or undefined)
-rest1.numGuests ??= 10;
-rest2.numGuests ??= 10;
+// // AND operador de atribuição
+// // rest1.owner = rest1.owner && '<ANONYMOUS>;'
+// // rest2.owner = rest2.owner && '<ANONYMOUS>;'
 
-// AND operador de atribuição
-// rest1.owner = rest1.owner && '<ANONYMOUS>;'
-// rest2.owner = rest2.owner && '<ANONYMOUS>;'
-
-rest1.owner &&= '<ANONYMOUS>';
-rest2.owner &&= '<ANONYMOUS>';
-
+// rest1.owner &&= '<ANONYMOUS>';
+// rest2.owner &&= '<ANONYMOUS>';
 
 
-
-
-console.log(rest1);
-console.log(rest2);
+// console.log(rest1);
+// console.log(rest2);
 
 
 
