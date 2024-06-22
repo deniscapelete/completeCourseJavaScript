@@ -125,6 +125,11 @@ const game = {
     x: 3.25,
     team2: 6.5,
   },
+
+  printgoals: function (player1, player2, player3, player4, goals) {
+    console.log(player1, player2, player3, player4, goals)
+  },
+
 };
 
 // 1)
@@ -159,7 +164,9 @@ console.log(team1, x, team2);
 
 
 // 6)
-const printgoals = function () { };
+
+game.printgoals(...game.scored, game.scored.length);
+
 
 // 7)
 
