@@ -126,48 +126,94 @@ const game = {
     team2: 6.5,
   },
 
-  printgoals: function (player1, player2, player3, player4, goals) {
-    console.log(player1, player2, player3, player4, goals)
-  },
-
 };
 
-// 1)
-const players1 = [...game.players[0]];
-const players2 = [...game.players[1]];
 
-console.log(players1);
-console.log(players2);
+// ////// Minha solução
+// // 1)
+// const players1 = [...game.players[0]];
+// const players2 = [...game.players[1]];
+
+// console.log(players1);
+// console.log(players2);
+
+
+// // 2)
+// const [gk, ...fieldPlayer] = [...players1];
+
+// console.log(gk, fieldPlayer);
+
+
+// // 3)
+// const allPlayers = [...game.players[0], ...game.players[1]];
+
+// console.log(allPlayers)
+
+// // 4)
+// const players1Final = [...game.players[0], 'Thiago', 'Coutinho', 'Perisic'];
+
+// console.log(players1Final);
+
+
+// // 5)
+// const { team1, x, team2 } = { ...game.odds };
+
+// console.log(team1, x, team2);
+
+
+// // 6)
+// const printgoals = function (player1, player2, player3, player4, goals) {
+//   console.log(player1, player2, player3, player4, goals)
+// }
+// game.printgoals(...game.scored, game.scored.length);
+
+
+// // 7)
+
+
+
+////// Solução do professor
+
+
+// 1)
+const [players1, players2] = game.players;
+console.log(players1, players2);
+console.log(game.players[0][0]);
 
 
 // 2)
-const [gk, ...fieldPlayer] = [...players1];
-
-console.log(gk, fieldPlayer);
+const [gk, ...fieldPlayers] = players1;
+console.log(gk, fieldPlayers);
 
 
 // 3)
-const allPlayers = [...game.players[0], ...game.players[1]];
-
-console.log(allPlayers)
+const allPlayers = [...players1, ...players2];
+console.log(allPlayers);
 
 // 4)
-const players1Final = [...game.players[0], 'Thiago', 'Coutinho', 'Perisic'];
-
+const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
 console.log(players1Final);
 
-
 // 5)
-const { team1, x, team2 } = { ...game.odds };
-
-console.log(team1, x, team2);
-
-
+const {
+  odds: { team1, x: draw, team2 },
+} = game;
+console.log(team1, draw, team2);
 // 6)
 
-game.printgoals(...game.scored, game.scored.length);
+const printGoals = function (...players) {
+  console.log(`${players.length} goals were scored, for players ${players}`)
+}
 
+// printGoals('Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels');
+// printGoals('Lewandowski', 'Gnarby');
+
+printGoals(...game.scored);
 
 // 7)
+
+team1 < team2 && console.log('Team 1 is more likely to win');
+
+team1 > team2 && console.log('Team2 is more likely to win');
 
 
