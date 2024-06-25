@@ -4,6 +4,24 @@
 const flights =
   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+const openingHours = {
+  [weekdays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  [weekdays[4]]: {
+    open: 11,
+    close: 23,
+  },
+  sat: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
+
+
 // Data needed for first part of the section
 const restaurant = {
   name: 'Classico Italiano',
@@ -12,13 +30,16 @@ const restaurant = {
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-  order: function (starterIndex, mainIndex) {
+  // ES6 objetos aprimorados
+  openingHours,
+
+  order(starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
 
   //na função é realizada a desestruturação do objeto (a ordem dos elementos não precisa ser a mesma do objeto, porém os nomes devem ser iguais)
   //Adicionei um valor padrão no mainIndex caso esse não possa ser desestruturado do objeto.
-  orderDelivery: function ({ starterIndex, mainIndex = 0, time, address }) {
+  orderDelivery({ starterIndex, mainIndex = 0, time, address }) {
     console.log(`Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered ${address} at ${time}`
     );
   },
@@ -33,33 +54,43 @@ const restaurant = {
   },
 
 
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
-  },
 };
 
-const rest1 = {
-  name: 'Capri',
-  // numGuests: 20,
-  numGuests: 0,
-}
+///////////// 
 
-const rest2 = {
-  name: 'La Piazzai',
-  owner: 'Giovanni',
-}
 
+
+
+// // -------------- FOR OF --------------
+
+// //foi criado para fornecer o elemento atual 
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+// for (const item of menu) console.log(item); // retorna item por item - Focaccia
+
+// // for (const item of menu.entries()) {
+// //   console.log(item); // retorna uma matriz com o índice no próprio elemento da matriz - (2) [0, 'Focaccia'])
+// // }
+
+// for (const [i, el] of menu.entries()) {
+//   console.log(`${i + 1}: ${el}`)
+// }
+
+
+
+
+
+
+// const rest1 = {
+//   name: 'Capri',
+//   // numGuests: 20,
+//   numGuests: 0,
+// }
+
+// const rest2 = {
+//   name: 'La Piazzai',
+//   owner: 'Giovanni',
+// }
 
 // OR operador de atribuição
 // Atribui valor se ela estiver com problema
@@ -321,9 +352,6 @@ const rest2 = {
 // const { fri: { open, close }, } = openingHours;
 
 // console.log(open, close);
-
-
-
 
 
 ///////////////////////////////////////////

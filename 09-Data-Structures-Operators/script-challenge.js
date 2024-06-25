@@ -1,4 +1,4 @@
-'use strict';
+// 'use strict';
 
 /*
 Data Structures, Modern Operators and Strings
@@ -37,7 +37,7 @@ operator.
 
 Test data for 6.: First, use players 'Davies', 'Muller', 'Lewandowski' and 'Kimmich'.
 Then, call the function again with players from game.scored
-GOOD LUCK 
+GOOD LUCK
 */
 
 ///////////////////////////////////////
@@ -48,7 +48,7 @@ Estruturas de Dados, Operadores Modernos e Strings
 Desafio de Codificação #1
 
 Estamos construindo um aplicativo de apostas de futebol (soccer para os meus amigos americanos)!
-Suponha que recebemos dados de um serviço web sobre um determinado jogo 
+Suponha que recebemos dados de um serviço web sobre um determinado jogo
 (variável 'game' na próxima página).
  Neste desafio, vamos trabalhar com esses dados.
 Suas tarefas:
@@ -56,7 +56,7 @@ Suas tarefas:
 1. Crie um array de jogadores para cada time (variáveis 'players1' e 'players2').
 
 2. O primeiro jogador em qualquer array de jogadores é o goleiro e os outros são jogadores de campo.
-Para o Bayern Munich (time 1), crie uma variável ('gk') com o nome do goleiro, e um array ('fieldPlayers') 
+Para o Bayern Munich (time 1), crie uma variável ('gk') com o nome do goleiro, e um array ('fieldPlayers')
 com todos os 10 jogadores de campo restantes.
 
 3. Crie um array 'allPlayers' contendo todos os jogadores de ambos os times (22 jogadores).
@@ -67,7 +67,7 @@ com todos os 10 jogadores de campo restantes.
 5. Com base no objeto game.odds, crie uma variável para cada odd (chamada 'team1', 'draw' e 'team2').
 
 6. Escreva uma função ('printGoals') que recebe um número arbitrário de nomes de jogadores (não um array)
-e imprime cada um deles no console, junto com o número total de gols que foram marcados 
+e imprime cada um deles no console, junto com o número total de gols que foram marcados
 (número de nomes de jogadores passados).
 
 7. O time com a menor odd é mais provável de ganhar. Imprima no console qual time é mais provável de ganhar,
@@ -80,53 +80,53 @@ BOA SORTE
 
 */
 
-// Data needed for a later exercise
-const flights =
-  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+// // Data needed for a later exercise
+// const flights =
+//   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
 
-const game = {
-  team1: 'Bayern Munich',
-  team2: 'Borrussia Dortmund',
-  players: [
-    [
-      'Neuer',
-      'Pavard',
-      'Martinez',
-      'Alaba',
-      'Davies',
-      'Kimmich',
-      'Goretzka',
-      'Coman',
-      'Muller',
-      'Gnarby',
-      'Lewandowski',
-    ],
-    [
-      'Burki',
-      'Schulz',
-      'Hummels',
-      'Akanji',
-      'Hakimi',
-      'Weigl',
-      'Witsel',
-      'Hazard',
-      'Brandt',
-      'Sancho',
-      'Gotze',
-    ],
-  ],
-  score: '4:0',
-  scored: ['Lewandowski', 'Gnarby', 'Lewandowski',
-    'Hummels'],
-  date: 'Nov 9th, 2037',
-  odds: {
-    team1: 1.33,
-    x: 3.25,
-    team2: 6.5,
-  },
+// const game = {
+//   team1: 'Bayern Munich',
+//   team2: 'Borrussia Dortmund',
+//   players: [
+//     [
+//       'Neuer',
+//       'Pavard',
+//       'Martinez',
+//       'Alaba',
+//       'Davies',
+//       'Kimmich',
+//       'Goretzka',
+//       'Coman',
+//       'Muller',
+//       'Gnarby',
+//       'Lewandowski',
+//     ],
+//     [
+//       'Burki',
+//       'Schulz',
+//       'Hummels',
+//       'Akanji',
+//       'Hakimi',
+//       'Weigl',
+//       'Witsel',
+//       'Hazard',
+//       'Brandt',
+//       'Sancho',
+//       'Gotze',
+//     ],
+//   ],
+//   score: '4:0',
+//   scored: ['Lewandowski', 'Gnarby', 'Lewandowski',
+//     'Hummels'],
+//   date: 'Nov 9th, 2037',
+//   odds: {
+//     team1: 1.33,
+//     x: 3.25,
+//     team2: 6.5,
+//   },
 
-};
+// };
 
 
 // ////// Minha solução
@@ -175,45 +175,45 @@ const game = {
 ////// Solução do professor
 
 
-// 1)
-const [players1, players2] = game.players;
-console.log(players1, players2);
-console.log(game.players[0][0]);
+// // 1)
+// const [players1, players2] = game.players;
+// console.log(players1, players2);
+// console.log(game.players[0][0]);
 
 
-// 2)
-const [gk, ...fieldPlayers] = players1;
-console.log(gk, fieldPlayers);
+// // 2)
+// const [gk, ...fieldPlayers] = players1;
+// console.log(gk, fieldPlayers);
 
 
-// 3)
-const allPlayers = [...players1, ...players2];
-console.log(allPlayers);
+// // 3)
+// const allPlayers = [...players1, ...players2];
+// console.log(allPlayers);
 
-// 4)
-const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
-console.log(players1Final);
+// // 4)
+// const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+// console.log(players1Final);
 
-// 5)
-const {
-  odds: { team1, x: draw, team2 },
-} = game;
-console.log(team1, draw, team2);
-// 6)
+// // 5)
+// const {
+//   odds: { team1, x: draw, team2 },
+// } = game;
+// console.log(team1, draw, team2);
+// // 6)
 
-const printGoals = function (...players) {
-  console.log(`${players.length} goals were scored, for players ${players}`)
-}
+// const printGoals = function (...players) {
+//   console.log(`${players.length} goals were scored, for players ${players}`)
+// }
 
-// printGoals('Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels');
-// printGoals('Lewandowski', 'Gnarby');
+// // printGoals('Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels');
+// // printGoals('Lewandowski', 'Gnarby');
 
-printGoals(...game.scored);
+// printGoals(...game.scored);
 
-// 7)
+// // 7)
 
-team1 < team2 && console.log('Team 1 is more likely to win');
+// team1 < team2 && console.log('Team 1 is more likely to win');
 
-team1 > team2 && console.log('Team2 is more likely to win');
+// team1 > team2 && console.log('Team2 is more likely to win');
 
 
