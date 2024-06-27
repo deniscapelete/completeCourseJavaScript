@@ -58,38 +58,51 @@ const restaurant = {
 
 /////////////
 
-// -------------- encadeamento opcional--------------
+//  property names (nomes de propriedades)
+const properties = Object.keys(openingHours);
+console.log(properties);
 
-if (restaurant.openingHours && restaurant.openingHours.mon) console.log
-  (restaurant.openingHours.mon.open)
+let openStr = `We are open on ${properties.length} days: `
 
-
-console.log(restaurant.openingHours.mon?.open);
-
-console.log(restaurant.openingHours?.mon?.open)
-
-
-const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-
-for (const day of days) {
-  const open = restaurant.openingHours[day]?.open ?? 'closed';
-  console.log(`On ${day}, we open at ${open}`)
+for (const day of properties) {
+  openStr += `${day}, `
 }
-
-// -------------- Methods--------------
-console.log(restaurant.order?.(0, 1) ?? 'Method does not exist');
-console.log(restaurant.orderRisotto?.(0, 1) ?? 'Method does not exist')
-
-// -------------- Arrays--------------
-const users = [
-  { name: 'Jonas', email: 'hello@jonas.io' }
-];
-console.log(users[0]?.name ?? 'User array empty');
+console.log(openStr)
 
 
-// retorna o mesmo que o código acima
-if (users.length > 0) console.log(users[0].name);
-else console.log('user array empty');
+
+// // -------------- encadeamento opcional--------------
+
+// if (restaurant.openingHours && restaurant.openingHours.mon) console.log
+//   (restaurant.openingHours.mon.open)
+
+
+// console.log(restaurant.openingHours.mon?.open);
+
+// console.log(restaurant.openingHours?.mon?.open)
+
+
+// const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+// for (const day of days) {
+//   const open = restaurant.openingHours[day]?.open ?? 'closed';
+//   console.log(`On ${day}, we open at ${open}`)
+// }
+
+// // -------------- Methods--------------
+// console.log(restaurant.order?.(0, 1) ?? 'Method does not exist');
+// console.log(restaurant.orderRisotto?.(0, 1) ?? 'Method does not exist')
+
+// // -------------- Arrays--------------
+// const users = [
+//   { name: 'Jonas', email: 'hello@jonas.io' }
+// ];
+// console.log(users[0]?.name ?? 'User array empty');
+
+
+// // retorna o mesmo que o código acima
+// if (users.length > 0) console.log(users[0].name);
+// else console.log('user array empty');
 
 
 // // -------------- FOR-OF LOOP--------------
