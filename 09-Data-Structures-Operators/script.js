@@ -58,30 +58,90 @@ const restaurant = {
 
 /////////////
 
+const ordersSet = new Set([
+  'Pasta',
+  'Pizza',
+  'Pasta',
+  'Pizza',
+  'Risotto',
+  'Pizza',
+]);
+
+console.log(ordersSet);
+
+console.log(new Set('Jonas'));
+
+console.log(ordersSet.size);
+console.log(ordersSet.has('Pizza'));
+console.log(ordersSet.has('Bread'));
+ordersSet.add('Garlic Bread');
+ordersSet.add('Garlic Bread');
+ordersSet.delete('Risotto')
+console.log(ordersSet)
+// ordersSet.clear(); // limpa todos os elementos do conjunto
+
+console.log(ordersSet[0]) // Em conjuntos não há índice, então retorna 'undefined'
+
+
+for (const order of ordersSet) console.log(order);
+
+//Exemplo
+const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef'];
+const staffUnique = [...new Set(staff)];
+console.log(staffUnique);
+
+console.log(
+  new Set(['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef']).size
+);
+
+console.log(new Set('testando').size);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // //  property names (nomes de propriedades)
 // const properties = Object.keys(openingHours);
-// console.log(properties);
+// console.log(properties);  // retorna (3) ['thu', 'fri', 'sat']
 
 // let openStr = `We are open on ${properties.length} days: `
 
 // for (const day of properties) {
 //   openStr += `${day}, `
 // }
-// console.log(openStr)
+// console.log(openStr); // retorna We are open on 3 days: thu, fri, sat, 
 
 
-// // Property VALUES
+// // Property VALUES 
 // const values = Object.values(openingHours);
-// console.log(values)
+// console.log(values) // retorna:
+// // (3) [{…}, {…}, {…}]
+// //    0: {"open": 12,"close": 22} 
+// //    1: {"open": 11,"close": 23} 
+// //    2: {"open": 0,"close": 24}
 
-//Entire object
-const entries = Object.entries(openingHours);
-console.log(entries);
+// //Entire object (para percorrer todo o objeto)
+// const entries = Object.entries(openingHours);
+// console.log(entries); // retorna 
+// // (3)[Array(2), Array(2), Array(2)]
+// //    ["thu", { "open": 12, "close": 22 }]
+// //    ["thu", { "open": 11, "close": 23 }]
+// //    ["thu", { "open": 0, "close": 24 }]
 
-// [key, value]
-for (const [day, { open, close }] of entries) {
-  console.log(`On ${day} we open at ${open} and close at ${close}`);
-}
+// // [key, value]
+// for (const [day, { open, close }] of entries) {
+//   console.log(`On ${day} we open at ${open} and close at ${close}`);
+// }
 
 
 
