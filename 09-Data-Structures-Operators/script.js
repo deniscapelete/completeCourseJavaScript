@@ -58,47 +58,89 @@ const restaurant = {
 
 /////////////
 
-const ordersSet = new Set([
-  'Pasta',
-  'Pizza',
-  'Pasta',
-  'Pizza',
-  'Risotto',
-  'Pizza',
-]);
 
-console.log(ordersSet);
+// // // -------------- Maps: Fundamentals --------------
 
-console.log(new Set('Jonas'));
+const rest = new Map();
+rest.set('name', 'Classico Italiano');
+rest.set(1, 'Firenze, Italy');
+console.log(rest.set(2, 'Lisbon, Portugal'));
 
-console.log(ordersSet.size);
-console.log(ordersSet.has('Pizza'));
-console.log(ordersSet.has('Bread'));
-ordersSet.add('Garlic Bread');
-ordersSet.add('Garlic Bread');
-ordersSet.delete('Risotto')
-console.log(ordersSet)
-// ordersSet.clear(); // limpa todos os elementos do conjunto
+rest.set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+  .set('open', 11)
+  .set('close', 23)
+  .set(true, 'We are open :D')
+  .set(false, 'We are closed :(');
 
-console.log(ordersSet[0]) // Em conjuntos não há índice, então retorna 'undefined'
+console.log(rest.get('name'));
+console.log(rest.get(true));
+console.log(rest.get(1));
+
+const time = 21;
+console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
+
+console.log(rest.has('categories'));
+rest.delete(2);
+console.log(rest);
+
+console.log(rest.size);
+rest.clear();
+console.log(rest)
+rest.set('nome', 'casa');
+
+rest.set(document.querySelector('h1'), 'Heading');
+console.log(rest)
+
+rest.set([1, 2], 'test'); // assim não funciona
+console.log(rest.get([1, 2]))
+
+const arr = [1, 2];
+
+rest.set(arr, 'test')
+console.log(rest.get(arr))
 
 
-for (const order of ordersSet) console.log(order);
-
-//Exemplo
-const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef'];
-const staffUnique = [...new Set(staff)];
-console.log(staffUnique);
-
-console.log(
-  new Set(['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef']).size
-);
-
-console.log(new Set('testando').size);
 
 
+// // // -------------- SETS (conjuntos)--------------
+
+// const ordersSet = new Set([
+//   'Pasta',
+//   'Pizza',
+//   'Pasta',
+//   'Pizza',
+//   'Risotto',
+//   'Pizza',
+// ]);
+
+// console.log(ordersSet);
+
+// console.log(new Set('Jonas'));
+
+// console.log(ordersSet.size);
+// console.log(ordersSet.has('Pizza'));
+// console.log(ordersSet.has('Bread'));
+// ordersSet.add('Garlic Bread');
+// ordersSet.add('Garlic Bread');
+// ordersSet.delete('Risotto')
+// console.log(ordersSet)
+// // ordersSet.clear(); // limpa todos os elementos do conjunto
+
+// console.log(ordersSet[0]) // Em conjuntos não há índice, então retorna 'undefined'
 
 
+// for (const order of ordersSet) console.log(order);
+
+// //Exemplo
+// const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef'];
+// const staffUnique = [...new Set(staff)];
+// console.log(staffUnique);
+
+// console.log(
+//   new Set(['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef']).size
+// );
+
+// console.log(new Set('testando').size);
 
 
 
