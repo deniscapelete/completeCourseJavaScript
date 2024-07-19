@@ -57,49 +57,70 @@ const restaurant = {
 };
 
 /////////////
+// // // // -------------- 122 Working With Strings - Part 1 --------------
 
-// // // // -------------- 119 Maps: Iteration --------------
+const airline = 'TAP Air Portugal';
+const plane = 'A320';
 
-const question = new Map([
-  ['question', 'What is the best programming language in the world?'],
-  [1, 'C'],
-  [2, 'Java'],
-  [3, 'JavaScript'],
-  ['correct', 3],
-  [true, 'Correct'],
-  [false, 'Try again!']
-]);
+console.log(plane[0]); // retorna A
+console.log(plane[1]); // retorna 3
+console.log(plane[2]); // retorna 2
 
-console.log(question);
+console.log('B737'[0]); // retorna B
 
+console.log(airline.length); // retorna 16
+console.log('B737'.length); // retorna 4
 
-// Converter objetos em mapa
-console.log(Object.entries(openingHours));
-const hoursMap = new Map(Object.entries(openingHours));
-console.log(hoursMap);
+console.log(airline.indexOf('r')); // retorna 6 (retorna a posição do primeiro encontrado)
+console.log(airline.lastIndexOf('r')); // retorna 10 (retorna a posição do último encontrado)
 
+console.log(airline.indexOf('Portugal')); // retorna 8 (retorna a posição da primeira letra da palavra)
+console.log(airline.indexOf('portugal')); // retorna -1 (existe diferença de letra minuscula para maiuscula)
 
-// Quiz app
-console.log(question.get('question'));
+console.log(airline.slice(4)); // retorna Air Portugal (incia na posição que quer que comece a extração)
 
-for (const [key, value] of question) {
-  if (typeof key === 'number') console.log(`Answer ${key}: ${value}`)
-}
+console.log(airline.slice(4, 7)); // retorna Air (parametro inicial e final(não inclui o 7))
 
+// // // // // -------------- 119 Maps: Iteration --------------
 
-const answer = Number(prompt('Your answer'));
-console.log(answer);
-
-console.log(question.get(question.get('correct') === answer));
-
-// Converter mapa em array
-
-console.log([...question]);
-//console.log(question.entries());
-console.log([...question.keys()]);
-console.log([question.values]);
+// const question = new Map([
+//   ['question', 'What is the best programming language in the world?'],
+//   [1, 'C'],
+//   [2, 'Java'],
+//   [3, 'JavaScript'],
+//   ['correct', 3],
+//   [true, 'Correct'],
+//   [false, 'Try again!']
+// ]);
+// 3
+// console.log(question);
 
 
+// // Converter objetos em mapa
+// console.log(Object.entries(openingHours));
+// const hoursMap = new Map(Object.entries(openingHours));
+// console.log(hoursMap);
+
+
+// // Quiz app
+// console.log(question.get('question'));
+
+// for (const [key, value] of question) {
+//   if (typeof key === 'number') console.log(`Answer ${key}: ${value}`)
+// }
+
+
+// const answer = Number(prompt('Your answer'));
+// console.log(answer);
+
+// console.log(question.get(question.get('correct') === answer));
+
+// // Converter mapa em array
+
+// console.log([...question]);
+// //console.log(question.entries());
+// console.log([...question.keys()]);
+// console.log([question.values]);
 
 
 
