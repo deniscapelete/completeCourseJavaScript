@@ -59,6 +59,7 @@ const restaurant = {
 /////////////
 // // // // -------------- 122 Working With Strings - Part 1 --------------
 
+// -------------- fundamentos dos metodos slices --------------
 const airline = 'TAP Air Portugal';
 const plane = 'A320';
 
@@ -80,6 +81,24 @@ console.log(airline.indexOf('portugal')); // retorna -1 (existe diferença de le
 console.log(airline.slice(4)); // retorna Air Portugal (incia na posição que quer que comece a extração)
 
 console.log(airline.slice(4, 7)); // retorna Air (parametro inicial e final(não inclui o 7))
+
+console.log(airline.slice(0, airline.indexOf(' '))); // retorna Air
+console.log(airline.slice(airline.lastIndexOf(' ') + 1)) // retorna Portugal
+
+console.log(airline.slice(-3));  // retorna gal (as 3 últimas letras)
+console.log(airline.slice(1, -1)) // retorna AP Air Portuga
+
+const checkMiddleSeat = function (seat) {
+  // B and E are middle seats
+  const s = seat.slice(-1);
+  if (s === 'B' || s === 'E')
+    console.log('You got the middle seat');
+  else console.log('You got lucky');
+}
+
+checkMiddleSeat('11B');
+checkMiddleSeat('23C');
+checkMiddleSeat('3E');
 
 // // // // // -------------- 119 Maps: Iteration --------------
 
