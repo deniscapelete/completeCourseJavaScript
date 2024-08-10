@@ -57,48 +57,112 @@ const restaurant = {
 };
 
 /////////////
-// // // // -------------- 122 Working With Strings - Part 1 --------------
+// // // // // -------------- 122 Working With Strings - Part 1 --------------
 
-// -------------- fundamentos dos metodos slices --------------
-const airline = 'TAP Air Portugal';
-const plane = 'A320';
+// // -------------- fundamentos dos metodos slices --------------
+// const airline = 'TAP Air Portugal';
+// const plane = 'A320';
 
-console.log(plane[0]); // retorna A
-console.log(plane[1]); // retorna 3
-console.log(plane[2]); // retorna 2
+// console.log(plane[0]); // retorna A
+// console.log(plane[1]); // retorna 3
+// console.log(plane[2]); // retorna 2
 
-console.log('B737'[0]); // retorna B
+// console.log('B737'[0]); // retorna B
 
-console.log(airline.length); // retorna 16
-console.log('B737'.length); // retorna 4
+// console.log(airline.length); // retorna 16
+// console.log('B737'.length); // retorna 4
 
-console.log(airline.indexOf('r')); // retorna 6 (retorna a posição do primeiro encontrado)
-console.log(airline.lastIndexOf('r')); // retorna 10 (retorna a posição do último encontrado)
+// console.log(airline.indexOf('r')); // retorna 6 (retorna a posição do primeiro encontrado)
+// console.log(airline.lastIndexOf('r')); // retorna 10 (retorna a posição do último encontrado)
 
-console.log(airline.indexOf('Portugal')); // retorna 8 (retorna a posição da primeira letra da palavra)
-console.log(airline.indexOf('portugal')); // retorna -1 (existe diferença de letra minuscula para maiuscula)
+// console.log(airline.indexOf('Portugal')); // retorna 8 (retorna a posição da primeira letra da palavra)
+// console.log(airline.indexOf('portugal')); // retorna -1 (existe diferença de letra minuscula para maiuscula)
 
-console.log(airline.slice(4)); // retorna Air Portugal (incia na posição que quer que comece a extração)
+// console.log(airline.slice(4)); // retorna Air Portugal (incia na posição que quer que comece a extração)
 
-console.log(airline.slice(4, 7)); // retorna Air (parametro inicial e final(não inclui o 7))
+// console.log(airline.slice(4, 7)); // retorna Air (parametro inicial e final(não inclui o 7))
 
-console.log(airline.slice(0, airline.indexOf(' '))); // retorna Air
-console.log(airline.slice(airline.lastIndexOf(' ') + 1)) // retorna Portugal
+// console.log(airline.slice(0, airline.indexOf(' '))); // retorna Air
+// console.log(airline.slice(airline.lastIndexOf(' ') + 1)) // retorna Portugal
 
-console.log(airline.slice(-3));  // retorna gal (as 3 últimas letras)
-console.log(airline.slice(1, -1)) // retorna AP Air Portuga
+// console.log(airline.slice(-3));  // retorna gal (as 3 últimas letras)
+// console.log(airline.slice(1, -1)) // retorna AP Air Portuga
 
-const checkMiddleSeat = function (seat) {
-  // B and E are middle seats
-  const s = seat.slice(-1);
-  if (s === 'B' || s === 'E')
-    console.log('You got the middle seat');
-  else console.log('You got lucky');
+// const checkMiddleSeat = function (seat) {
+//   // B and E are middle seats
+//   const s = seat.slice(-1);
+//   if (s === 'B' || s === 'E')
+//     console.log('You got the middle seat');
+//   else console.log('You got lucky');
+// }
+
+// checkMiddleSeat('11B');
+// checkMiddleSeat('23C');
+// checkMiddleSeat('3E');
+
+
+// // // // // -------------- 121 Codding Challenge #3 ---------------
+///////////////////////////////////////
+// Coding Challenge #3
+
+/* 
+Let's continue with our football betting app! This time, we have a map with a log of the events that happened during the game. The values are the events themselves, and the keys are the minutes in which each event happened (a football game has 90 minutes plus some extra time).
+
+1. Create an array 'events' of the different game events that happened (no duplicates)
+2. After the game has finished, is was found that the yellow card from minute 64 was unfair. So remove this event from the game events log.
+3. Print the following string to the console: "An event happened, on average, every 9 minutes" (keep in mind that a game has 90 minutes)
+4. Loop over the events and log them to the console, marking whether it's in the first half or second half (after 45 min) of the game, like this:
+      [FIRST HALF] 17: ⚽️ GOAL
+
+
+1. Crie um array 'events' com os diferentes eventos do jogo que aconteceram (sem duplicados).
+2. Após o término do jogo, foi constatado que o cartão amarelo do minuto 64 foi injusto. Remova este evento do registro dos eventos do jogo.
+3. Imprima a seguinte string no console: "Um evento aconteceu, em média, a cada 9 minutos" (tenha em mente que um jogo tem 90 minutos).
+4. Faça um loop sobre os eventos e registre-os no console, marcando se estão no primeiro tempo ou no segundo tempo (após 45 minutos) do jogo, assim:
+ PRIMEIROTEMPO 17: ⚽️ GOL
+
+GOOD LUCK 😀
+*/
+
+const gameEvents = new Map([
+  [17, '⚽️ GOAL'],
+  [36, '🔁 Substitution'],
+  [47, '⚽️ GOAL'],
+  [61, '🔁 Substitution'],
+  [64, '🔶 Yellow card'],
+  [69, '🔴 Red card'],
+  [70, '🔁 Substitution'],
+  [72, '🔁 Substitution'],
+  [76, '⚽️ GOAL'],
+  [80, '⚽️ GOAL'],
+  [92, '🔶 Yellow card'],
+]);
+
+console.log(gameEvents.values())
+
+// 1-
+const events = [...new Set(gameEvents.values())];
+console.log(events)
+
+// 2-
+gameEvents.delete(64);
+console.log(gameEvents)
+
+// 3-
+console.log(`Um evento aconteceu, em média, a cada ${90 / gameEvents.size} minutos`);
+
+const time = [...gameEvents.keys()].pop();
+console.log(time);
+
+console.log(`Um evento aconteceu, em média, a cada ${time / gameEvents.size} minutos`);
+
+// 4-
+for (const [min, event] of gameEvents) {
+  const half = min <= 45 ? 'FIRST' : 'SECOND';
+  console.log(`[${half} HALF] ${min}: ${event}`);
 }
 
-checkMiddleSeat('11B');
-checkMiddleSeat('23C');
-checkMiddleSeat('3E');
+
 
 // // // // // -------------- 119 Maps: Iteration --------------
 
