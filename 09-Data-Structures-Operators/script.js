@@ -52,62 +52,142 @@ const restaurant = {
     console.log(mainIngredients);
     console.log(otherIngredients);
   },
-
-
 };
 
 /////////////
+
+// // // // // -------------- 123 Working With Strings - Part 2 --------------
+
+const airline = 'TAP Air Portugal';
+
+console.log(airline.toLowerCase())
+console.log(airline.toUpperCase())
+
+// Fix capitalization in name
+const passenger = 'deNiS'
+const passengerLower = passenger.toLowerCase();
+const passengerCorrect = passengerLower[0].toUpperCase() + passengerLower.slice(1)
+
+console.log(passengerCorrect)
+console.log(passengerLower)
+
+const nameCorrect = function (name) {
+  const nameLower = name.toLowerCase();
+  const nameCorrect = nameLower[0].toUpperCase() + nameLower.slice(1)
+
+  return nameCorrect
+}
+
+console.log(nameCorrect('denis'))
+
+// Comparing emails
+const email = 'hello@jonas.io';
+const loginEmail = '   Hello@Jonas.Io \n';
+
+// const lowerEmail = loginEmail.toLowerCase();
+// const trimEmail = lowerEmail.trim();
+// console.log(trimEmail);
+
+const normalizedEmail = loginEmail.toLowerCase().trim();
+console.log(normalizedEmail);
+console.log(email === normalizedEmail);
+
+const comparingEmails = function (email, loginEmail) {
+  const loginEmailCorrectFormat = loginEmail.toLowerCase().trim()
+  return (email === loginEmailCorrectFormat)
+}
+console.log(comparingEmails(email, loginEmail))
+
+// replacing
+const priceGB = ' 152,85£'
+const priceUS = priceGB.replace('£', '$').replace(',', '.')
+console.log(priceUS)
+
+const announcement =
+  'All passengers come to boarding door 23. Boarding door 23!'
+
+console.log(announcement.replace('door', 'gate'))
+console.log(announcement.replace(/door/g, 'gate'))
+
+// console.log(announcement.replaceAll('door', 'gate')) // método mais recente
+
+
+// Booleans
+const plane = 'Airbus A320neo';
+console.log(plane.includes('A320'));
+console.log(plane.includes('Boeing'));
+console.log(plane.startsWith('Airb'));
+
+if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
+  console.log('Part of the NEW Airbus family')
+}
+
+
+// Pratice exercise
+const checkBaggage = function (items) {
+  const baggage = items.toLowerCase(); // é necessario fazer isso pois existe diferença entre maiuculo e minusculo no includes
+  if (baggage.includes('knife') || baggage.includes('gun')) {
+    console.log('You are NOT allowed on boad');
+  } else {
+    console.log('Welcome aboard');
+  }
+}
+
+checkBaggage('I have a laptop, some Food and a pocket Knife');
+checkBaggage('Socks and camera');
+checkBaggage('Got some snacks and a gun dor protection');
+
+
 // // // // // -------------- 122 Working With Strings - Part 1 --------------
 
 // // -------------- fundamentos dos metodos slices --------------
-const airline = 'TAP Air Portugal';
-const plane = 'A320';
+// const airline = 'TAP Air Portugal';
+// const plane = 'A320';
 
-console.log(plane[0]); // retorna A
-console.log(plane[1]); // retorna 3
-console.log(plane[2]); // retorna 2
+// console.log(plane[0]); // retorna A
+// console.log(plane[1]); // retorna 3
+// console.log(plane[2]); // retorna 2
 
-console.log('B737'[0]); // retorna B
+// console.log('B737'[0]); // retorna B
 
-console.log(airline.length); // retorna 16
-console.log('B737'.length); // retorna 4
+// console.log(airline.length); // retorna 16
+// console.log('B737'.length); // retorna 4
 
-console.log(airline.indexOf('r')); // retorna 6 (retorna a posição do primeiro encontrado)
-console.log(airline.lastIndexOf('r')); // retorna 10 (retorna a posição do último encontrado)
+// console.log(airline.indexOf('r')); // retorna 6 (retorna a posição do primeiro encontrado)
+// console.log(airline.lastIndexOf('r')); // retorna 10 (retorna a posição do último encontrado)
 
-console.log(airline.indexOf('Portugal')); // retorna 8 (retorna a posição da primeira letra da palavra)
-console.log(airline.indexOf('portugal')); // retorna -1 (existe diferença de letra minuscula para maiuscula)
+// console.log(airline.indexOf('Portugal')); // retorna 8 (retorna a posição da primeira letra da palavra)
+// console.log(airline.indexOf('portugal')); // retorna -1 (existe diferença de letra minuscula para maiuscula)
 
-console.log(airline.slice(4)); // retorna Air Portugal (incia na posição que quer que comece a extração)
+// console.log(airline.slice(4)); // retorna Air Portugal (incia na posição que quer que comece a extração)
 
-console.log(airline.slice(4, 7)); // retorna Air (parametro inicial e final(não inclui o 7))
+// console.log(airline.slice(4, 7)); // retorna Air (parametro inicial e final(não inclui o 7))
 
-console.log(airline.slice(0, airline.indexOf(' '))); // retorna Air
-console.log(airline.slice(airline.lastIndexOf(' ') + 1)) // retorna Portugal
+// console.log(airline.slice(0, airline.indexOf(' '))); // retorna Air
+// console.log(airline.slice(airline.lastIndexOf(' ') + 1)) // retorna Portugal
 
-console.log(airline.slice(-3));  // retorna gal (as 3 últimas letras)
-console.log(airline.slice(1, -1)) // retorna AP Air Portuga
+// console.log(airline.slice(-3));  // retorna gal (as 3 últimas letras)
+// console.log(airline.slice(1, -1)) // retorna AP Air Portuga
 
-const checkMiddleSeat = function (seat) {
-  // B and E are middle seats
-  const s = seat.slice(-1);
-  if (s === 'B' || s === 'E')
-    console.log('You got the middle seat');
-  else console.log('You got lucky');
-}
+// const checkMiddleSeat = function (seat) {
+//   // B and E are middle seats
+//   const s = seat.slice(-1);
+//   if (s === 'B' || s === 'E')
+//     console.log('You got the middle seat');
+//   else console.log('You got lucky');
+// }
 
-checkMiddleSeat('11B');
-checkMiddleSeat('23C');
-checkMiddleSeat('3E');
+// checkMiddleSeat('11B');
+// checkMiddleSeat('23C');
+// checkMiddleSeat('3E');
 
-console.log(new String('denis'));
+// console.log(new String('denis'));
 
-console.log(typeof new String('denis'));
+// console.log(typeof new String('denis'));
 
-console.log(typeof new String('denis').slice(1));
+// console.log(typeof new String('denis').slice(1));
 
-const teste = new String('denis')
-console.log(typeof teste)
+
 
 // // // // // -------------- 121 Codding Challenge #3 ---------------
 ///////////////////////////////////////
