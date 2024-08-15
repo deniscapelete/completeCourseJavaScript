@@ -56,86 +56,183 @@ const restaurant = {
 
 /////////////
 
-// // // // // -------------- 123 Working With Strings - Part 2 --------------
 
-const airline = 'TAP Air Portugal';
+///////////////////////////////////////
+// Coding Challenge #4
 
-console.log(airline.toLowerCase())
-console.log(airline.toUpperCase())
+/*
+Write a program that receives a list of variable names written in underscore_case and convert them to camelCase.
 
-// Fix capitalization in name
-const passenger = 'deNiS'
-const passengerLower = passenger.toLowerCase();
-const passengerCorrect = passengerLower[0].toUpperCase() + passengerLower.slice(1)
+The input will come from a textarea inserted into the DOM (see code below), and conversion will happen when the button is pressed.
 
-console.log(passengerCorrect)
-console.log(passengerLower)
+THIS TEST DATA (pasted to textarea)
+underscore_case
+ first_name
+Some_Variable
+  calculate_AGE
+delayed_departure
 
-const nameCorrect = function (name) {
-  const nameLower = name.toLowerCase();
-  const nameCorrect = nameLower[0].toUpperCase() + nameLower.slice(1)
+SHOULD PRODUCE THIS OUTPUT (5 separate console.log outputs)
+underscoreCase      ✅
+firstName           ✅✅
+someVariable        ✅✅✅
+calculateAge        ✅✅✅✅
+delayedDeparture    ✅✅✅✅✅
 
-  return nameCorrect
-}
+HINT 1: Remember which character defines a new line in the textarea 😉
+HINT 2: The solution only needs to work for a variable made out of 2 words, like a_b
+HINT 3: Start without worrying about the ✅. Tackle that only after you have the variable name conversion working 😉
+HINT 4: This challenge is difficult on purpose, so start watching the solution in case you're stuck. Then pause and continue!
 
-console.log(nameCorrect('denis'))
+Afterwards, test with your own test data!
 
-// Comparing emails
-const email = 'hello@jonas.io';
-const loginEmail = '   Hello@Jonas.Io \n';
+GOOD LUCK 😀
+/////
 
-// const lowerEmail = loginEmail.toLowerCase();
-// const trimEmail = lowerEmail.trim();
-// console.log(trimEmail);
+Tradução:
 
-const normalizedEmail = loginEmail.toLowerCase().trim();
-console.log(normalizedEmail);
-console.log(email === normalizedEmail);
+Escreva um programa que receba uma lista de nomes de variáveis escritas no formato underscore_case e as converta para o formato camelCase.
 
-const comparingEmails = function (email, loginEmail) {
-  const loginEmailCorrectFormat = loginEmail.toLowerCase().trim()
-  return (email === loginEmailCorrectFormat)
-}
-console.log(comparingEmails(email, loginEmail))
+A entrada virá de uma área de texto inserida no DOM, e a conversão ocorrerá quando o botão for pressionado.
 
-// replacing
-const priceGB = ' 152,85£'
-const priceUS = priceGB.replace('£', '$').replace(',', '.')
-console.log(priceUS)
+ESTES DADOS DE TESTE (colados na área de texto):
 
-const announcement =
-  'All passengers come to boarding door 23. Boarding door 23!'
+underscore_case
+    first_name
+Some_Variable
+    calculate_AGE
+delayed_departure
 
-console.log(announcement.replace('door', 'gate'))
-console.log(announcement.replace(/door/g, 'gate'))
+DEVEM PRODUZIR ESTE RESULTADO (5 saídas separadas no console):
 
-// console.log(announcement.replaceAll('door', 'gate')) // método mais recente
+underscoreCase ✅
+firstName ✅✅
+someVariable ✅✅✅
+calculateAge ✅✅✅✅
+delayedDeparture ✅✅✅✅✅
 
+DICA 1: Lembre-se de qual caractere define uma nova linha na área de texto 😉
+DICA 2: A solução só precisa funcionar para variáveis compostas por 2 palavras, como a_b.
+DICA 3: Comece sem se preocupar com os "✅". Concentre-se primeiro na conversão dos nomes das variáveis 😉
+DICA 4: Este desafio é difícil de propósito, então, se ficar travado, comece a ver a solução. Depois, pause e continue!
 
-// Booleans
-const plane = 'Airbus A320neo';
-console.log(plane.includes('A320'));
-console.log(plane.includes('Boeing'));
-console.log(plane.startsWith('Airb'));
+Após isso, teste com seus próprios dados!
 
-if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
-  console.log('Part of the NEW Airbus family')
-}
+BOA SORTE 😀
+*/
+
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
 
 
-// Pratice exercise
-const checkBaggage = function (items) {
-  const baggage = items.toLowerCase(); // é necessario fazer isso pois existe diferença entre maiuculo e minusculo no includes
-  if (baggage.includes('knife') || baggage.includes('gun')) {
-    console.log('You are NOT allowed on boad');
-  } else {
-    console.log('Welcome aboard');
+
+document.querySelector('button').addEventListener('click', function () {
+
+  const text = document.querySelector('textarea').value;
+
+  // const textLowerCase = text.toLowerCase();
+
+  const rows = text.split('\n');
+
+  // console.log(rows)
+
+  for (const [i, row] of rows.entries()) {
+    const [first, second] = row.toLowerCase().trim().split('_');
+
+
+    const output = `
+    ${first}${second.replace(second[0], second[0].toUpperCase())}`;
+
+    console.log(`${output.padEnd(22)}${'✅'.repeat(i + 1)}`);
+
   }
-}
 
-checkBaggage('I have a laptop, some Food and a pocket Knife');
-checkBaggage('Socks and camera');
-checkBaggage('Got some snacks and a gun dor protection');
+})
+
+
+// console.log(text)
+
+
+// // // // // // -------------- 123 Working With Strings - Part 2 --------------
+
+// const airline = 'TAP Air Portugal';
+
+// console.log(airline.toLowerCase())
+// console.log(airline.toUpperCase())
+
+// // Fix capitalization in name
+// const passenger = 'deNiS'
+// const passengerLower = passenger.toLowerCase();
+// const passengerCorrect = passengerLower[0].toUpperCase() + passengerLower.slice(1)
+
+// console.log(passengerCorrect)
+// console.log(passengerLower)
+
+// const nameCorrect = function (name) {
+//   const nameLower = name.toLowerCase();
+//   const nameCorrect = nameLower[0].toUpperCase() + nameLower.slice(1)
+
+//   return nameCorrect
+// }
+
+// console.log(nameCorrect('denis'))
+
+// // Comparing emails
+// const email = 'hello@jonas.io';
+// const loginEmail = '   Hello@Jonas.Io \n';
+
+// // const lowerEmail = loginEmail.toLowerCase();
+// // const trimEmail = lowerEmail.trim();
+// // console.log(trimEmail);
+
+// const normalizedEmail = loginEmail.toLowerCase().trim();
+// console.log(normalizedEmail);
+// console.log(email === normalizedEmail);
+
+// const comparingEmails = function (email, loginEmail) {
+//   const loginEmailCorrectFormat = loginEmail.toLowerCase().trim()
+//   return (email === loginEmailCorrectFormat)
+// }
+// console.log(comparingEmails(email, loginEmail))
+
+// // replacing
+// const priceGB = ' 152,85£'
+// const priceUS = priceGB.replace('£', '$').replace(',', '.')
+// console.log(priceUS)
+
+// const announcement =
+//   'All passengers come to boarding door 23. Boarding door 23!'
+
+// console.log(announcement.replace('door', 'gate'))
+// console.log(announcement.replace(/door/g, 'gate'))
+
+// // console.log(announcement.replaceAll('door', 'gate')) // método mais recente
+
+
+// // Booleans
+// const plane = 'Airbus A320neo';
+// console.log(plane.includes('A320'));
+// console.log(plane.includes('Boeing'));
+// console.log(plane.startsWith('Airb'));
+
+// if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
+//   console.log('Part of the NEW Airbus family')
+// }
+
+
+// // Pratice exercise
+// const checkBaggage = function (items) {
+//   const baggage = items.toLowerCase(); // é necessario fazer isso pois existe diferença entre maiuculo e minusculo no includes
+//   if (baggage.includes('knife') || baggage.includes('gun')) {
+//     console.log('You are NOT allowed on boad');
+//   } else {
+//     console.log('Welcome aboard');
+//   }
+// }
+
+// checkBaggage('I have a laptop, some Food and a pocket Knife');
+// checkBaggage('Socks and camera');
+// checkBaggage('Got some snacks and a gun dor protection');
 
 
 // // // // // -------------- 122 Working With Strings - Part 1 --------------
