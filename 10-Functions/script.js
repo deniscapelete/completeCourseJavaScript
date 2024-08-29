@@ -170,7 +170,6 @@ const lufthansa = {
         console.log(`${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`);
         this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name })
     },
-
 }
 
 lufthansa.book(210, 'Denis Teste');
@@ -188,14 +187,14 @@ const book = lufthansa.book;
 
 // Não funciona (Does NOT work)
 // book(23, 'Joao Pedro'); 
-// a palavra chave 'THIS' a qual 'BOOK' se refere nesse caso está apontando para 'UNDEFINED'
+// a palavra-chave 'THIS' a qual 'BOOK' se refere nesse caso está apontando para 'UNDEFINED'
 
 
 
 // ------- Método de chamada - (Call method) -------
-// Definindo manual e explicitamente a palavra chave
+// Definindo manual e explicitamente a palavra-chave(this)
 book.call(eurowings, 23, 'Joao Pedro');
-// o método 'CALL', chama a função book com a palavra chave this definida como eurowings
+// o método 'CALL', chama a função book com a palavra-chave(this) definida como eurowings
 console.log(eurowings);
 
 book.call(lufthansa, 202, 'Marina Silva');
@@ -213,7 +212,7 @@ console.log(swiss);
 
 
 // ------- Método de aplicação - (Apply method)  -------
-//Não recebe uma lista de argumentos apos á palavra chave, na verdade ele receberá um 'ARRAY' de argumentos.
+//Não recebe uma lista de argumentos apos á palavra-chave(this), na verdade ele receberá um 'ARRAY' de argumentos.
 const flightData = [320, 'George Lincoln'];
 book.apply(swiss, flightData);
 //NÃO É MAIS UTILIZADO
@@ -224,4 +223,63 @@ book.call(swiss, ...flightData)
 
 
 
+// // //------------- 135. The bind Method  -------------
+
 // ------- Método de bind - (Bind method)  -------
+// Assim como 'CALL' permite definir manualmente as palavras-chave(this)
+// O 'BIND' não chama a função imediatamente, ele retorna uma nova função onde a palavra-chave(this) está associada.
+// É necessario chamar a função posteriormente quando for usar
+
+const bookLH = book.bind(lufthansa);
+const bookEW = book.bind(eurowings);
+const bookLX = book.bind(swiss);
+
+bookEW(425, 'Jorginho');
+console.log(eurowings);
+
+const bookEW23 = book.bind(eurowings, 23);
+//Neste caso deixamos predefinido o primeiro parâmetro (padrão chamado de aplicação parcial)
+bookEW23('Denis teste'); // retorna -  Denis teste booked a seat on Eurowings flight EW23
+bookEW23('Marta testando') // retorna - Marta testando booked a seat on Eurowings flight EW23
+
+// With Event Listeners
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+    console.log(this);
+
+    this.planes++
+    console.log(this.planes);
+};
+// lufthansa.buyPlane()
+
+
+document.querySelector('.buy')
+    .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+
+// Partial application
+
+const addTax = (rate, value) => value + value * rate;
+
+console.log(addTax(0.1, 200));
+
+
+const addVAT = addTax.bind(null, 0.23); // neste caso não importa a palavra-chave(this) então adicionamos null.
+
+console.log(addVAT(100));
+console.log(addVAT(200));
+
+
+// // const addNewTax = rate => value =>  value + value * rate; (com arrow function)
+
+
+const addNewTax = function (rate) {
+    return function (value) {
+        return value + value * rate;;
+    }
+}
+
+const newTax = addNewTax(0.23);
+
+console.log(newTax(200))
+console.log(newTax(100))
