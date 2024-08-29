@@ -133,27 +133,95 @@ console.log(bookings)
 // message('denis', nome)
 
 
-// //------------- 133. Functions Returning Functions (Funções Retornando Funções)  -------------
+// // //------------- 133. Functions Returning Functions (Funções Retornando Funções)  -------------
 
-const greet = function (greeting) {
-    return function (name) {
-        console.log(`${greeting} ${name}`);
-    };
+// const greet = function (greeting) {
+//     return function (name) {
+//         console.log(`${greeting} ${name}`);
+//     };
+// };
+
+
+// const greeterHey = greet('Hey');
+
+// greeterHey('Denis');
+// greeterHey('Jonas');
+
+// greet('Olá')('Denis')
+
+
+// // Challenge
+// const saudar = saudacao => nome => console.log(`${saudacao} ${nome}`)
+
+// saudar('Bom dia')('Denis');
+
+// const saudarOla = saudar('Olá');
+// saudarOla('Denis');
+
+
+
+// // //------------- 134. The call and apply Methods  -------------
+
+const lufthansa = {
+    airline: 'Lufthansa',
+    iataCode: 'LH',
+    bookings: [],
+    book(flightNum, name) {
+        console.log(`${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`);
+        this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name })
+    },
+
+}
+
+lufthansa.book(210, 'Denis Teste');
+lufthansa.book(542, 'Jonas Testando');
+console.log(lufthansa)
+
+const eurowings = {
+    airline: 'Eurowings',
+    iataCode: 'EW',
+    bookings: [],
 };
+// Precisamos usar exatamente os mesmos nome das 'PROPRIEDADE' do objeto original, pois O 'MÉTODO BOOK' está tentando ler apenas essas propriedades
+
+const book = lufthansa.book;
+
+// Não funciona (Does NOT work)
+// book(23, 'Joao Pedro'); 
+// a palavra chave 'THIS' a qual 'BOOK' se refere nesse caso está apontando para 'UNDEFINED'
 
 
-const greeterHey = greet('Hey');
 
-greeterHey('Denis');
-greeterHey('Jonas');
+// ------- Método de chamada - (Call method) -------
+// Definindo manual e explicitamente a palavra chave
+book.call(eurowings, 23, 'Joao Pedro');
+// o método 'CALL', chama a função book com a palavra chave this definida como eurowings
+console.log(eurowings);
 
-greet('Olá')('Denis')
+book.call(lufthansa, 202, 'Marina Silva');
+console.log(lufthansa);
+
+const swiss = {
+    airline: 'Swiss Air Lines',
+    iataCode: 'LX',
+    bookings: []
+}
+
+book.call(swiss, 282, 'Kaka');
+console.log(swiss);
 
 
-// Challenge
-const saudar = saudacao => nome => console.log(`${saudacao} ${nome}`)
 
-saudar('Bom dia')('Denis');
+// ------- Método de aplicação - (Apply method)  -------
+//Não recebe uma lista de argumentos apos á palavra chave, na verdade ele receberá um 'ARRAY' de argumentos.
+const flightData = [320, 'George Lincoln'];
+book.apply(swiss, flightData);
+//NÃO É MAIS UTILIZADO
+console.log(swiss);
 
-const saudarOla = saudar('Olá');
-saudarOla('Denis');
+book.call(swiss, ...flightData)
+//MANEIRA INDICADA
+
+
+
+// ------- Método de bind - (Bind method)  -------
