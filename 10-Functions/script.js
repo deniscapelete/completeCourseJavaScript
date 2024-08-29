@@ -44,50 +44,94 @@ console.log(bookings)
 //------------- 130. How Passing Arguments Works: Value vs. Reference -------------
 //Como funciona a passagem de argumentos: valor versus referência
 
-const flight = 'LH234'; // PRIMITIVO
-const denis = {
-    name: 'Denis Capelete',
-    passport: 45685265423
+// const flight = 'LH234'; // PRIMITIVO
+// const denis = {
+//     name: 'Denis Capelete',
+//     passport: 45685265423
+// }
+
+// const checkIn = function (flightNum, passenger) { // 
+//     flightNum = 'LH999'; //o PARAMETRO flightNum funciona basicamente como uma cópia do valor original, portanto essa mudança não altera de fato o "flight"
+//     passenger.name = 'Mr. ' + passenger.name // Quando passamos um tipo de referência para uma função, é copiado a referência ao objeto no heap de memória
+
+//     // é apenas um exemplo, não devemos alterar o valor de um PARÂMETRO
+
+
+//     if (passenger.passport === 45685265423) {
+//         alert('Checked in');
+//     } else {
+//         alert('Wrong passport!');
+//     }
+
+// }
+// //passar valor PRIMITIVO para uma função é p mesmo que criar uma cópia
+
+// //passar OBJETO cria uma copia simples utilizando o mesmo espaço no HEAP
+
+// checkIn(flight, denis)
+// console.log(flight);
+// console.log(denis)
+
+// //é o mesmo que fazer...
+// const flightNum = flight
+// // faz uma copia, se o flightNum for alterado o fligth não sofre alteração.
+// const passenger = denis  // passenger e denis apontam para o mesmo objeto na memória.
+// // copia a mesma referência no HEAP, então se alterar o 'passenger' o 'denis' também sofre alteração por usarem o mesmo espaço no HEAP de memória.
+
+// // Exemplo de problema
+// const newPassport = function (person) {
+//     person.passport = Math.trunc(Math.random() * 100000001);
+// };
+
+// newPassport(denis);// aqui é feita a alteração do número do passaporte no OBJETO
+// checkIn(flight, denis); // aqui o objeto foi alterado pela função "newPassport" então o número do passaporte não é mais o mesmo e da falso nossa condição
+
+
+
+
+//------------- 133. Functions Accepting Callback Functions -------------
+
+//Função de ordem superior (Higher-order function)
+
+const oneWord = function (str) {
+    return str.replace(/ /g, '').toLowerCase();
 }
 
-const checkIn = function (flightNum, passenger) { // 
-    flightNum = 'LH999'; //o PARAMETRO flightNum funciona basicamente como uma cópia do valor original, portanto essa mudança não altera de fato o "flight"
-    passenger.name = 'Mr. ' + passenger.name // Quando passamos um tipo de referência para uma função, é copiado a referência ao objeto no heap de memória
+const upperFirstWord = function (str) {
+    const [first, ...others] = str.split(' ');
+    return [first.toUpperCase(), ...others].join(' ');
+}
+const transformer = function (str, fn) {
+    console.log(`Original string: ${str}`);
 
-    // é apenas um exemplo, não devemos alterar o valor de um PARÂMETRO
+    console.log(`Transformed string: ${fn(str)}`);
 
-
-    if (passenger.passport === 45685265423) {
-        alert('Checked in');
-    } else {
-        alert('Wrong passport!');
-    }
+    console.log(`Transformed by: ${fn.name}`)
 
 }
-//passar valor PRIMITIVO para uma função é p mesmo que criar uma cópia
 
-//passar OBJETO cria uma copia simples utilizando o mesmo espaço no HEAP
+transformer('JavaScript is the best!', upperFirstWord);
+transformer('JavaScript is the best!', oneWord);
 
-checkIn(flight, denis)
-console.log(flight);
-console.log(denis)
 
-//é o mesmo que fazer...
-const flightNum = flight
-// faz uma copia, se o flightNum for alterado o fligth não sofre alteração.
-const passenger = denis  // passenger e denis apontam para o mesmo objeto na memória.
-// copia a mesma referência no HEAP, então se alterar o 'passenger' o 'denis' também sofre alteração por usarem o mesmo espaço no HEAP de memória.
-
-// Exemplo de problema
-const newPassport = function (person) {
-    person.passport = Math.trunc(Math.random() * 100000001);
+// JavaScript usa chamada de retorno o tempo todo (JS uses callbacks all the time)
+const high5 = function () {
+    console.log('👋');
 };
-
-newPassport(denis);// aqui é feita a alteração do número do passaporte no OBJETO
-checkIn(flight, denis); // aqui o objeto foi alterado pela função "newPassport" então o número do passaporte não é mais o mesmo e da falso nossa condição
-
+document.body.addEventListener('click', high5);
+['denis', 'jonas', 'teste'].forEach(high5);
 
 
+const nome = function (str) {
+    return str[0].toUpperCase() + str.slice(1);
+}
+
+const message = function (nome, func) {
+    console.log(`Olá ${func(nome)}`)
+}
+
+
+message('denis', nome)
 
 
 
