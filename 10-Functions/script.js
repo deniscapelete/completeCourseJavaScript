@@ -89,54 +89,71 @@ console.log(bookings)
 
 
 
-//------------- 133. Functions Accepting Callback Functions -------------
+// //------------- 132. Functions Accepting Callback Functions -------------
 
-//Função de ordem superior (Higher-order function)
+// //Função de ordem superior (Higher-order function)
 
-const oneWord = function (str) {
-    return str.replace(/ /g, '').toLowerCase();
-}
+// const oneWord = function (str) {
+//     return str.replace(/ /g, '').toLowerCase();
+// }
 
-const upperFirstWord = function (str) {
-    const [first, ...others] = str.split(' ');
-    return [first.toUpperCase(), ...others].join(' ');
-}
-const transformer = function (str, fn) {
-    console.log(`Original string: ${str}`);
+// const upperFirstWord = function (str) {
+//     const [first, ...others] = str.split(' ');
+//     return [first.toUpperCase(), ...others].join(' ');
+// }
+// const transformer = function (str, fn) {
+//     console.log(`Original string: ${str}`);
 
-    console.log(`Transformed string: ${fn(str)}`);
+//     console.log(`Transformed string: ${fn(str)}`);
 
-    console.log(`Transformed by: ${fn.name}`)
+//     console.log(`Transformed by: ${fn.name}`)
 
-}
+// }
 
-transformer('JavaScript is the best!', upperFirstWord);
-transformer('JavaScript is the best!', oneWord);
+// transformer('JavaScript is the best!', upperFirstWord);
+// transformer('JavaScript is the best!', oneWord);
 
 
-// JavaScript usa chamada de retorno o tempo todo (JS uses callbacks all the time)
-const high5 = function () {
-    console.log('👋');
+// // JavaScript usa chamada de retorno o tempo todo (JS uses callbacks all the time)
+// const high5 = function () {
+//     console.log('👋');
+// };
+// document.body.addEventListener('click', high5);
+// ['denis', 'jonas', 'teste'].forEach(high5);
+
+
+// const nome = function (str) {
+//     return str[0].toUpperCase() + str.slice(1);
+// }
+
+// const message = function (nome, func) {
+//     console.log(`Olá ${func(nome)}`)
+// }
+
+// message('denis', nome)
+
+
+// //------------- 133. Functions Returning Functions (Funções Retornando Funções)  -------------
+
+const greet = function (greeting) {
+    return function (name) {
+        console.log(`${greeting} ${name}`);
+    };
 };
-document.body.addEventListener('click', high5);
-['denis', 'jonas', 'teste'].forEach(high5);
 
 
-const nome = function (str) {
-    return str[0].toUpperCase() + str.slice(1);
-}
+const greeterHey = greet('Hey');
 
-const message = function (nome, func) {
-    console.log(`Olá ${func(nome)}`)
-}
+greeterHey('Denis');
+greeterHey('Jonas');
 
-
-message('denis', nome)
+greet('Olá')('Denis')
 
 
+// Challenge
+const saudar = saudacao => nome => console.log(`${saudacao} ${nome}`)
 
+saudar('Bom dia')('Denis');
 
-
-
-
-
+const saudarOla = saudar('Olá');
+saudarOla('Denis');
