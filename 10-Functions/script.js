@@ -363,7 +363,11 @@ const poll = {
     answers: new Array(4).fill(0),
     registerNewAnswer() {
         document.querySelector('.poll').addEventListener('click', function () {
-            console.log(prompt(poll.question + poll.options + '(Escreva o número da opção)'))
+
+            const answer = Number(prompt(poll.question + poll.options + '(Escreva o número da opção)'))
+
+            poll.answers[answer] = poll.answers[answer] + 1;
+
         });
     }
 };
@@ -371,17 +375,3 @@ const poll = {
 const registerNewAnswer = poll.registerNewAnswer;
 
 registerNewAnswer();
-
-
-
-
-
-
-
-
-
-
-
-// document.querySelector('.poll').addEventListener('click', function () {
-//     console.log(prompt(poll.question + poll.options));
-// })
