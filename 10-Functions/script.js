@@ -365,8 +365,13 @@ const poll = {
         document.querySelector('.poll').addEventListener('click', function () {
 
             const answer = Number(prompt(poll.question + poll.options + '(Escreva o número da opção)'))
-
-            poll.answers[answer] = poll.answers[answer] + 1;
+            console.log(typeof answer);
+            if ((typeof answer) == 'number' && answer >= 0 && answer < 4) {
+                poll.answers[answer] = poll.answers[answer] + 1;
+                console.log(poll.answers);
+            } else {
+                alert(`Por favor, tente novamente '${answer}' não corresponde a nenhuma das opções`)
+            }
 
         });
     }
@@ -375,3 +380,4 @@ const poll = {
 const registerNewAnswer = poll.registerNewAnswer;
 
 registerNewAnswer();
+
