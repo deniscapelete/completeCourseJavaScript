@@ -352,6 +352,7 @@ DADOS DE TESTE BÔNUS 1: [5, 2, 3] DADOS DE TESTE BÔNUS 2: [1, 5, 3, 9, 6, 1]
 
 BOA SORTE 😀 */
 
+// ----------------------- Resolução do Professor (início) -----------------------
 
 const poll = {
     question: 'What is your favourite programming language?',
@@ -363,35 +364,85 @@ const poll = {
     ],
     // This generates [0, 0, 0, 0]. More in the next section 😃
     answers: new Array(4).fill(0),
-    registerNewAnswer(type = 'array') {
-        document.querySelector('.poll').addEventListener('click', function () {
 
-            const answer = Number(prompt(poll.question + poll.options + '(Escreva o número da opção)'))
+    registerNewAnswer() {
+        // Get answer
+        const answer = Number(
+            prompt(
+                `${this.question}\n${this.options.join('\n')}\n(Write option number)`
+            )
+        );
+        console.log(answer);
 
-            if ((typeof answer) == 'number' && answer >= 0 && answer < 4) {
-                poll.answers[answer] = poll.answers[answer] + 1;
-                poll.displayResults(type);
-            } else {
-                alert(`Por favor, tente novamente '${answer}' não corresponde a nenhuma das opções`)
-            }
+        // Register answer
+        typeof answer === 'number' && answer < this.options.length && answer >= 0 &&
+            this.answers[answer]++;
 
-        });
+        this.displayResults();
+        this.displayResults('string');
     },
 
-    displayResults(type) {
-        if (type == 'array') {
-            console.log(poll.answers)
-        } else if (type == 'string') {
-
-            console.log(`Os resultados da enquete são ${[...poll.answers]}.`);
+    displayResults(type = 'array') {
+        if (type === 'array') {
+            console.log(this.answers);
+        } else if (type === 'string') {
+            console.log(`Poll results are ${this.answers.join(', ')}.`)
         }
-
     },
+
 };
 
-const registerNewAnswer = poll.registerNewAnswer('string');
+document.querySelector('.poll').addEventListener('click', poll.registerNewAnswer.bind(poll));
+//em uma função de manipulador de eventos igual a essa a palavra this aponta para ela, para solucionar adicionamos o .bind('nome de onde queremos a palavra chave')
 
-const teste = poll.registerNewAnswer();
+// poll.registerNewAnswer();
+
+// ----------------------- Resolução do Professor (Fim) -----------------------
+
+
+
+// ----------------------- Minha resolução (início) -----------------------
+// const poll = {
+//     question: 'What is your favourite programming language?',
+//     options: [
+//         '0: JavaScript',
+//         '1: Python',
+//         '2: Rust',
+//         '3: C++'
+//     ],
+//     // This generates [0, 0, 0, 0]. More in the next section 😃
+//     answers: new Array(4).fill(0),
+//     registerNewAnswer(type = 'array') {
+//         document.querySelector('.poll').addEventListener('click', function () {
+
+//             const answer = Number(prompt(poll.question + poll.options + '(Escreva o número da opção)'))
+
+//             if ((typeof answer) == 'number' && answer >= 0 && answer < 4) {
+//                 poll.answers[answer] = poll.answers[answer] + 1;
+//                 poll.displayResults(type);
+//             } else {
+//                 alert(`Por favor, tente novamente '${answer}' não corresponde a nenhuma das opções`)
+//             }
+
+//         });
+//     },
+
+//     displayResults(type) {
+//         if (type == 'array') {
+//             console.log(poll.answers)
+//         } else if (type == 'string') {
+
+//             console.log(`Os resultados da enquete são ${[...poll.answers]}.`);
+//         }
+
+//     },
+// };
+
+// const registerNewAnswer = poll.registerNewAnswer('string');
+
+// const teste = poll.registerNewAnswer();
+
+// ----------------------- Minha resolução (Fim) -----------------------
 
 
 
