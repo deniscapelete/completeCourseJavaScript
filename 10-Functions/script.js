@@ -455,24 +455,63 @@ BOA SORTE 😀 */
 
 // // //------------- 137. Immediately Invoked Function Expression (IIFE)  -------------
 
-// -- Expressão de Função imediatamente invocada// serve para usar a função apenas uma vez
+// // -- Expressão de Função imediatamente invocada// serve para usar a função apenas uma vez
 
-// (IIFFE)
-(function () {
-    console.log('This will never run again');
-    const isPrivate = 23;
-    // tem acesso ao escopo externo
-})();
+// // (IIFFE)
+// (function () {
+//     console.log('This will never run again');
+//     const isPrivate = 23;
+//     // tem acesso ao escopo externo
+// })();
 
-// console.log(isPrivate); // o escopo global não tem acesso a nada dentro de um escopo
+// // console.log(isPrivate); // o escopo global não tem acesso a nada dentro de um escopo
 
-(() => console.log('This will also never run again')
-)();
+// (() => console.log('This will also never run again')
+// )();
 
-//let e const criam seu próprio escopo dentro de um bloco {}
+// //let e const criam seu próprio escopo dentro de um bloco {}
 
-{
-    const isPrivate = 21;
-}
+// {
+//     const isPrivate = 21;
+// }
 
-console.log(isPrivate) // tambem não pode ser acessado pois foi criado em um bloco (não se aplica a 'VAR');
+// console.log(isPrivate) // tambem não pode ser acessado pois foi criado em um bloco (não se aplica a 'VAR');
+
+
+
+// //------------- 138. Closures  -------------
+
+//Não criamos encerramento explicitamente/manualmente ele acontece automaticamente em certas situações só precisamos reconhecer essas situações
+
+// o encerramento faz a função lembrar de todas a variáveis presentes no momento da criação da função essencialmente
+//Qualquer função sempre tem acesso ao ambiente variável do contexto de execução no qual a função foi criada.
+
+
+const secureBooking = function () {
+    let passengerCount = 0;
+
+    return function () { // essa função se lembra de tudo de seu local de nascimento no momento em que foi criada
+        passengerCount++;
+        console.log(`${passengerCount} passenger`);
+    };
+};
+
+const booker = secureBooking();
+// (Criando a função booker) passengerCount = 0, (1ª chamada de booker) passengerCount = 1, (2ª chamada de booker)passengerCount = 2.
+
+
+// passageCount é definida no escopo em que a função booker foi realmente criada
+booker();
+booker();
+booker();
+
+console.dir(booker);
+
+
+
+
+
+
+
+
+
