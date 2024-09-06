@@ -50,7 +50,7 @@ console.log(bookings)
 //     passport: 45685265423
 // }
 
-// const checkIn = function (flightNum, passenger) { // 
+// const checkIn = function (flightNum, passenger) { //
 //     flightNum = 'LH999'; //o PARAMETRO flightNum funciona basicamente como uma cópia do valor original, portanto essa mudança não altera de fato o "flight"
 //     passenger.name = 'Mr. ' + passenger.name // Quando passamos um tipo de referência para uma função, é copiado a referência ao objeto no heap de memória
 
@@ -186,7 +186,7 @@ console.log(bookings)
 // const book = lufthansa.book;
 
 // // Não funciona (Does NOT work)
-// // book(23, 'Joao Pedro'); 
+// // book(23, 'Joao Pedro');
 // // a palavra-chave 'THIS' a qual 'BOOK' se refere nesse caso está apontando para 'UNDEFINED'
 
 
@@ -288,7 +288,7 @@ console.log(bookings)
 // // //------------- 136. Coding Challenge #1  -------------
 // Coding Challenge #1
 
-/* 
+/*
 Let's build a simple poll app!
 
 A poll has a question, an array of options from which people can choose, and an array with the number of replies for each option. This data is stored in the starter object below.
@@ -303,10 +303,10 @@ Here are your tasks:
         2: Rust
         3: C++
         (Write option number)
-  
+
   1.2. Based on the input number, update the answers array. For example, if the option is 3, increase the value AT POSITION 3 of the array by 1. Make sure to check if the input is a number and if the number makes sense (e.g answer 52 wouldn't make sense, right?)
 2. Call this method whenever the user clicks the "Answer poll" button.
-3. Create a method 'displayResults' which displays the poll results. The method takes a string as an input (called 'type'), which can be either 'string' or 'array'. If type is 'array', simply display the results array as it is, using console.log(). This should be the default option. If type is 'string', display a string like "Poll results are 13, 2, 4, 1". 
+3. Create a method 'displayResults' which displays the poll results. The method takes a string as an input (called 'type'), which can be either 'string' or 'array'. If type is 'array', simply display the results array as it is, using console.log(). This should be the default option. If type is 'string', display a string like "Poll results are 13, 2, 4, 1".
 4. Run the 'displayResults' method at the end of each 'registerNewAnswer' method call.
 
 HINT: Use many of the tools you learned about in this and the last section 😉
@@ -331,13 +331,13 @@ Aqui estão suas tarefas:
 
 Crie um método chamado 'registerNewAnswer' no objeto 'poll'. O método faz 2 coisas:
 
-1.1. Exibe uma janela de prompt para o usuário inserir o número da opção selecionada. 
+1.1. Exibe uma janela de prompt para o usuário inserir o número da opção selecionada.
     O prompt deve ser assim: Qual é a sua linguagem de programação favorita? 0: JavaScript 1: Python 2: Rust 3: C++ C
 
-1.2.  
+1.2.
     1.2.1. Com base no número de entrada, atualize o array de respostas. Por exemplo, se a opção for 3, aumente o valor NA POSIÇÃO 3 do array em 1.
-    1.2.2. Certifique-se de verificar se a entrada é um número e se o número faz sentido (por exemplo, a resposta 52 não faria sentido, certo?) 2.    
-    1.2.3. Chame este método sempre que o usuário clicar no botão "Responder enquete". 3. 
+    1.2.2. Certifique-se de verificar se a entrada é um número e se o número faz sentido (por exemplo, a resposta 52 não faria sentido, certo?) 2.
+    1.2.3. Chame este método sempre que o usuário clicar no botão "Responder enquete". 3.
     Crie um método 'displayResults' que exiba os resultados da enquete.
     O método recebe uma string como entrada (chamada 'type'), que pode ser 'string' ou 'array'.
     Se o tipo for 'array', simplesmente exiba o array de resultados como está, usando console.log(). Esta deve ser a opção padrão.
@@ -352,55 +352,55 @@ DADOS DE TESTE BÔNUS 1: [5, 2, 3] DADOS DE TESTE BÔNUS 2: [1, 5, 3, 9, 6, 1]
 
 BOA SORTE 😀 */
 
-// ----------------------- Resolução do Professor (início) -----------------------
+// // ----------------------- Resolução do Professor (início) -----------------------
 
-const poll = {
-    question: 'What is your favourite programming language?',
-    options: [
-        '0: JavaScript',
-        '1: Python',
-        '2: Rust',
-        '3: C++'
-    ],
-    // This generates [0, 0, 0, 0]. More in the next section 😃
-    answers: new Array(4).fill(0),
+// const poll = {
+//     question: 'What is your favourite programming language?',
+//     options: [
+//         '0: JavaScript',
+//         '1: Python',
+//         '2: Rust',
+//         '3: C++'
+//     ],
+//     // This generates [0, 0, 0, 0]. More in the next section 😃
+//     answers: new Array(4).fill(0),
 
-    registerNewAnswer() {
-        // Get answer
-        const answer = Number(
-            prompt(
-                `${this.question}\n${this.options.join('\n')}\n(Write option number)`
-            )
-        );
-        console.log(answer);
+//     registerNewAnswer() {
+//         // Get answer
+//         const answer = Number(
+//             prompt(
+//                 `${this.question}\n${this.options.join('\n')}\n(Write option number)`
+//             )
+//         );
+//         console.log(answer);
 
-        // Register answer
-        typeof answer === 'number' && answer < this.options.length && answer >= 0 &&
-            this.answers[answer]++;
+//         // Register answer
+//         typeof answer === 'number' && answer < this.options.length && answer >= 0 &&
+//             this.answers[answer]++;
 
-        this.displayResults();
-        this.displayResults('string');
-    },
+//         this.displayResults();
+//         this.displayResults('string');
+//     },
 
-    displayResults(type = 'array') {
-        if (type === 'array') {
-            console.log(this.answers);
-        } else if (type === 'string') {
-            console.log(`Poll results are ${this.answers.join(', ')}.`)
-        }
-    },
+//     displayResults(type = 'array') {
+//         if (type === 'array') {
+//             console.log(this.answers);
+//         } else if (type === 'string') {
+//             console.log(`Poll results are ${this.answers.join(', ')}.`)
+//         }
+//     },
 
-};
+// };
 
-document.querySelector('.poll').addEventListener('click', poll.registerNewAnswer.bind(poll));
-//em uma função de manipulador de eventos igual a essa a palavra this aponta para ela, para solucionar adicionamos o .bind('nome de onde queremos a palavra chave')
+// document.querySelector('.poll').addEventListener('click', poll.registerNewAnswer.bind(poll));
+// //em uma função de manipulador de eventos igual a essa a palavra this aponta para ela, para solucionar adicionamos o .bind('nome de onde queremos a palavra chave')
 
-// poll.registerNewAnswer();
+// // poll.registerNewAnswer();
 
-// --- Exercicio bonus ---
-poll.displayResults.call({ answers: [5, 2, 3] }, 'string');
+// // --- Exercicio bonus ---
+// poll.displayResults.call({ answers: [5, 2, 3] }, 'string');
 
-poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'string');
+// poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'string');
 
 
 // ----------------------- Resolução do Professor (Fim) -----------------------
@@ -452,3 +452,27 @@ poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'string');
 
 
 
+
+// // //------------- 137. Immediately Invoked Function Expression (IIFE)  -------------
+
+// -- Expressão de Função imediatamente invocada// serve para usar a função apenas uma vez
+
+// (IIFFE)
+(function () {
+    console.log('This will never run again');
+    const isPrivate = 23;
+    // tem acesso ao escopo externo
+})();
+
+// console.log(isPrivate); // o escopo global não tem acesso a nada dentro de um escopo
+
+(() => console.log('This will also never run again')
+)();
+
+//let e const criam seu próprio escopo dentro de um bloco {}
+
+{
+    const isPrivate = 21;
+}
+
+console.log(isPrivate) // tambem não pode ser acessado pois foi criado em um bloco (não se aplica a 'VAR');
