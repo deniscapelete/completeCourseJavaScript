@@ -508,52 +508,97 @@ BOA SORTE 😀 */
 // console.dir(booker);
 
 
-// //------------- 139. More Closures Examples  -------------
+// // //------------- 139. More Closures Examples  -------------
 
+// // Exemple 1
+// let f;
 
-// Exemple 1
-let f;
+// const g = function () {
+//     const a = 23;
+//     f = function () {
+//         console.log(a * 2);
+//     };
+// };
 
-const g = function () {
-    const a = 23;
-    f = function () {
-        console.log(a * 2);
-    };
-};
+// const h = function () {
+//     let b = 555;
+//     f = function () {
+//         console.log(b * 2);
+//     }
+// }
 
-const h = function () {
-    let b = 555;
-    f = function () {
-        console.log(b * 2);
-    }
-}
+// g();
+// f(); //retorna 46
 
-g();
-f(); //retorna 46
+// // Re-assingning f function
+// h();
+// f(); //retorna 1110
 
-// Re-assingning f function 
-h();
-f(); //retorna 1110
+// console.dir(f);
 
-console.dir(f);
+// // Exemple 2
+// const boardPassengers = function (n, wait) {
+//     const perGroup = n / 3;
 
-// Exemple 2
-const boardPassengers = function (n, wait) {
-    const perGroup = n / 3;
+//     setTimeout(function () {
+//         console.log(`We are now boarding all ${n} passengers`);
+//         console.log(`There are 3 groups, each with ${perGroup} passengers`);
+//     }, wait * 1000);
 
-    setTimeout(function () {
-        console.log(`We are now boarding all ${n} passengers`);
-        console.log(`There are 3 groups, each with ${perGroup} passengers`);
-    }, wait * 1000);
+//     console.log(`Will star boarding in ${wait} seconds`);
+// }
 
-    console.log(`Will star boarding in ${wait} seconds`);
-}
-
-const perGroup = 1000;
-//Por conta do fechamento, ele utiliza a variável que está em seu escopo, se não existisse ai sim ele pegaria a do escopo global
-boardPassengers(180, 3);
-
-
+// const perGroup = 1000;
+// //Por conta do fechamento, ele utiliza a variável que está em seu escopo, se não existisse ai sim ele pegaria a do escopo global
+// boardPassengers(180, 3);
 
 
 
+// //------------- 140. Coding Challenge #2  -------------
+
+///////////////////////////////////////
+// Coding Challenge #2
+
+/* 
+This is more of a thinking challenge than a coding challenge 🤓
+
+Take the IIFE below and at the end of the function, 
+attach an event listener that changes the color of the selected h1 element ('header') to blue,
+each time the BODY element is clicked. Do NOT select the h1 element again!
+
+And now explain to YOURSELF (or someone around you) WHY this worked! Take all the time you need. 
+Think about WHEN exactly the callback function is executed, 
+and what that means for the variables involved in this example.
+
+GOOD LUCK 😀
+
+
+Desafio de Codificação #2
+
+Este é mais um desafio de raciocínio do que um desafio de codificação 🤓
+
+Pegue a IIFE (Immediately Invoked Function Expression - Função Imediatamente Invocada) abaixo e, 
+no final da função, anexe um ouvinte de evento que mude a cor do elemento h1 selecionado ('header') para azul, 
+cada vez que o elemento BODY for clicado. NÃO selecione o elemento h1 novamente!
+
+E agora, explique para SI MESMO (ou alguém ao seu redor) POR QUE isso funcionou! Leve o tempo que precisar. 
+Pense sobre QUANDO exatamente a função de retorno de chamada (callback) é executada e o que isso significa para 
+as variáveis envolvidas neste exemplo.
+
+BOA SORTE 😀
+*/
+
+
+(function () {
+    const header = document.querySelector('h1');
+    header.style.color = 'red';
+
+    document.querySelector('body').addEventListener('click', function () {
+        header.style.color = 'blue';
+    });
+
+})();
+
+//Explicação em minhas palavras,
+//a variavel dentro do evento de ouvinte ainda funciona mesmo após a função de execução imediata ja ter se encerrado,
+// pois ela se "lembra" de suas informações no momento de seu nascimento, ou seja as informações de seu escopo no momento da criação
