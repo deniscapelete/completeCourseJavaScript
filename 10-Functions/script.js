@@ -601,4 +601,4 @@ BOA SORTE 😀
 
 //Explicação em minhas palavras,
 //a variavel dentro do evento de ouvinte ainda funciona mesmo após a função de execução imediata ja ter se encerrado,
-// pois ela se "lembra" de suas informações no momento de seu nascimento, ou seja as informações de seu escopo no momento da criação
+// pois ela se "lembra" de suas informações no momento de seu nascimento, ou seja as informações de seu escopo no momento da criação.
