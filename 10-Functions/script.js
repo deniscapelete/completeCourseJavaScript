@@ -479,37 +479,79 @@ BOA SORTE 😀 */
 
 
 
-// //------------- 138. Closures  -------------
+// // //------------- 138. Closures  -------------
 
-//Não criamos encerramento explicitamente/manualmente ele acontece automaticamente em certas situações só precisamos reconhecer essas situações
+// //Não criamos encerramento explicitamente/manualmente ele acontece automaticamente em certas situações só precisamos reconhecer essas situações
 
-// o encerramento faz a função lembrar de todas a variáveis presentes no momento da criação da função essencialmente
-//Qualquer função sempre tem acesso ao ambiente variável do contexto de execução no qual a função foi criada.
+// // o encerramento faz a função lembrar de todas a variáveis presentes no momento da criação da função essencialmente
+// //Qualquer função sempre tem acesso ao ambiente variável do contexto de execução no qual a função foi criada.
 
 
-const secureBooking = function () {
-    let passengerCount = 0;
+// const secureBooking = function () {
+//     let passengerCount = 0;
 
-    return function () { // essa função se lembra de tudo de seu local de nascimento no momento em que foi criada
-        passengerCount++;
-        console.log(`${passengerCount} passenger`);
+//     return function () { // essa função se lembra de tudo de seu local de nascimento no momento em que foi criada
+//         passengerCount++;
+//         console.log(`${passengerCount} passenger`);
+//     };
+// };
+
+// const booker = secureBooking();
+// // (Criando a função booker) passengerCount = 0, (1ª chamada de booker) passengerCount = 1, (2ª chamada de booker)passengerCount = 2.
+
+
+// // passageCount é definida no escopo em que a função booker foi realmente criada
+// booker();
+// booker();
+// booker();
+
+// console.dir(booker);
+
+
+// //------------- 139. More Closures Examples  -------------
+
+
+// Exemple 1
+let f;
+
+const g = function () {
+    const a = 23;
+    f = function () {
+        console.log(a * 2);
     };
 };
 
-const booker = secureBooking();
-// (Criando a função booker) passengerCount = 0, (1ª chamada de booker) passengerCount = 1, (2ª chamada de booker)passengerCount = 2.
+const h = function () {
+    let b = 555;
+    f = function () {
+        console.log(b * 2);
+    }
+}
 
+g();
+f(); //retorna 46
 
-// passageCount é definida no escopo em que a função booker foi realmente criada
-booker();
-booker();
-booker();
+// Re-assingning f function 
+h();
+f(); //retorna 1110
 
-console.dir(booker);
+console.dir(f);
 
+// Exemple 2
+const boardPassengers = function (n, wait) {
+    const perGroup = n / 3;
 
+    setTimeout(function () {
+        console.log(`We are now boarding all ${n} passengers`);
+        console.log(`There are 3 groups, each with ${perGroup} passengers`);
+    }, wait * 1000);
 
+    console.log(`Will star boarding in ${wait} seconds`);
+}
 
+const perGroup = 1000;
+//Por conta do fechamento, ele utiliza a variável que está em seu escopo, se não existisse ai sim ele pegaria a do escopo global
+boardPassengers(180, 3);
 
 
 
