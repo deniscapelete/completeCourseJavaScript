@@ -76,56 +76,70 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 /////////////////////////////////////////////////
 
 
-// ------------------- 143. Simple Array Methods -------------------
+// // ------------------- 143. Simple Array Methods -------------------
 
-let arr = ['a', 'b', 'c', 'd', 'e'];
+// let arr = ['a', 'b', 'c', 'd', 'e'];
 
-// SLICE
-// NÃO altera a MATRIZ original
-console.log(arr.slice(2)); // retorna (3) ['c', 'd', 'e']
-console.log(arr.slice(2, 4)); // retorna (2) ['c', 'd']
-console.log(arr.slice(-2)); // retorna (2) ['d', 'e']
-console.log(arr.slice(-1)); // retorna ['e']
-console.log(arr.slice(1, -2)); // retorna (2) ['b', 'c']
+// // SLICE
+// // NÃO altera a MATRIZ original
+// console.log(arr.slice(2)); // retorna (3) ['c', 'd', 'e']
+// console.log(arr.slice(2, 4)); // retorna (2) ['c', 'd']
+// console.log(arr.slice(-2)); // retorna (2) ['d', 'e']
+// console.log(arr.slice(-1)); // retorna ['e']
+// console.log(arr.slice(1, -2)); // retorna (2) ['b', 'c']
 
-//Para criar uma copia superficial de um ARRAY podemos usar qualquer um dos métodos OPERADOR DE PROPAGAÇÃO ou SLICE
-// se faz necessário o uso do SLICE quando deseja encadear vários métodos, chamando um após o outro.
-console.log(arr.slice()); // retorna (5) ['a', 'b', 'c', 'd', 'e']
-console.log([...arr]);// retorna (5) ['a', 'b', 'c', 'd', 'e']
-
-
-// SPLICE
-// ALTERA a matriz original
-arr.splice(-1); // seleciona e remove o ultimo item do ARRAY
-
-// O array perde a parte que foi extraída
-console.log(arr); // (4) ['a', 'b', 'c', 'd']
-
-arr.splice(4, 0, 'e'); // (5) ['a', 'b', 'c', 'd', 'e']
-// O primeiro é o ÍNDICE da MATRIZ e o segundo é quantos queremos remover
-
-console.log(arr);
+// //Para criar uma copia superficial de um ARRAY podemos usar qualquer um dos métodos OPERADOR DE PROPAGAÇÃO ou SLICE
+// // se faz necessário o uso do SLICE quando deseja encadear vários métodos, chamando um após o outro.
+// console.log(arr.slice()); // retorna (5) ['a', 'b', 'c', 'd', 'e']
+// console.log([...arr]);// retorna (5) ['a', 'b', 'c', 'd', 'e']
 
 
-// REVERSE
-// ALTERA a MATRIZ original
-arr = ['a', 'b', 'c', 'd', 'e'];
-const arr2 = ['j', 'i', 'h', 'g', 'f']; // (5) ['f', 'g', 'h', 'i', 'j']
+// // SPLICE
+// // ALTERA a matriz original
+// arr.splice(-1); // seleciona e remove o ultimo item do ARRAY
 
-console.log(arr2.reverse()); // Inverte a ordem
+// // O array perde a parte que foi extraída
+// console.log(arr); // (4) ['a', 'b', 'c', 'd']
 
-console.log(arr2); // (5) ['f', 'g', 'h', 'i', 'j']
+// arr.splice(4, 0, 'e'); // (5) ['a', 'b', 'c', 'd', 'e']
+// // O primeiro é o ÍNDICE da MATRIZ e o segundo é quantos queremos remover
 
-
-// CONCAT
-// NÃO altera a MATRIZ original
-const letters = arr.concat(arr2);
-console.log(letters);
-console.log([...arr, ...arr2]);
-
-// JOIN
-// NÃO altera a matriz original
-// Resulta em uma STRING o separador que especificamos entre todos itens do ARRAY
-console.log(letters.join(' - ')); // a - b - c - d - e - f - g - h - i - j
+// console.log(arr);
 
 
+// // REVERSE
+// // ALTERA a MATRIZ original
+// arr = ['a', 'b', 'c', 'd', 'e'];
+// const arr2 = ['j', 'i', 'h', 'g', 'f']; // (5) ['f', 'g', 'h', 'i', 'j']
+
+// console.log(arr2.reverse()); // Inverte a ordem
+
+// console.log(arr2); // (5) ['f', 'g', 'h', 'i', 'j']
+
+
+// // CONCAT
+// // NÃO altera a MATRIZ original
+// const letters = arr.concat(arr2);
+// console.log(letters);
+// console.log([...arr, ...arr2]);
+
+// // JOIN
+// // NÃO altera a matriz original
+// // Resulta em uma STRING o separador que especificamos entre todos itens do ARRAY
+// console.log(letters.join(' - ')); // a - b - c - d - e - f - g - h - i - j
+
+
+
+// // ------------------- 144. The new at method -------------------
+
+const arr = [12, 20, 31];
+console.log(arr[0]);
+console.log(arr.at(0));
+
+// getting last array element
+console.log(arr[arr.length - 1]);
+console.log(arr.slice(-1)[0]);
+console.log(arr.at(-1))
+
+console.log('denis'.at(0));
+console.log('denis'.at(-1));
