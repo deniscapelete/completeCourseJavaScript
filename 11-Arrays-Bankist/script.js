@@ -65,11 +65,11 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // LECTURES
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling'],
+// ]);
 
 // const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
@@ -130,66 +130,101 @@ const currencies = new Map([
 
 
 
-// // ------------------- 144. The new "at" method -------------------
+// // // ------------------- 144. The new "at" method -------------------
 
-const arr = [12, 20, 31];
-console.log(arr[0]);
-console.log(arr.at(0));
+// const arr = [12, 20, 31];
+// console.log(arr[0]);
+// console.log(arr.at(0));
 
-// getting last array element
-console.log(arr[arr.length - 1]);
-console.log(arr.slice(-1)[0]);
-console.log(arr.at(-1))
+// // getting last array element
+// console.log(arr[arr.length - 1]);
+// console.log(arr.slice(-1)[0]);
+// console.log(arr.at(-1))
 
-console.log('denis'.at(0));
-console.log('denis'.at(-1));
-
-
-
-// // ------------------- 145. Looping Arrays: forEach -------------------
-
-
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
-console.log('---------FOR OF---------');
-
-for (const movement of movements) {
-  if (movement > 0) {
-    console.log(`You deposited $ ${movement}`);
-  } else {
-    console.log(`You withdrew $ ${Math.abs(movement)}`)
-  }
-};
-// as instruções BREAK e CONTINUE funcinam no FOR OF, se precisar sair do loop a qualquer momento use FOR OF
-
-console.log('---------FOR OF---------');
-
-for (const [i, movement] of movements.entries()) {
-  if (movement > 0) {
-    console.log(`Movement ${i + 1}: You deposited $ ${movement}`);
-  } else {
-    console.log(`Movement ${i + 1}: You withdrew $ ${Math.abs(movement)}`)
-  }
-};
-
-console.log('---------FOREACH---------');
-
-movements.forEach(function (movement, index, array) {
-  // 1º parâmetro sempre precisa ser o elemento.
-  // 2º parâmetro sempre precisa ser o índice atual.
-  // 3º parâmetro sempre precisa ser o array inteiro sobre o qual esta sendo feito o loop.
-  // Não é obrigatório passar os três parâmetros e os nome podem ser outros.
-  if (movement > 0) {
-    console.log(`Movement ${index + 1}: You deposited $ ${movement}`);
-  } else {
-    console.log(`Movement ${index + 1}: You withdrew $ ${Math.abs(movement)}`)
-  }
-});
-// 0: function(200);
-// 1: function(450);
-// 2: function(400);
-
-// as instruções BREAK e CONTINUE NÃO funcinam no FOREACH, ou seja, sempre fara o loop no array inteiro.
+// console.log('denis'.at(0));
+// console.log('denis'.at(-1));
 
 
 
+// // // ------------------- 145. Looping Arrays: forEach -------------------
+
+
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// console.log('---------FOR OF---------');
+
+// for (const movement of movements) {
+//   if (movement > 0) {
+//     console.log(`You deposited $ ${movement}`);
+//   } else {
+//     console.log(`You withdrew $ ${Math.abs(movement)}`)
+//   }
+// };
+// // as instruções BREAK e CONTINUE funcinam no FOR OF, se precisar sair do loop a qualquer momento use FOR OF
+
+// console.log('---------FOR OF---------');
+
+// for (const [i, movement] of movements.entries()) {
+//   if (movement > 0) {
+//     console.log(`Movement ${i + 1}: You deposited $ ${movement}`);
+//   } else {
+//     console.log(`Movement ${i + 1}: You withdrew $ ${Math.abs(movement)}`)
+//   }
+// };
+
+// console.log('---------FOREACH---------');
+
+// movements.forEach(function (movement, index, array) {
+//   // 1º parâmetro sempre precisa ser o elemento.
+//   // 2º parâmetro sempre precisa ser o índice atual.
+//   // 3º parâmetro sempre precisa ser o array inteiro sobre o qual esta sendo feito o loop.
+//   // Não é obrigatório passar os três parâmetros e os nome podem ser outros.
+//   if (movement > 0) {
+//     console.log(`Movement ${index + 1}: You deposited $ ${movement}`);
+//   } else {
+//     console.log(`Movement ${index + 1}: You withdrew $ ${Math.abs(movement)}`)
+//   }
+// });
+// // 0: function(200);
+// // 1: function(450);
+// // 2: function(400);
+
+// // as instruções BREAK e CONTINUE NÃO funcinam no FOREACH, ou seja, sempre fara o loop no array inteiro.
+
+
+
+// // ------------------- 146. forEach With Maps and Sets -------------------
+
+// Map
+const currencies = new Map([
+  ['USD', 'United States dollar'],
+  ['EUR', 'Euro'],
+  ['GBP', 'Pound sterling'],
+]);
+
+currencies.forEach(function (value, key, map) {
+
+  console.log(`${key}: ${value}`);
+  // retorna USD: United States dollar
+  // retorna EUR: Euro
+  // retorna GBP: Pound sterling
+})
+
+
+// Set
+
+const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
+
+console.log(currenciesUnique); // retorna Set(3) {'USD', 'GBP', 'EUR'}
+
+currenciesUnique.forEach(function (value, _, set) {
+  // em JavaScript um "_" significa uma variável descartável.
+
+  console.log(`${value} : ${value}`);
+  // retorna USD: USD
+  // retorna GBP: GBP
+  // retorna EUR: EUR
+
+  console.log(set); // retorna Set(3) {'USD', 'GBP', 'EUR'}
+  // Conjuntos(SET) não tem chave e nem índices porntando não há valor que faça sentido para a chave.
+})
