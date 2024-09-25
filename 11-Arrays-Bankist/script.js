@@ -87,15 +87,75 @@ displayMovements(account1.movements);
 
 
 
+///////////////////////////////////////
+// Coding Challenge #1
+
+/* 
+Julia and Kate are doing a study on dogs. So each of them asked 5 dog owners about their dog's age, and stored the data into an array (one array for each). For now, they are just interested in knowing whether a dog is an adult or a puppy. A dog is an adult if it is at least 3 years old, and it's a puppy if it's less than 3 years old.
+
+Create a function 'checkDogs', which accepts 2 arrays of dog's ages ('dogsJulia' and 'dogsKate'), and does the following things:
+
+1. Julia found out that the owners of the FIRST and the LAST TWO dogs actually have cats, not dogs! So create a shallow copy of Julia's array, and remove the cat ages from that copied array (because it's a bad practice to mutate function parameters)
+2. Create an array with both Julia's (corrected) and Kate's data
+3. For each remaining dog, log to the console whether it's an adult ("Dog number 1 is an adult, and is 5 years old") or a puppy ("Dog number 2 is still a puppy 🐶")
+4. Run the function for both test datasets
+
+HINT: Use tools from all lectures in this section so far 😉
+
+TEST DATA 1: Julia's data [3, 5, 2, 12, 7], Kate's data [4, 1, 15, 8, 3]
+TEST DATA 2: Julia's data [9, 16, 6, 8, 3], Kate's data [10, 5, 6, 1, 4]
+
+GOOD LUCK 😀
+
+--------
+
+Julia e Kate estão fazendo um estudo sobre cachorros. 
+Cada uma delas perguntou a 5 donos de cães sobre a idade de seus cães e armazenou os dados em um array (um array para cada uma). 
+Por enquanto, elas estão apenas interessadas em saber se um cachorro é adulto ou filhote. 
+Um cachorro é considerado adulto se tiver pelo menos 3 anos de idade, e é considerado filhote se tiver menos de 3 anos.
+
+Crie uma função 'checkDogs', que aceita 2 arrays com as idades dos cachorros ('dogsJulia' e 'dogsKate'), e realiza as seguintes tarefas:
+
+Julia descobriu que os donos do PRIMEIRO e dos ÚLTIMOS DOIS cachorros, na verdade, têm gatos, e não cães! Então, crie uma cópia superficial do array de Julia e remova as idades dos gatos desse array copiado (porque é uma má prática modificar os parâmetros de uma função).
+Crie um array com os dados corrigidos de Julia e os dados de Kate.
+Para cada cachorro restante, registre no console se ele é adulto ("Cachorro número 1 é adulto e tem 5 anos") ou um filhote ("Cachorro número 2 ainda é um filhote 🐶").
+Execute a função para os dois conjuntos de dados de teste.
+DICA: Use ferramentas de todas as aulas desta seção até agora 😉
+
+DADOS DE TESTE 1: Dados de Julia [3, 5, 2, 12, 7], Dados de Kate [4, 1, 15, 8, 3]
+DADOS DE TESTE 2: Dados de Julia [9, 16, 6, 8, 3], Dados de Kate [10, 5, 6, 1, 4]
+
+BOA SORTE 😀
+
+*/
+
+const dogsJulia = [3, 5, 2, 12, 7];
+const dogsKate = [4, 1, 15, 8, 3];
+
+// const dogsJuliaAndKate = [...dogsJulia, ...dogsKate]
+
+// console.log(dogsJuliaAndKate)
+
+const checkDogs = function (arr1, arr2) {
+
+  const dogsJuliaCorrect = arr1.slice(1, -2);
+
+  const dogsJuliaAndKate = [...dogsJuliaCorrect, ...arr2];
+  dogsJuliaAndKate.forEach(function (value, i) {
+    const category = (value > 2) ? `é adulto e tem ${value} anos` : `ainda é um filhote 🐶`;
+    console.log(`Cachorro número ${i + 1} ${category}`);
+  });
 
 
+};
 
+checkDogs(dogsJulia, dogsKate)
 
+// dados teste 2
+const dogsJuliaT2 = [9, 16, 6, 8, 3];
+const dogsKateT2 = [10, 5, 6, 1, 4];
 
-
-
-
-
+checkDogs(dogsJuliaT2, dogsKateT2);
 
 
 /////////////////////////////////////////////////
@@ -230,38 +290,38 @@ displayMovements(account1.movements);
 
 
 
-// // ------------------- 146. forEach With Maps and Sets -------------------
+// // // ------------------- 146. forEach With Maps and Sets -------------------
 
-// Map
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+// // Map
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling'],
+// ]);
 
-currencies.forEach(function (value, key, map) {
+// currencies.forEach(function (value, key, map) {
 
-  console.log(`${key}: ${value}`);
-  // retorna USD: United States dollar
-  // retorna EUR: Euro
-  // retorna GBP: Pound sterling
-})
+//   console.log(`${key}: ${value}`);
+//   // retorna USD: United States dollar
+//   // retorna EUR: Euro
+//   // retorna GBP: Pound sterling
+// })
 
 
-// Set
+// // Set
 
-const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
+// const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
 
-console.log(currenciesUnique); // retorna Set(3) {'USD', 'GBP', 'EUR'}
+// console.log(currenciesUnique); // retorna Set(3) {'USD', 'GBP', 'EUR'}
 
-currenciesUnique.forEach(function (value, _, set) {
-  // em JavaScript um "_" significa uma variável descartável.
+// currenciesUnique.forEach(function (value, _, set) {
+//   // em JavaScript um "_" significa uma variável descartável.
 
-  console.log(`${value} : ${value}`);
-  // retorna USD: USD
-  // retorna GBP: GBP
-  // retorna EUR: EUR
+//   console.log(`${value} : ${value}`);
+//   // retorna USD: USD
+//   // retorna GBP: GBP
+//   // retorna EUR: EUR
 
-  console.log(set); // retorna Set(3) {'USD', 'GBP', 'EUR'}
-  // Conjuntos(SET) não tem chave e nem índices porntando não há valor que faça sentido para a chave.
-})
+//   console.log(set); // retorna Set(3) {'USD', 'GBP', 'EUR'}
+//   // Conjuntos(SET) não tem chave e nem índices porntando não há valor que faça sentido para a chave.
+// })
