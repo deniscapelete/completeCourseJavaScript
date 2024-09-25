@@ -129,33 +129,50 @@ BOA SORTE 😀
 
 */
 
-const dogsJulia = [3, 5, 2, 12, 7];
-const dogsKate = [4, 1, 15, 8, 3];
+///// ---------- MINHA SOLUÇÃO ---------- //////
+// const dogsJulia = [3, 5, 2, 12, 7];
+// const dogsKate = [4, 1, 15, 8, 3];
 
-// const dogsJuliaAndKate = [...dogsJulia, ...dogsKate]
+// const checkDogs = function (arr1, arr2) {
 
-// console.log(dogsJuliaAndKate)
+//   const dogsJuliaCorrect = arr1.slice(1, -2);
 
-const checkDogs = function (arr1, arr2) {
+//   const dogsJuliaAndKate = [...dogsJuliaCorrect, ...arr2];
+//   dogsJuliaAndKate.forEach(function (value, i) {
+//     const category = (value > 2) ? `é adulto e tem ${value} anos` : `ainda é um filhote 🐶`;
+//     console.log(`Cachorro número ${i + 1} ${category}`);
+//   });
+// };
+// checkDogs(dogsJulia, dogsKate)
 
-  const dogsJuliaCorrect = arr1.slice(1, -2);
+// // dados teste 2
+// const dogsJuliaT2 = [9, 16, 6, 8, 3];
+// const dogsKateT2 = [10, 5, 6, 1, 4];
+// checkDogs(dogsJuliaT2, dogsKateT2);
 
-  const dogsJuliaAndKate = [...dogsJuliaCorrect, ...arr2];
-  dogsJuliaAndKate.forEach(function (value, i) {
-    const category = (value > 2) ? `é adulto e tem ${value} anos` : `ainda é um filhote 🐶`;
-    console.log(`Cachorro número ${i + 1} ${category}`);
+
+///// ---------- SOLUÇÃO PROFESSOR ---------- //////
+
+const checkDogs = function (dogsJulia, dogsKate) {
+  const dogsJuliaCorrected = dogsJulia.slice();
+  dogsJuliaCorrected.splice(0, 1);
+  dogsJuliaCorrected.splice(-2);
+
+  const dogs = dogsJuliaCorrected.concat(dogsKate);
+
+  dogs.forEach(function (dogs, i) {
+    if (dogs >= 3) {
+      console.log(`Dog number ${i + 1} is an adult, and is ${dogs} years old`)
+
+    } else {
+      console.log(`Dog number ${i + 1} is still a puppy 🐶`)
+    }
   });
-
-
 };
 
-checkDogs(dogsJulia, dogsKate)
+checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
 
-// dados teste 2
-const dogsJuliaT2 = [9, 16, 6, 8, 3];
-const dogsKateT2 = [10, 5, 6, 1, 4];
-
-checkDogs(dogsJuliaT2, dogsKateT2);
+checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
 
 
 /////////////////////////////////////////////////
