@@ -81,10 +81,41 @@ const displayMovements = function (movements) {
     containerMovements.insertAdjacentHTML('afterbegin', html)
     //adiciona o valor da variável 'html' dentro do "containerMovements" arquivo HTML
   });
-
 };
 displayMovements(account1.movements);
 
+
+// // ------------------- 152. Computing Usernames -------------------
+const createUsernames = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      // transformou tudo em letra minúscula
+      .split(' ')
+      // separarou o nome onde havia espaço, adicionando cada um a um index do array. Ex: ['joao silva'], ['joao', 'silva']
+      .map(name => name[0])
+      //pegou a primeira letra de cada index do array. Ex: ['joao', 'silva], ['j', 's']
+      .join('');
+    // criou uma string juntando todas a letra do array . Ex: ['j', 's'], 'js'
+  });
+};
+
+createUsernames(accounts);
+console.log(accounts);
+
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+// LECTURES
+
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling'],
+// ]);
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+/////////////////////////////////////////////////
 
 
 ///////////////////////////////////////
@@ -173,21 +204,6 @@ BOA SORTE 😀
 // checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
 
 // checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
-
-
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-// LECTURES
-
-// const currencies = new Map([
-//   ['USD', 'United States dollar'],
-//   ['EUR', 'Euro'],
-//   ['GBP', 'Pound sterling'],
-// ]);
-
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
-/////////////////////////////////////////////////
 
 
 // // ------------------- 143. Simple Array Methods -------------------
@@ -344,33 +360,33 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // })
 
 
-// // // ------------------- 151. The MAP Method -------------------
+// // // // ------------------- 151. The MAP Method -------------------
 
-const eurToUsd = 1.1;
+// const eurToUsd = 1.1;
 
-//o map retorna um novo array.
-const movementsUSD = movements.map(function (mov) {
-  return mov * eurToUsd;
-})
+// //o map retorna um novo array.
+// const movementsUSD = movements.map(function (mov) {
+//   return mov * eurToUsd;
+// })
 
-const movementsUSDarrow = movements.map(mov => mov * eurToUsd)
+// const movementsUSDarrow = movements.map(mov => mov * eurToUsd)
 
-console.log(movements);
-console.log(movementsUSD);
-console.log(movementsUSDarrow);
-
-
-//// --------- FOR ---------
-// No FOR foi feito um loop para inserir os dados no array
-const movementsUSDfor = [];
-for (const mov of movements) movementsUSDfor.push(mov * eurToUsd);
-console.log(movementsUSDfor);
+// console.log(movements);
+// console.log(movementsUSD);
+// console.log(movementsUSDarrow);
 
 
-//// --------- MAP ---------
-// No MAP a partir do retorno de chamada foram adicionados os dados a um novo ARRAY
-const movementsDescriptions = movements.map((mov, i) =>
-  `Movement ${i + 1}: You ${(mov > 0) ? 'deposited' : 'withdrew'} $ ${Math.abs(mov)}`
-)
+// //// --------- FOR ---------
+// // No FOR foi feito um loop para inserir os dados no array
+// const movementsUSDfor = [];
+// for (const mov of movements) movementsUSDfor.push(mov * eurToUsd);
+// console.log(movementsUSDfor);
 
-console.log(movementsDescriptions)
+
+// //// --------- MAP ---------
+// // No MAP a partir do retorno de chamada foram adicionados os dados a um novo ARRAY
+// const movementsDescriptions = movements.map((mov, i) =>
+//   `Movement ${i + 1}: You ${(mov > 0) ? 'deposited' : 'withdrew'} $ ${Math.abs(mov)}`
+// )
+
+// console.log(movementsDescriptions);
