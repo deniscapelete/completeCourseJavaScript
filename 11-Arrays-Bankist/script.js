@@ -90,7 +90,7 @@ displayMovements(account1.movements);
 ///////////////////////////////////////
 // Coding Challenge #1
 
-/* 
+/*
 Julia and Kate are doing a study on dogs. So each of them asked 5 dog owners about their dog's age, and stored the data into an array (one array for each). For now, they are just interested in knowing whether a dog is an adult or a puppy. A dog is an adult if it is at least 3 years old, and it's a puppy if it's less than 3 years old.
 
 Create a function 'checkDogs', which accepts 2 arrays of dog's ages ('dogsJulia' and 'dogsKate'), and does the following things:
@@ -109,9 +109,9 @@ GOOD LUCK 😀
 
 --------
 
-Julia e Kate estão fazendo um estudo sobre cachorros. 
-Cada uma delas perguntou a 5 donos de cães sobre a idade de seus cães e armazenou os dados em um array (um array para cada uma). 
-Por enquanto, elas estão apenas interessadas em saber se um cachorro é adulto ou filhote. 
+Julia e Kate estão fazendo um estudo sobre cachorros.
+Cada uma delas perguntou a 5 donos de cães sobre a idade de seus cães e armazenou os dados em um array (um array para cada uma).
+Por enquanto, elas estão apenas interessadas em saber se um cachorro é adulto ou filhote.
 Um cachorro é considerado adulto se tiver pelo menos 3 anos de idade, e é considerado filhote se tiver menos de 3 anos.
 
 Crie uma função 'checkDogs', que aceita 2 arrays com as idades dos cachorros ('dogsJulia' e 'dogsKate'), e realiza as seguintes tarefas:
@@ -153,26 +153,26 @@ BOA SORTE 😀
 
 ///// ---------- SOLUÇÃO PROFESSOR ---------- //////
 
-const checkDogs = function (dogsJulia, dogsKate) {
-  const dogsJuliaCorrected = dogsJulia.slice();
-  dogsJuliaCorrected.splice(0, 1);
-  dogsJuliaCorrected.splice(-2);
+// const checkDogs = function (dogsJulia, dogsKate) {
+//   const dogsJuliaCorrected = dogsJulia.slice();
+//   dogsJuliaCorrected.splice(0, 1);
+//   dogsJuliaCorrected.splice(-2);
 
-  const dogs = dogsJuliaCorrected.concat(dogsKate);
+//   const dogs = dogsJuliaCorrected.concat(dogsKate);
 
-  dogs.forEach(function (dogs, i) {
-    if (dogs >= 3) {
-      console.log(`Dog number ${i + 1} is an adult, and is ${dogs} years old`)
+//   dogs.forEach(function (dogs, i) {
+//     if (dogs >= 3) {
+//       console.log(`Dog number ${i + 1} is an adult, and is ${dogs} years old`)
 
-    } else {
-      console.log(`Dog number ${i + 1} is still a puppy 🐶`)
-    }
-  });
-};
+//     } else {
+//       console.log(`Dog number ${i + 1} is still a puppy 🐶`)
+//     }
+//   });
+// };
 
-checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+// checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
 
-checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
+// checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
 
 
 /////////////////////////////////////////////////
@@ -185,7 +185,7 @@ checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
 //   ['GBP', 'Pound sterling'],
 // ]);
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
@@ -342,3 +342,33 @@ checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
 //   console.log(set); // retorna Set(3) {'USD', 'GBP', 'EUR'}
 //   // Conjuntos(SET) não tem chave e nem índices porntando não há valor que faça sentido para a chave.
 // })
+
+
+// // // ------------------- 151. The MAP Method -------------------
+
+const eurToUsd = 1.1;
+
+//o map retorna um novo array.
+const movementsUSD = movements.map(function (mov) {
+  return mov * eurToUsd;
+})
+
+const movementsUSDarrow = movements.map(mov => mov * eurToUsd)
+
+console.log(movements);
+console.log(movementsUSD);
+console.log(movementsUSDarrow);
+
+
+//// --------- FOR ---------
+const movementsUSDfor = [];
+for (const mov of movements) movementsUSDfor.push(mov * eurToUsd);
+console.log(movementsUSDfor);
+
+
+//// --------- MAP ---------
+const movementsDescriptions = movements.map((mov, i) =>
+  `Movement ${i + 1}: You ${(mov > 0) ? 'deposited' : 'withdrew'} $ ${Math.abs(mov)}`
+)
+
+console.log(movementsDescriptions)
