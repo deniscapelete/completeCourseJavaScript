@@ -361,12 +361,14 @@ console.log(movementsUSDarrow);
 
 
 //// --------- FOR ---------
+// No FOR foi feito um loop para inserir os dados no array
 const movementsUSDfor = [];
 for (const mov of movements) movementsUSDfor.push(mov * eurToUsd);
 console.log(movementsUSDfor);
 
 
 //// --------- MAP ---------
+// No MAP a partir do retorno de chamada foram adicionados os dados a um novo ARRAY
 const movementsDescriptions = movements.map((mov, i) =>
   `Movement ${i + 1}: You ${(mov > 0) ? 'deposited' : 'withdrew'} $ ${Math.abs(mov)}`
 )
