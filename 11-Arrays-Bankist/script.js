@@ -85,6 +85,14 @@ const displayMovements = function (movements) {
 displayMovements(account1.movements);
 
 
+const calcPrintBalance = function (acc) {
+  const balance = acc.movements.reduce((tot, val) => tot + val, 0);
+  labelBalance.textContent = `${balance} €`;
+}
+
+calcPrintBalance(account1);
+
+
 // // ------------------- 152. Computing Usernames -------------------
 
 const createUsernames = function (accs) {
@@ -100,7 +108,6 @@ const createUsernames = function (accs) {
     // criou uma string juntando todas a letra do array . Ex: ['j', 's'], 'js'
   });
 };
-
 createUsernames(accounts);
 console.log(accounts);
 
@@ -393,19 +400,90 @@ BOA SORTE 😀
 // console.log(movementsDescriptions);
 
 
-// // ------------------- 153. The filter Method -------------------
+// // // ------------------- 153. The filter Method -------------------
 
-const deposits = movements.filter(function (mov) {
-  return mov > 0;
-});
+// const deposits = movements.filter(function (mov) {
+//   return mov > 0;
+// });
 
-const withdrawals = movements.filter(mov => mov < 0);
+// const withdrawals = movements.filter(mov => mov < 0);
 
+// console.log(movements); //retorna (8) [200, 450, -400, 3000, -650, -130, 70, 1300]
+// console.log(deposits); // retorna (5) [200, 450, 3000, 70, 1300]
+// console.log(withdrawals); // retorna (3) [-400, -650, -130]
+
+
+// const depositsFor = [];
+// for (const mov of movements) if (mov > 0) depositsFor.push(mov);
+// console.log(depositsFor); // retorna (5) [200, 450, 3000, 70, 1300]
+
+
+// // ------------------- 154. The Reduce Method -------------------
+//accumulator -> SNOWBALL
 console.log(movements);
-console.log(deposits);
-console.log(withdrawals);
+
+// const balance = movements.reduce(function (acc, cur, i, arr) {
+//   console.log(`Iteration ${i}: ${acc}`)
+//   return acc + cur; 
+// }, 0); // aqui entra com o valor inicial do 'acc'.
+
+const balance = movements.reduce((acc, cur) => acc + cur, 0);
+
+console.log(balance); //retorna 3840
 
 
-const depositsFor = [];
-for (const mov of movements) if (mov > 0) depositsFor.push(mov);
-console.log(depositsFor);
+let balance2 = 0;
+for (const mov of movements) balance2 += mov;
+console.log(balance2);
+
+// Maximum value
+
+const maxVal = movements.reduce((acc, val) => (acc < val) ? acc = val : acc, movements[0]);
+/*
+Quando buscamos o máximo e o mínimo não se utiliza zero no valor inicial, 
+pois se os valores forem negativos o maior sempre será o zero, 
+assim como em caso de positivos o menor sempre será o zero.
+*/
+console.log(maxVal);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
