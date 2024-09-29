@@ -418,36 +418,100 @@ BOA SORTE 😀
 // console.log(depositsFor); // retorna (5) [200, 450, 3000, 70, 1300]
 
 
-// // ------------------- 154. The Reduce Method -------------------
-//accumulator -> SNOWBALL
-console.log(movements);
+// // // ------------------- 154. The Reduce Method -------------------
+// //accumulator -> SNOWBALL
+// console.log(movements);
 
-// const balance = movements.reduce(function (acc, cur, i, arr) {
-//   console.log(`Iteration ${i}: ${acc}`)
-//   return acc + cur; 
-// }, 0); // aqui entra com o valor inicial do 'acc'.
+// // const balance = movements.reduce(function (acc, cur, i, arr) {
+// //   console.log(`Iteration ${i}: ${acc}`)
+// //   return acc + cur; 
+// // }, 0); // aqui entra com o valor inicial do 'acc'.
 
-const balance = movements.reduce((acc, cur) => acc + cur, 0);
+// const balance = movements.reduce((acc, cur) => acc + cur, 0);
 
-console.log(balance); //retorna 3840
+// console.log(balance); //retorna 3840
 
 
-let balance2 = 0;
-for (const mov of movements) balance2 += mov;
-console.log(balance2);
+// let balance2 = 0;
+// for (const mov of movements) balance2 += mov;
+// console.log(balance2);
 
-// Maximum value
+// // Maximum value
 
-const maxVal = movements.reduce((acc, val) => (acc < val) ? acc = val : acc, movements[0]);
-/*
-Quando buscamos o máximo e o mínimo não se utiliza zero no valor inicial, 
-pois se os valores forem negativos o maior sempre será o zero, 
-assim como em caso de positivos o menor sempre será o zero.
+// const maxVal = movements.reduce((acc, val) => (acc < val) ? acc = val : acc, movements[0]);
+// /*
+// Quando buscamos o máximo e o mínimo não se utiliza zero no valor inicial, 
+// pois se os valores forem negativos o maior sempre será o zero, 
+// assim como em caso de positivos o menor sempre será o zero.
+// */
+// console.log(maxVal);
+
+
+
+
+///////////////////////////////////////
+// Coding Challenge #2
+
+/* 
+Let's go back to Julia and Kate's study about dogs. This time, they want to convert dog ages to human ages and calculate the average age of the dogs in their study.
+
+Create a function 'calcAverageHumanAge', which accepts an arrays of dog's ages ('ages'), and does the following things in order:
+
+1. Calculate the dog age in human years using the following formula: if the dog is <= 2 years old, humanAge = 2 * dogAge. If the dog is > 2 years old, humanAge = 16 + dogAge * 4.
+2. Exclude all dogs that are less than 18 human years old (which is the same as keeping dogs that are at least 18 years old)
+3. Calculate the average human age of all adult dogs (you should already know from other challenges how we calculate averages 😉)
+4. Run the function for both test datasets
+
+TEST DATA 1: [5, 2, 4, 1, 15, 8, 3]
+TEST DATA 2: [16, 6, 10, 5, 6, 1, 4]
+
+GOOD LUCK 😀
+
+Vamos voltar ao estudo de Julia e Kate sobre cães. 
+Desta vez, elas querem converter as idades dos cães para idades humanas e calcular a idade média dos cães no estudo.
+
+Crie uma função 'calcAverageHumanAge', que aceita um array de idades de cães ('ages'), e faz o seguinte em ordem:
+
+1. Calcule a idade do cão em anos humanos usando a seguinte fórmula: 
+se o cão tiver <= 2 anos, idadeHumana = 2 * idadeCão. 
+Se o cão tiver > 2 anos, idadeHumana = 16 + idadeCão * 4.
+
+2. Exclua todos os cães que tenham menos de 18 anos humanos 
+(o que significa manter apenas os cães com pelo menos 18 anos)
+
+3. Calcule a idade média humana de todos os cães adultos 
+(você já deve saber de outros desafios como calcular médias 😉)
+
+4. Execute a função para ambos os conjuntos de dados de teste.
+
+DADOS DE TESTE 1: [5, 2, 4, 1, 15, 8, 3] 
+DADOS DE TESTE 2: [16, 6, 10, 5, 6, 1, 4]
+
+
 */
-console.log(maxVal);
+
+const calcAverageHumanAge = function (ages) {
+  const HumanAge = ages.map(function (age) {
+    if (age <= 2) {
+      return 2 * age;
+    } else {
+      return 16 + age * 4;
+    }
+  })
+  return HumanAge;
+};
+
+console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
 
 
+const removeDogs = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]).filter(age => age > 18);
+console.log(removeDogs)
 
+const calcMed = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]).reduce((acc, cur, i, arr) => (arr.length > (i + 1)) ? acc + cur : (acc + cur) / arr.length, 0)
+
+
+// const calcMed = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]).reduce((acc, cur, i, arr) => acc + cur, 0) / calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]).length
+console.log(calcMed);
 
 
 
