@@ -489,29 +489,42 @@ DADOS DE TESTE 2: [16, 6, 10, 5, 6, 1, 4]
 
 
 */
+//Solução um
+// const calcAverageHumanAge = function (ages) {
+//   const HumanAge = ages.map(function (age) {
+//     if (age <= 2) {
+//       return 2 * age;
+//     } else {
+//       return 16 + age * 4;
+//     }
+//   })
+//   return HumanAge;
+// };
+// console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
 
-const calcAverageHumanAge = function (ages) {
-  const HumanAge = ages.map(function (age) {
-    if (age <= 2) {
-      return 2 * age;
-    } else {
-      return 16 + age * 4;
-    }
-  })
-  return HumanAge;
-};
+// const removeDogs = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]).filter(age => age > 18);
+// console.log(removeDogs) 
+// const calcMed = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]).reduce((acc, cur, i, arr) => (arr.length > (i + 1)) ? acc + cur : (acc + cur) / arr.length, 0)
+// // const calcMed = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]).reduce((acc, cur, i, arr) => acc + cur, 0) / calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]).length
+// console.log(calcMed);
 
-console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+const calcAvaregeHumanAge = function (ages) {
+  const humanAges = ages.map(age => (age <= 2) ? 2 * age : 16 + age * 4);
+  const adults = humanAges.filter(age => age >= 18);
+  console.log(humanAges); // retorna (7) [36, 4, 32, 2, 76, 48, 28] (dados teste 1)
+  console.log(adults); // retorna (5) [36, 32, 76, 48, 28] (dados teste 1)
 
+  const average = adults.reduce((acc, cur) => acc + cur, 0) / adults.length;
+  console.log(average); // retorna 44 (dados teste 1)
+  return average;
 
-const removeDogs = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]).filter(age => age > 18);
-console.log(removeDogs)
+}
 
-const calcMed = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]).reduce((acc, cur, i, arr) => (arr.length > (i + 1)) ? acc + cur : (acc + cur) / arr.length, 0)
+const avg1 = calcAvaregeHumanAge([5, 2, 4, 1, 15, 8, 3]);
 
+const avg2 = calcAvaregeHumanAge([16, 6, 10, 5, 6, 1, 4]);
 
-// const calcMed = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]).reduce((acc, cur, i, arr) => acc + cur, 0) / calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]).length
-console.log(calcMed);
+console.log(avg1, avg2);
 
 
 
