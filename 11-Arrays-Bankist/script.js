@@ -75,7 +75,7 @@ const displayMovements = function (movements) {
     const html = `
            <div class="movements__row">
             <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>           
-            <div class="movements__value">${mov}</div>
+            <div class="movements__value">${mov}€</div>
           </div>
         `;
     containerMovements.insertAdjacentHTML('afterbegin', html)
@@ -85,12 +85,37 @@ const displayMovements = function (movements) {
 displayMovements(account1.movements);
 
 
-const calcPrintBalance = function (acc) {
+const calcDisplayBalance = function (acc) {
   const balance = acc.movements.reduce((tot, val) => tot + val, 0);
-  labelBalance.textContent = `${balance} €`;
+  labelBalance.textContent = `${balance}€`;
 }
 
-calcPrintBalance(account1);
+calcDisplayBalance(account1);
+
+const calcDisplaySummary = function (movements) {
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov);
+  labelSumIn.textContent = `${incomes}€`;
+
+  const out = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov);
+  labelSumOut.textContent = `${Math.abs(out)}€`;
+
+  const interest = movements
+    .filter(mov => mov > 0)
+    .map(deposit => deposit * 0.012)
+    .filter(int => int >= 1)
+    .reduce((acc, int) => acc + int)
+
+  labelSumInterest.textContent = `${interest}€`
+}
+
+calcDisplaySummary(account1.movements);
+
+
+// // ------------------- 156. The Magic og Chaining Methods -------------------
 
 
 // // ------------------- 152. Computing Usernames -------------------
@@ -447,12 +472,10 @@ BOA SORTE 😀
 // console.log(maxVal);
 
 
-
-
 ///////////////////////////////////////
 // Coding Challenge #2
 
-/* 
+/*
 Let's go back to Julia and Kate's study about dogs. This time, they want to convert dog ages to human ages and calculate the average age of the dogs in their study.
 
 Create a function 'calcAverageHumanAge', which accepts an arrays of dog's ages ('ages'), and does the following things in order:
@@ -467,24 +490,24 @@ TEST DATA 2: [16, 6, 10, 5, 6, 1, 4]
 
 GOOD LUCK 😀
 
-Vamos voltar ao estudo de Julia e Kate sobre cães. 
+Vamos voltar ao estudo de Julia e Kate sobre cães.
 Desta vez, elas querem converter as idades dos cães para idades humanas e calcular a idade média dos cães no estudo.
 
 Crie uma função 'calcAverageHumanAge', que aceita um array de idades de cães ('ages'), e faz o seguinte em ordem:
 
-1. Calcule a idade do cão em anos humanos usando a seguinte fórmula: 
-se o cão tiver <= 2 anos, idadeHumana = 2 * idadeCão. 
+1. Calcule a idade do cão em anos humanos usando a seguinte fórmula:
+se o cão tiver <= 2 anos, idadeHumana = 2 * idadeCão.
 Se o cão tiver > 2 anos, idadeHumana = 16 + idadeCão * 4.
 
-2. Exclua todos os cães que tenham menos de 18 anos humanos 
+2. Exclua todos os cães que tenham menos de 18 anos humanos
 (o que significa manter apenas os cães com pelo menos 18 anos)
 
-3. Calcule a idade média humana de todos os cães adultos 
+3. Calcule a idade média humana de todos os cães adultos
 (você já deve saber de outros desafios como calcular médias 😉)
 
 4. Execute a função para ambos os conjuntos de dados de teste.
 
-DADOS DE TESTE 1: [5, 2, 4, 1, 15, 8, 3] 
+DADOS DE TESTE 1: [5, 2, 4, 1, 15, 8, 3]
 DADOS DE TESTE 2: [16, 6, 10, 5, 6, 1, 4]
 
 
@@ -508,25 +531,39 @@ DADOS DE TESTE 2: [16, 6, 10, 5, 6, 1, 4]
 // // const calcMed = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]).reduce((acc, cur, i, arr) => acc + cur, 0) / calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]).length
 // console.log(calcMed);
 
-const calcAvaregeHumanAge = function (ages) {
-  const humanAges = ages.map(age => (age <= 2) ? 2 * age : 16 + age * 4);
-  const adults = humanAges.filter(age => age >= 18);
-  console.log(humanAges); // retorna (7) [36, 4, 32, 2, 76, 48, 28] (dados teste 1)
-  console.log(adults); // retorna (5) [36, 32, 76, 48, 28] (dados teste 1)
+// const calcAvaregeHumanAge = function (ages) {
+//   const humanAges = ages.map(age => (age <= 2) ? 2 * age : 16 + age * 4);
+//   const adults = humanAges.filter(age => age >= 18);
+//   console.log(humanAges); // retorna (7) [36, 4, 32, 2, 76, 48, 28] (dados teste 1)
+//   console.log(adults); // retorna (5) [36, 32, 76, 48, 28] (dados teste 1)
 
-  const average = adults.reduce((acc, cur) => acc + cur, 0) / adults.length;
-  console.log(average); // retorna 44 (dados teste 1)
-  return average;
+//   const average = adults.reduce((acc, cur) => acc + cur, 0) / adults.length;
+//   console.log(average); // retorna 44 (dados teste 1)
+//   return average;
 
-}
+// }
 
-const avg1 = calcAvaregeHumanAge([5, 2, 4, 1, 15, 8, 3]);
+// const avg1 = calcAvaregeHumanAge([5, 2, 4, 1, 15, 8, 3]);
 
-const avg2 = calcAvaregeHumanAge([16, 6, 10, 5, 6, 1, 4]);
+// const avg2 = calcAvaregeHumanAge([16, 6, 10, 5, 6, 1, 4]);
 
-console.log(avg1, avg2);
+// console.log(avg1, avg2);
+
+// const eurToUSd = 1.1;
 
 
+// // ------------------- 156. The Magic og Chaining Methods -------------------
+
+// PIPELINE 
+
+const eurToUSd = 1.1;
+
+const totalDepositsUSD = movements
+  .filter(mov => mov > 0)
+  .map(mov => mov * eurToUSd)
+  .reduce((acc, mov) => acc + mov);
+
+console.log(totalDepositsUSD);
 
 
 
