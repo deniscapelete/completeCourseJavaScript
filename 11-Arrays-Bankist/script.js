@@ -602,17 +602,40 @@ Se o cão tiver > 2 anos, idadeHumana = 16 + idadeCão * 4.
 GOOD LUCK 😀
 */
 
+// const calcAverageHumanAge = function (ages) {
+//   const med = ages
+//     .map(age => (age <= 2) ? 2 * age : 16 + age * 4)
+//     .filter(age => age >= 18)
+//     .reduce((acc, age, i, arr) => acc + age / arr.length, 0)
+//   return med;
+// }
+// console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
 
-const calcAverageHumanAge = function (ages) {
-  const med = ages
-    .map(age => (age <= 2) ? 2 * age : 16 + age * 4)
-    .filter(age => age >= 18)
-    .reduce((acc, age, i, arr) => acc + age / arr.length, 0)
-  return med;
-}
-console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+// console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
 
-console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
+
+
+// // ------------------- 157. The Find Method -------------------
+
+/*
+Diferenças do FIND method para FILTER method
+  - Retorna apenas o primeiro elemento que satisfaça a condição
+  - Retorna apenas o elemento e não uma matriz
+*/
+const firstWithdrawal = movements.find(mov => mov < 0);
+console.log(movements);
+console.log(firstWithdrawal);
+
+
+console.log(accounts);
+
+/*
+Quando um ARRAY possui vários OBJECTS, podemos fazer a busca por uma proriedade conehcida
+assim retornando apenas aquele objeto.
+Geralmente o objetivo do FIND method é encontrar examtamente um elemento
+*/
+const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+console.log(account);
 
 
 
