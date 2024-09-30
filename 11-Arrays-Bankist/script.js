@@ -92,6 +92,9 @@ const calcDisplayBalance = function (acc) {
 
 calcDisplayBalance(account1);
 
+
+// // ------------------- 156. The Magic og Chaining Methods -------------------
+
 const calcDisplaySummary = function (movements) {
   const incomes = movements
     .filter(mov => mov > 0)
@@ -113,9 +116,6 @@ const calcDisplaySummary = function (movements) {
 }
 
 calcDisplaySummary(account1.movements);
-
-
-// // ------------------- 156. The Magic og Chaining Methods -------------------
 
 
 // // ------------------- 152. Computing Usernames -------------------
@@ -531,6 +531,7 @@ DADOS DE TESTE 2: [16, 6, 10, 5, 6, 1, 4]
 // // const calcMed = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]).reduce((acc, cur, i, arr) => acc + cur, 0) / calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]).length
 // console.log(calcMed);
 
+//Solução dois
 // const calcAvaregeHumanAge = function (ages) {
 //   const humanAges = ages.map(age => (age <= 2) ? 2 * age : 16 + age * 4);
 //   const adults = humanAges.filter(age => age >= 18);
@@ -552,21 +553,66 @@ DADOS DE TESTE 2: [16, 6, 10, 5, 6, 1, 4]
 // const eurToUSd = 1.1;
 
 
-// // ------------------- 156. The Magic og Chaining Methods -------------------
+// // // ------------------- 156. The Magic og Chaining Methods -------------------
 
-// PIPELINE 
+// // PIPELINE 
 
-const eurToUSd = 1.1;
+// const eurToUSd = 1.1;
 
-const totalDepositsUSD = movements
-  .filter(mov => mov > 0)
-  .map(mov => mov * eurToUSd)
-  .reduce((acc, mov) => acc + mov);
+// const totalDepositsUSD = movements
+//   .filter(mov => mov > 0)
+//   .map(mov => mov * eurToUSd)
+//   .reduce((acc, mov) => acc + mov);
 
-console.log(totalDepositsUSD);
+// console.log(totalDepositsUSD);
 
 
+///////////////////////////////////////
+// 157.  Coding Challenge #3
 
+/* 
+Rewrite the 'calcAverageHumanAge' function from the previous challenge, but this time as an arrow function, and using chaining!
+
+TEST DATA 1: [5, 2, 4, 1, 15, 8, 3]
+TEST DATA 2: [16, 6, 10, 5, 6, 1, 4]
+
+
+Reescreva a função 'calcAverageHumanAge' do desafio anterior, 
+mas desta vez como uma função de seta (arrow function), e utilizando encadeamento!
+
+
+Vamos voltar ao estudo de Julia e Kate sobre cães.
+Desta vez, elas querem converter as idades dos cães para idades humanas e calcular a idade média dos cães no estudo.
+
+Crie uma função 'calcAverageHumanAge', que aceita um array de idades de cães ('ages'), e faz o seguinte em ordem:
+
+1. Calcule a idade do cão em anos humanos usando a seguinte fórmula:
+se o cão tiver <= 2 anos, idadeHumana = 2 * idadeCão.
+Se o cão tiver > 2 anos, idadeHumana = 16 + idadeCão * 4.
+
+2. Exclua todos os cães que tenham menos de 18 anos humanos
+(o que significa manter apenas os cães com pelo menos 18 anos)
+
+3. Calcule a idade média humana de todos os cães adultos
+(você já deve saber de outros desafios como calcular médias 😉)
+
+4. Execute a função para ambos os conjuntos de dados de teste.
+
+
+GOOD LUCK 😀
+*/
+
+
+const calcAverageHumanAge = function (ages) {
+  const med = ages
+    .map(age => (age <= 2) ? 2 * age : 16 + age * 4)
+    .filter(age => age >= 18)
+    .reduce((acc, age, i, arr) => acc + age / arr.length)
+  return med;
+}
+console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+
+console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
 
 
 
