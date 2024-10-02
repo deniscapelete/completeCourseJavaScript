@@ -134,7 +134,27 @@ const createUsernames = function (accs) {
   });
 };
 createUsernames(accounts);
-console.log(accounts);
+
+// Event handler
+let currentAccount
+
+btnLogin.addEventListener('click', function (event) {
+  // Prevent form from submitting
+  event.preventDefault();
+
+  currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value)
+  console.log(currentAccount)
+
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    // Display UI and message
+
+    // Display movements
+
+    // Display balance
+
+    // Display summary
+  }
+});
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
