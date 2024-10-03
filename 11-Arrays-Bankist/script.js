@@ -82,16 +82,11 @@ const displayMovements = function (movements) {
     //adiciona o valor da variável 'html' dentro do "containerMovements" arquivo HTML
   });
 };
-displayMovements(account1.movements);
 
-
-const calcDisplayBalance = function (acc) {
-  const balance = acc.movements.reduce((tot, val) => tot + val, 0);
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, val) => acc + val, 0);
   labelBalance.textContent = `${balance}€`;
 }
-
-calcDisplayBalance(account1);
-
 
 // // ------------------- 156. The Magic og Chaining Methods -------------------
 
@@ -114,9 +109,6 @@ const calcDisplaySummary = function (movements) {
 
   labelSumInterest.textContent = `${interest}€`
 }
-
-calcDisplaySummary(account1.movements);
-
 
 // // ------------------- 152. Computing Usernames -------------------
 
@@ -147,12 +139,14 @@ btnLogin.addEventListener('click', function (event) {
 
   if (currentAccount?.pin === Number(inputLoginPin.value)) {
     // Display UI and message
-
+    labelWelcome.textContent = `Welcome back, ${currentAccount.owner.split(' ')[0]}`;
+    containerApp.style.opacity = 100;
     // Display movements
-
+    displayMovements(currentAccount.movements);
     // Display balance
-
+    calcDisplayBalance(currentAccount.movements);
     // Display summary
+    calcDisplaySummary(currentAccount.movements);
   }
 });
 
