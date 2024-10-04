@@ -90,20 +90,20 @@ const calcDisplayBalance = function (movements) {
 
 // // ------------------- 156. The Magic og Chaining Methods -------------------
 
-const calcDisplaySummary = function (movements) {
-  const incomes = movements
+const calcDisplaySummary = function (acc) {
+  const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov);
   labelSumIn.textContent = `${incomes}€`;
 
-  const out = movements
+  const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov);
   labelSumOut.textContent = `${Math.abs(out)}€`;
 
-  const interest = movements
+  const interest = acc.movements
     .filter(mov => mov > 0)
-    .map(deposit => deposit * 0.012)
+    .map(deposit => deposit * acc.interestRate / 100)
     .filter(int => int >= 1)
     .reduce((acc, int) => acc + int)
 
@@ -141,12 +141,18 @@ btnLogin.addEventListener('click', function (event) {
     // Display UI and message
     labelWelcome.textContent = `Welcome back, ${currentAccount.owner.split(' ')[0]}`;
     containerApp.style.opacity = 100;
+
+
+    //Clear input fields
+    inputLoginUsername.value = inputLoginPin.value = '';
+    inputLoginPin.blur();
+
     // Display movements
     displayMovements(currentAccount.movements);
     // Display balance
     calcDisplayBalance(currentAccount.movements);
     // Display summary
-    calcDisplaySummary(currentAccount.movements);
+    calcDisplaySummary(currentAccount);
   }
 });
 
