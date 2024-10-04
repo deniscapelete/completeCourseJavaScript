@@ -83,9 +83,9 @@ const displayMovements = function (movements) {
   });
 };
 
-const calcDisplayBalance = function (movements) {
-  const balance = movements.reduce((acc, val) => acc + val, 0);
-  labelBalance.textContent = `${balance}€`;
+const calcDisplayBalance = function (acc) {
+  acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${acc.balance}€`;
 }
 
 // // ------------------- 156. The Magic og Chaining Methods -------------------
@@ -127,6 +127,17 @@ const createUsernames = function (accs) {
 };
 createUsernames(accounts);
 
+// // ------------------- 159. Implementing login -------------------
+
+const updateUI = function (acc) {
+  // Display movements
+  displayMovements(acc.movements);
+  // Display balance
+  calcDisplayBalance(acc);
+  // Display summary
+  calcDisplaySummary(acc);
+}
+
 // Event handler
 let currentAccount
 
@@ -147,14 +158,37 @@ btnLogin.addEventListener('click', function (event) {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
-    // Display movements
-    displayMovements(currentAccount.movements);
-    // Display balance
-    calcDisplayBalance(currentAccount.movements);
-    // Display summary
-    calcDisplaySummary(currentAccount);
+
+    // update UI
+    updateUI(currentAccount)
+
   }
 });
+
+
+// // ------------------- 160. Implementing Transfers -------------------
+btnTransfer.addEventListener('click', function (e) {
+  e.preventDefault();
+  const amount = Number(inputTransferAmount.value);
+  const receiverAcc = accounts.find(acc => acc.username === inputTransferTo.value);
+  console.log(amount, receiverAcc);
+
+  // clear inputs
+  inputTransferAmount.value = inputTransferTo.value = "";
+
+  if (amount > 0 &&
+    receiverAcc &&
+    currentAccount.balance >= amount &&
+    receiverAcc?.username !== currentAccount.username
+  ) {
+    // Doing the transfer
+    currentAccount.movements.push(-amount);
+    receiverAcc.movements.push(amount);
+
+    // update UI
+    updateUI(currentAccount)
+  };
+})
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
