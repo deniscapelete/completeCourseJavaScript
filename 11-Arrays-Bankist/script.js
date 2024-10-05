@@ -190,6 +190,26 @@ btnTransfer.addEventListener('click', function (e) {
   };
 })
 
+
+// // ------------------- 162. Some and every -------------------
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const amount = inputLoanAmount.value;
+
+  if (amount > 0 && currentAccount.movements.some(mov => mov * 0.1 >= amount)) {
+    // Add movement
+    currentAccount.movements.push(amount);
+
+
+    // Update UI
+    updateUI(currentAccount);
+  };
+
+});
+
+
+
 // // ------------------- 161. The findIndex Method -------------------
 btnClose.addEventListener('click', function (e) {
   e.preventDefault();
@@ -643,14 +663,14 @@ DADOS DE TESTE 2: [16, 6, 10, 5, 6, 1, 4]
 ///////////////////////////////////////
 // 157.  Coding Challenge #3
 
-/* 
+/*
 Rewrite the 'calcAverageHumanAge' function from the previous challenge, but this time as an arrow function, and using chaining!
 
 TEST DATA 1: [5, 2, 4, 1, 15, 8, 3]
 TEST DATA 2: [16, 6, 10, 5, 6, 1, 4]
 
 
-Reescreva a função 'calcAverageHumanAge' do desafio anterior, 
+Reescreva a função 'calcAverageHumanAge' do desafio anterior,
 mas desta vez como uma função de seta (arrow function), e utilizando encadeamento!
 
 
@@ -688,31 +708,55 @@ GOOD LUCK 😀
 
 
 
-// // ------------------- 157. The Find Method -------------------
+// // // ------------------- 157. The Find Method -------------------
 
-/*
-Diferenças do FIND method para FILTER method
-  - Retorna apenas o primeiro elemento que satisfaça a condição
-  - Retorna apenas o elemento e não uma matriz
-*/
-const firstWithdrawal = movements.find(mov => mov < 0);
-console.log(movements);
-console.log(firstWithdrawal);
-
-
-console.log(accounts);
-
-/*
-Quando um ARRAY possui vários OBJECTS, podemos fazer a busca por uma proriedade conehcida
-assim retornando apenas aquele objeto.
-Geralmente o objetivo do FIND method é encontrar examtamente um elemento
-*/
-const account = accounts.find(acc => acc.owner === 'Jessica Davis');
-console.log(account);
+// /*
+// Diferenças do FIND method para FILTER method
+//   - Retorna apenas o primeiro elemento que satisfaça a condição
+//   - Retorna apenas o elemento e não uma matriz
+// */
+// const firstWithdrawal = movements.find(mov => mov < 0);
+// console.log(movements);
+// console.log(firstWithdrawal);
 
 
+// console.log(accounts);
+
+// /*
+// Quando um ARRAY possui vários OBJECTS, podemos fazer a busca por uma proriedade conehcida
+// assim retornando apenas aquele objeto.
+// Geralmente o objetivo do FIND method é encontrar examtamente um elemento
+// */
+// const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+// console.log(account);
 
 
+
+// // ------------------- 162. Some and every -------------------
+
+console.log(movements); // (8) [200, 450, -400, 3000, -650, -130, 70, 1300]
+
+// EQUALLITY
+console.log(movements.includes(-130)); // true
+
+// CONDITION
+// Verifica se pelo menos um atende a condição
+console.log(movements.some(mov => mov >= 3500)); // false
+
+const anyDeposits = movements.some(mov => mov > 0);
+console.log(anyDeposits); // false
+
+// EVERY
+// Verifica se todos atendem a condição
+console.log(movements.every(mov => mov > 0)); // false
+console.log(account4.movements.every(mov => mov > 0)); // false
+
+
+// Separate callback
+const deposit = mov => mov > 0;
+console.log(movements.some(deposit));
+console.log(movements.every(deposit));
+console.log(movements.filter(deposit));
 
 
 
