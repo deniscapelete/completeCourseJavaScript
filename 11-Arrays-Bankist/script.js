@@ -732,32 +732,75 @@ GOOD LUCK 😀
 
 
 
+// // // ------------------- 162. Some and every -------------------
+
+// console.log(movements); // (8) [200, 450, -400, 3000, -650, -130, 70, 1300]
+
+// // EQUALLITY
+// console.log(movements.includes(-130)); // true
+
+// // CONDITION
+// // Verifica se pelo menos um atende a condição
+// console.log(movements.some(mov => mov >= 3500)); // false
+
+// const anyDeposits = movements.some(mov => mov > 0);
+// console.log(anyDeposits); // false
+
+// // EVERY
+// // Verifica se todos atendem a condição
+// console.log(movements.every(mov => mov > 0)); // false
+// console.log(account4.movements.every(mov => mov > 0)); // false
+
+
+// // Separate callback
+// const deposit = mov => mov > 0;
+// console.log(movements.some(deposit));
+// console.log(movements.every(deposit));
+// console.log(movements.filter(deposit));
+
+
+
 // // ------------------- 162. Some and every -------------------
 
-console.log(movements); // (8) [200, 450, -400, 3000, -650, -130, 70, 1300]
+const arr = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
+console.log(arr.flat());
 
-// EQUALLITY
-console.log(movements.includes(-130)); // true
+const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8, 9]; // (9) [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-// CONDITION
-// Verifica se pelo menos um atende a condição
-console.log(movements.some(mov => mov >= 3500)); // false
-
-const anyDeposits = movements.some(mov => mov > 0);
-console.log(anyDeposits); // false
-
-// EVERY
-// Verifica se todos atendem a condição
-console.log(movements.every(mov => mov > 0)); // false
-console.log(account4.movements.every(mov => mov > 0)); // false
+console.log(arrDeep.flat()); // (7) [Array(2), 3, 4, Array(2), 7, 8, 9]
+console.log(arrDeep.flat(1)); // (7) [Array(2), 3, 4, Array(2), 7, 8, 9]
+console.log(arrDeep.flat(2));  // (9) [1, 2, 3, 4, 5, 6, 7, 8, 9]
+// o dois representa o nivel de aninhamento que ele atinge;
 
 
-// Separate callback
-const deposit = mov => mov > 0;
-console.log(movements.some(deposit));
-console.log(movements.every(deposit));
-console.log(movements.filter(deposit));
+const accountMovements = accounts.map(acc => acc.movements);
 
+console.log(accountMovements)
+console.log(accountMovements.flat());
+
+console.log(accountMovements.flat().filter(mov => mov >= 0)); //(17) [200, 450, 3000, 70, 1300, 5000, 3400, 8500, 200, 340, 50, 400, 430, 1000, 700, 50, 90]
+console.log(accountMovements.flat().filter(mov => mov < 0)) // (12) [-400, -650, -130, -150, -790, -3210, -1000, -30, -200, -300, -20, -460]
+
+
+// flat
+const overalBralance = accounts
+  .map(acc => acc.movements)
+  // (4) [Array(8), Array(8), Array(8), Array(5)]
+  .flat()
+  //(29) [200, 450, -400, 3000, -650, -130, 70, 1300, 5000, 3400, -150, -790, -3210, -1000, 8500, -30, 200, -200, 340, -300, -20, 50, 400, -460, 430, 1000, 700, 50, 90]
+  .reduce((acc, mov) => acc + mov)
+// 17840
+console.log(overalBralance);
+
+// flatMap
+const overalBalance2 = accounts
+  .flatMap(acc => acc.movements)
+  //(29) [200, 450, -400, 3000, -650, -130, 70, 1300, 5000, 3400, -150, -790, -3210, -1000, 8500, -30, 200, -200, 340, -300, -20, 50, 400, -460, 430, 1000, 700, 50, 90]
+  // o flatMap atinge apenas um nivel de aninhamento, não podemos altera-ló.
+  .reduce((acc, mov) => acc + mov);
+//17840
+
+console.log(overalBalance2);
 
 
 
