@@ -813,50 +813,95 @@ GOOD LUCK 😀
 // console.log(overalBalance2);
 
 
-// // ------------------- 164. Sorting arrays -------------------
+// // // ------------------- 164. Sorting arrays -------------------
 
-// Strings
-const owners = ['Matias', 'Jonas', 'Joao', 'Denis'];
-console.log(owners.sort()); // (4) ['Denis', 'Joao', 'Jonas', 'Matias'];
-console.log(owners); // (4) ['Denis', 'Joao', 'Jonas', 'Matias'];
-/* Ordena as string, 
-alterando também a matriz original*/
+// // Strings
+// const owners = ['Matias', 'Jonas', 'Joao', 'Denis'];
+// console.log(owners.sort()); // (4) ['Denis', 'Joao', 'Jonas', 'Matias'];
+// console.log(owners); // (4) ['Denis', 'Joao', 'Jonas', 'Matias'];
+// /* Ordena as string, 
+// alterando também a matriz original*/
 
-// Number
-console.log(movements); // (8) [200, 450, -400, 3000, -650, -130, 70, 1300]
-console.log(movements.sort()); // (8) [-130, -400, -650, 1300, 200, 3000, 450, 70]
-/* Ordena como se fosse strings 
-(no caso considerando o '-' primeira e depois a ordem do primeiro numero), 
-alterando também a matriz original*/
+// // Number
+// console.log(movements); // (8) [200, 450, -400, 3000, -650, -130, 70, 1300]
+// console.log(movements.sort()); // (8) [-130, -400, -650, 1300, 200, 3000, 450, 70]
+// /* Ordena como se fosse strings 
+// (no caso considerando o '-' primeira e depois a ordem do primeiro numero), 
+// alterando também a matriz original*/
 
-// return < 0, A, B (mantem a ordem)
-// return > 0, B, A (troca de order)
+// // return < 0, A, B (mantem a ordem)
+// // return > 0, B, A (troca de order)
 
-// Ordem crescente
-movements.sort((a, b) => {
-  if (a > b) return 1;
-  if (a < b) return -1;
-});
-console.log(movements); // (8) [-650, -400, -130, 70, 200, 450, 1300, 3000]
+// // Ordem crescente
+// movements.sort((a, b) => {
+//   if (a > b) return 1;
+//   if (a < b) return -1;
+// });
+// console.log(movements); // (8) [-650, -400, -130, 70, 200, 450, 1300, 3000]
 
-// Ordem decrescente
-movements.sort((a, b) => {
-  if (a > b) return -1;
-  if (a < b) return 1;
-});
-console.log(movements); // (8) [3000, 1300, 450, 200, 70, -130, -400, -650]
+// // Ordem decrescente
+// movements.sort((a, b) => {
+//   if (a > b) return -1;
+//   if (a < b) return 1;
+// });
+// console.log(movements); // (8) [3000, 1300, 450, 200, 70, -130, -400, -650]
 
-//Funciona da mesma maneira que o crescente, apenas simplificamos o retorno
-movements.sort((a, b) => a - b);
-console.log(displayMovements);
-
-
+// //Funciona da mesma maneira que o crescente, apenas simplificamos o retorno
+// movements.sort((a, b) => a - b);
+// console.log(displayMovements);
 
 
 
+// // ------------------- 164. More ways of creating and filling arrays -------------------
+
+const arr = [1, 2, 3, 4, 5, 6, 7];
+console.log(new Array(1, 2, 3, 4, 5, 6, 7)); // (7) [1, 2, 3, 4, 5, 6, 7]
+
+// Empty arrays + fill method
+const x = new Array(7);
+console.log(x); //(7) [vazio x 7]
+
+//console.log(x.map(() => 5)); // (7) [vazio x 7] (NÃO FAZ NADA)
+
+//x.fill(1);
+//console.log(x); // (7) [1, 1, 1, 1, 1, 1, 1]
+
+x.fill(1, 3, 5);
+/* 
+1º parâmetro é o valor que sera utilizado para preencher
+2º parâmetro é de qual posição vai iniciar, não inclui a posição informada.
+3º parâmetro é até qual posição ele vai, nesse caso ele inclui a posição informada.
+No exemplo ele preenche 1, iniciando depois da posição 3(inicia na posição 4) até a posição 5(incluindo a posição 5)
+*/
+console.log(x); //(7) [vazio x 3, 1, 1, vazio x 2]
+
+
+arr.fill(23, 2, 6);
+console.log(arr); // (7) [1, 2, 23, 23, 23, 23, 7]
+
+//Array.from
+const y = Array.from({ length: 7 }, () => 1);
+console.log(y); // (7) [1, 1, 1, 1, 1, 1, 1]
+
+const z = Array.from({ length: 7 }, (_, i) => i + 1);
+console.log(z); // (7) [1, 2, 3, 4, 5, 6, 7]
 
 
 
+
+
+
+labelBalance.addEventListener('click', function () {
+  const movementsUI =
+    Array.from(document.querySelectorAll('.movements__value'), /*foi criado um 'NodeList' que não é realmente um 'Array'*/
+      el => Number(el.textContent.replace('€', '')) /* convente o elemento bruto em seu conteúdo de texto */
+    );
+
+  console.log(movementsUI);
+
+  const movementsUI2 = [...document.querySelectorAll('.movements__value')];
+  console.log(movementsUI2.map(el => Number(el.textContent.replace('€', ''))));
+})
 
 
 
