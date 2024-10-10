@@ -63,14 +63,15 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 
 // // ------------------- 148. Creating DOM Elements -------------------
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
 
   containerMovements.innerHTML = '';
   // removendo tudo do "containerMovements" incluindo as tags html
 
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+  // usamos o '.slice' porque não queremos alterar a matriz original então criamos uma copia
 
-
-  movements.forEach(function (mov, i) {
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal'
     const html = `
            <div class="movements__row">
@@ -227,6 +228,15 @@ btnClose.addEventListener('click', function (e) {
     inputClosePin.value = "";
 
   }
+})
+
+// // ------------------- 164. Sorting arrays -------------------
+
+let sorted = false;
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault();
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
 })
 
 /////////////////////////////////////////////////
@@ -760,50 +770,85 @@ GOOD LUCK 😀
 
 
 
-// // ------------------- 162. Some and every -------------------
+// // // ------------------- 162. Some and every -------------------
 
-const arr = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
-console.log(arr.flat());
+// const arr = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
+// console.log(arr.flat());
 
-const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8, 9]; // (9) [1, 2, 3, 4, 5, 6, 7, 8, 9]
+// const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8, 9]; // (9) [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-console.log(arrDeep.flat()); // (7) [Array(2), 3, 4, Array(2), 7, 8, 9]
-console.log(arrDeep.flat(1)); // (7) [Array(2), 3, 4, Array(2), 7, 8, 9]
-console.log(arrDeep.flat(2));  // (9) [1, 2, 3, 4, 5, 6, 7, 8, 9]
-// o dois representa o nivel de aninhamento que ele atinge;
-
-
-const accountMovements = accounts.map(acc => acc.movements);
-
-console.log(accountMovements)
-console.log(accountMovements.flat());
-
-console.log(accountMovements.flat().filter(mov => mov >= 0)); //(17) [200, 450, 3000, 70, 1300, 5000, 3400, 8500, 200, 340, 50, 400, 430, 1000, 700, 50, 90]
-console.log(accountMovements.flat().filter(mov => mov < 0)) // (12) [-400, -650, -130, -150, -790, -3210, -1000, -30, -200, -300, -20, -460]
+// console.log(arrDeep.flat()); // (7) [Array(2), 3, 4, Array(2), 7, 8, 9]
+// console.log(arrDeep.flat(1)); // (7) [Array(2), 3, 4, Array(2), 7, 8, 9]
+// console.log(arrDeep.flat(2));  // (9) [1, 2, 3, 4, 5, 6, 7, 8, 9]
+// // o dois representa o nivel de aninhamento que ele atinge;
 
 
-// flat
-const overalBralance = accounts
-  .map(acc => acc.movements)
-  // (4) [Array(8), Array(8), Array(8), Array(5)]
-  .flat()
-  //(29) [200, 450, -400, 3000, -650, -130, 70, 1300, 5000, 3400, -150, -790, -3210, -1000, 8500, -30, 200, -200, 340, -300, -20, 50, 400, -460, 430, 1000, 700, 50, 90]
-  .reduce((acc, mov) => acc + mov)
-// 17840
-console.log(overalBralance);
+// const accountMovements = accounts.map(acc => acc.movements);
 
-// flatMap
-const overalBalance2 = accounts
-  .flatMap(acc => acc.movements)
-  //(29) [200, 450, -400, 3000, -650, -130, 70, 1300, 5000, 3400, -150, -790, -3210, -1000, 8500, -30, 200, -200, 340, -300, -20, 50, 400, -460, 430, 1000, 700, 50, 90]
-  // o flatMap atinge apenas um nivel de aninhamento, não podemos altera-ló.
-  .reduce((acc, mov) => acc + mov);
-//17840
+// console.log(accountMovements)
+// console.log(accountMovements.flat());
 
-console.log(overalBalance2);
+// console.log(accountMovements.flat().filter(mov => mov >= 0)); //(17) [200, 450, 3000, 70, 1300, 5000, 3400, 8500, 200, 340, 50, 400, 430, 1000, 700, 50, 90]
+// console.log(accountMovements.flat().filter(mov => mov < 0)) // (12) [-400, -650, -130, -150, -790, -3210, -1000, -30, -200, -300, -20, -460]
 
 
+// // flat
+// const overalBralance = accounts
+//   .map(acc => acc.movements)
+//   // (4) [Array(8), Array(8), Array(8), Array(5)]
+//   .flat()
+//   //(29) [200, 450, -400, 3000, -650, -130, 70, 1300, 5000, 3400, -150, -790, -3210, -1000, 8500, -30, 200, -200, 340, -300, -20, 50, 400, -460, 430, 1000, 700, 50, 90]
+//   .reduce((acc, mov) => acc + mov)
+// // 17840
+// console.log(overalBralance);
 
+// // flatMap
+// const overalBalance2 = accounts
+//   .flatMap(acc => acc.movements)
+//   //(29) [200, 450, -400, 3000, -650, -130, 70, 1300, 5000, 3400, -150, -790, -3210, -1000, 8500, -30, 200, -200, 340, -300, -20, 50, 400, -460, 430, 1000, 700, 50, 90]
+//   // o flatMap atinge apenas um nivel de aninhamento, não podemos altera-ló.
+//   .reduce((acc, mov) => acc + mov);
+// //17840
+
+// console.log(overalBalance2);
+
+
+// // ------------------- 164. Sorting arrays -------------------
+
+// Strings
+const owners = ['Matias', 'Jonas', 'Joao', 'Denis'];
+console.log(owners.sort()); // (4) ['Denis', 'Joao', 'Jonas', 'Matias'];
+console.log(owners); // (4) ['Denis', 'Joao', 'Jonas', 'Matias'];
+/* Ordena as string, 
+alterando também a matriz original*/
+
+// Number
+console.log(movements); // (8) [200, 450, -400, 3000, -650, -130, 70, 1300]
+console.log(movements.sort()); // (8) [-130, -400, -650, 1300, 200, 3000, 450, 70]
+/* Ordena como se fosse strings 
+(no caso considerando o '-' primeira e depois a ordem do primeiro numero), 
+alterando também a matriz original*/
+
+// return < 0, A, B (mantem a ordem)
+// return > 0, B, A (troca de order)
+
+// Ordem crescente
+movements.sort((a, b) => {
+  if (a > b) return 1;
+  if (a < b) return -1;
+});
+console.log(movements); // (8) [-650, -400, -130, 70, 200, 450, 1300, 3000]
+
+// Ordem decrescente
+movements.sort((a, b) => {
+  if (a > b) return -1;
+  if (a < b) return 1;
+});
+console.log(movements); // (8) [3000, 1300, 450, 200, 70, -130, -400, -650]
+
+//Funciona da mesma maneira que o crescente, apenas simplificamos o retorno
+movements.sort((a, b) => a - b);
+console.log(displayMovements);
 
 
 
