@@ -852,60 +852,111 @@ GOOD LUCK 😀
 
 
 
-// // ------------------- 164. More ways of creating and filling arrays -------------------
+// // // ------------------- 164. More ways of creating and filling arrays -------------------
 
-const arr = [1, 2, 3, 4, 5, 6, 7];
-console.log(new Array(1, 2, 3, 4, 5, 6, 7)); // (7) [1, 2, 3, 4, 5, 6, 7]
+// const arr = [1, 2, 3, 4, 5, 6, 7];
+// console.log(new Array(1, 2, 3, 4, 5, 6, 7)); // (7) [1, 2, 3, 4, 5, 6, 7]
 
-// Empty arrays + fill method
-const x = new Array(7);
-console.log(x); //(7) [vazio x 7]
+// // Empty arrays + fill method
+// const x = new Array(7);
+// console.log(x); //(7) [vazio x 7]
 
-//console.log(x.map(() => 5)); // (7) [vazio x 7] (NÃO FAZ NADA)
+// //console.log(x.map(() => 5)); // (7) [vazio x 7] (NÃO FAZ NADA)
 
-//x.fill(1);
-//console.log(x); // (7) [1, 1, 1, 1, 1, 1, 1]
+// //x.fill(1);
+// //console.log(x); // (7) [1, 1, 1, 1, 1, 1, 1]
 
-x.fill(1, 3, 5);
+// x.fill(1, 3, 5);
+// /* 
+// 1º parâmetro é o valor que sera utilizado para preencher
+// 2º parâmetro é de qual posição vai iniciar, não inclui a posição informada.
+// 3º parâmetro é até qual posição ele vai, nesse caso ele inclui a posição informada.
+// No exemplo ele preenche 1, iniciando depois da posição 3(inicia na posição 4) até a posição 5(incluindo a posição 5)
+// */
+// console.log(x); //(7) [vazio x 3, 1, 1, vazio x 2]
+
+
+// arr.fill(23, 2, 6);
+// console.log(arr); // (7) [1, 2, 23, 23, 23, 23, 7]
+
+// //Array.from
+// const y = Array.from({ length: 7 }, () => 1);
+// console.log(y); // (7) [1, 1, 1, 1, 1, 1, 1]
+
+// const z = Array.from({ length: 7 }, (_, i) => i + 1);
+// console.log(z); // (7) [1, 2, 3, 4, 5, 6, 7]
+
+
+// labelBalance.addEventListener('click', function () {
+//   const movementsUI =
+//     Array.from(document.querySelectorAll('.movements__value'), /*foi criado um 'NodeList' que não é realmente um 'Array'*/
+//       el => Number(el.textContent.replace('€', '')) /* convente o elemento bruto em seu conteúdo de texto */
+//     );
+
+//   console.log(movementsUI);
+
+//   const movementsUI2 = [...document.querySelectorAll('.movements__value')];
+//   console.log(movementsUI2.map(el => Number(el.textContent.replace('€', ''))));
+// })
+
+
+// // ------------------- 167. Array Methods Practice -------------------
+
+//1.
+//soma dos valores que foram depositados no banco
+const banckDeposirSum = accounts
+  .flatMap(acc => acc.movements)
+  .filter(mov => mov > 0)
+  .reduce((sum, mov) => sum + mov, 0);
+
+console.log(banckDeposirSum);
+
+
+//2.
+//quantos depositos acima de 1000
+const numDeposits1000 = accounts
+  .flatMap(acc => acc.movements)
+  .filter(mov => mov >= 1000).length;
 /* 
-1º parâmetro é o valor que sera utilizado para preencher
-2º parâmetro é de qual posição vai iniciar, não inclui a posição informada.
-3º parâmetro é até qual posição ele vai, nesse caso ele inclui a posição informada.
-No exemplo ele preenche 1, iniciando depois da posição 3(inicia na posição 4) até a posição 5(incluindo a posição 5)
+OU
+.reduce((count, cur) => (cur >= 1000 ? count + 1 : count), 0);
+Em vez de 'count + 1' não podemos utilizar count++, pois ele apenas adiciona valor e não o retorna,
+porém podemos utiliza '++count'.
 */
-console.log(x); //(7) [vazio x 3, 1, 1, vazio x 2]
+
+console.log(numDeposits1000);
+
+// Operador prefixo ++
+let a = 10;
+console.log(++a);
+console.log(a);
+
+//3.
+
+const sum = accounts.flatMap(acc => acc.movements).reduce((sums, cur) => {
+  cur > 0
+    ? sums.deposits += cur
+    : sums.withdrawals += cur;
+  return sums;
+}, { deposits: 0, withdrawals: 0 });
+
+console.log(sum)
+
+//OU
+
+const { deposits, withdrawals } = accounts.flatMap(acc => acc.movements).reduce((sums, cur) => {
+  /* 
+    cur > 0
+    ? sums.deposits += cur
+    : sums.withdrawals += cur;
+  */
+  sums[cur > 0 ? 'deposits' : 'withdrawals'] += cur;
+  return sums;
+}, { deposits: 0, withdrawals: 0 });
 
 
-arr.fill(23, 2, 6);
-console.log(arr); // (7) [1, 2, 23, 23, 23, 23, 7]
 
-//Array.from
-const y = Array.from({ length: 7 }, () => 1);
-console.log(y); // (7) [1, 1, 1, 1, 1, 1, 1]
-
-const z = Array.from({ length: 7 }, (_, i) => i + 1);
-console.log(z); // (7) [1, 2, 3, 4, 5, 6, 7]
-
-
-
-
-
-
-labelBalance.addEventListener('click', function () {
-  const movementsUI =
-    Array.from(document.querySelectorAll('.movements__value'), /*foi criado um 'NodeList' que não é realmente um 'Array'*/
-      el => Number(el.textContent.replace('€', '')) /* convente o elemento bruto em seu conteúdo de texto */
-    );
-
-  console.log(movementsUI);
-
-  const movementsUI2 = [...document.querySelectorAll('.movements__value')];
-  console.log(movementsUI2.map(el => Number(el.textContent.replace('€', ''))));
-})
-
-
-
-
+console.log(deposits, withdrawals)
 
 
 
