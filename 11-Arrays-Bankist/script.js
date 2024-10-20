@@ -1086,7 +1086,30 @@ const donosDosQueComemPouco = cachorros
 console.log(donosDosQueComemPouco);
 
 
+// 4.
+console.log(`${donosDosQueComemMuito.join(' e ')} donos de cachorros que comem muito!`)
+
+console.log(`${donosDosQueComemPouco.join(' e ')} donos de cachorros que comem pouco!`)
 
 
+// 5.
+console.log(cachorros.some(cachorro => cachorro.porcaoAtual == cachorro.porcaoRecomendada))
 
+
+//6. 
+const checkComidaCorreta = cachorro =>
+  cachorro.porcaoAtual > cachorro.porcaoRecomendada * 0.9
+  && cachorro.porcaoAtual < cachorro.porcaoRecomendada * 1.1
+
+console.log(cachorros.some(checkComidaCorreta));
+
+
+// 7.
+const cachorroComidaCorreta = cachorros.filter(checkComidaCorreta);
+console.log(cachorroComidaCorreta);
+
+
+// 8.
+const cachorrosCopia = cachorros.slice().sort((a, b) => a.porcaoRecomendada - b.porcaoRecomendada);
+console.log(cachorrosCopia)
 
