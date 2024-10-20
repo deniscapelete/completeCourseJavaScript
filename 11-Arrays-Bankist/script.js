@@ -900,82 +900,164 @@ GOOD LUCK 😀
 // })
 
 
-// // ------------------- 167. Array Methods Practice -------------------
+// // // ------------------- 167. Array Methods Practice -------------------
 
-//1.
-//soma dos valores que foram depositados no banco
-const banckDeposirSum = accounts
-  .flatMap(acc => acc.movements)
-  .filter(mov => mov > 0)
-  .reduce((sum, mov) => sum + mov, 0);
+// //1.
+// //soma dos valores que foram depositados no banco
+// const banckDeposirSum = accounts
+//   .flatMap(acc => acc.movements)
+//   .filter(mov => mov > 0)
+//   .reduce((sum, mov) => sum + mov, 0);
 
-console.log(banckDeposirSum);
+// console.log(banckDeposirSum);
 
 
-//2.
-//quantos depositos acima de 1000
-const numDeposits1000 = accounts
-  .flatMap(acc => acc.movements)
-  .filter(mov => mov >= 1000).length;
+// //2.
+// //quantos depositos acima de 1000
+// const numDeposits1000 = accounts
+//   .flatMap(acc => acc.movements)
+//   .filter(mov => mov >= 1000).length;
+// /* 
+// OU
+// .reduce((count, cur) => (cur >= 1000 ? count + 1 : count), 0);
+// Em vez de 'count + 1' não podemos utilizar count++, pois ele apenas adiciona valor e não o retorna,
+// porém podemos utiliza '++count'.
+// */
+
+// console.log(numDeposits1000);
+
+// // Operador prefixo ++
+// let a = 10;
+// console.log(++a);
+// console.log(a);
+
+// //3.
+
+// const sum = accounts.flatMap(acc => acc.movements).reduce((sums, cur) => {
+//   cur > 0
+//     ? sums.deposits += cur
+//     : sums.withdrawals += cur;
+//   return sums;
+// }, { deposits: 0, withdrawals: 0 });
+
+// console.log(sum)
+
+// //OU
+
+// const { deposits, withdrawals } = accounts.flatMap(acc => acc.movements).reduce((sums, cur) => {
+//   /* 
+//     cur > 0
+//     ? sums.deposits += cur
+//     : sums.withdrawals += cur;
+//   */
+//   sums[cur > 0 ? 'deposits' : 'withdrawals'] += cur;
+//   return sums;
+// }, { deposits: 0, withdrawals: 0 });
+
+// console.log(deposits, withdrawals)
+
+
+// // 4.
+// // this is a nice title -> This Is a Nice Title
+// const convertTitleCase = function (title) {
+
+//   const capitzalize = str => str[0].toUpperCase() + str.slice(1);
+
+//   const expections = ['a', 'an', 'the', 'but', 'or', 'on', 'in', 'with'];
+
+//   const titleCase = title
+//     .toLowerCase()
+//     .split(' ')
+//     .map(word => (expections
+//       .includes(word) ? word : capitzalize(word)))
+//     .join(' ');
+//   return titleCase;
+// }
+// console.log(convertTitleCase('this is a nice title'));
+// console.log(convertTitleCase('this is a LONG title'));
+
+
+
+///////////////////////////////////////
+// Coding Challenge #4
+
 /* 
-OU
-.reduce((count, cur) => (cur >= 1000 ? count + 1 : count), 0);
-Em vez de 'count + 1' não podemos utilizar count++, pois ele apenas adiciona valor e não o retorna,
-porém podemos utiliza '++count'.
+Julia and Kate are still studying dogs, and this time they are studying if dogs are eating too much or too little.
+Eating too much means the dog's current food portion is larger than the recommended portion, and eating too little is the opposite.
+Eating an okay amount means the dog's current food portion is within a range 10% above and 10% below the recommended portion (see hint).
+
+1. Loop over the array containing dog objects, and for each dog, calculate the recommended food portion and add it to the object as a new property. Do NOT create a new array, simply loop over the array. Forumla: recommendedFood = weight ** 0.75 * 28. (The result is in grams of food, and the weight needs to be in kg)
+2. Find Sarah's dog and log to the console whether it's eating too much or too little. HINT: Some dogs have multiple owners, so you first need to find Sarah in the owners array, and so this one is a bit tricky (on purpose) 🤓
+3. Create an array containing all owners of dogs who eat too much ('ownersEatTooMuch') and an array with all owners of dogs who eat too little ('ownersEatTooLittle').
+4. Log a string to the console for each array created in 3., like this: "Matilda and Alice and Bob's dogs eat too much!" and "Sarah and John and Michael's dogs eat too little!"
+5. Log to the console whether there is any dog eating EXACTLY the amount of food that is recommended (just true or false)
+6. Log to the console whether there is any dog eating an OKAY amount of food (just true or false)
+7. Create an array containing the dogs that are eating an OKAY amount of food (try to reuse the condition used in 6.)
+8. Create a shallow copy of the dogs array and sort it by recommended food portion in an ascending order (keep in mind that the portions are inside the array's objects)
+
+HINT 1: Use many different tools to solve these challenges, you can use the summary lecture to choose between them 😉
+HINT 2: Being within a range 10% above and below the recommended portion means: current > (recommended * 0.90) && current < (recommended * 1.10). Basically, the current portion should be between 90% and 110% of the recommended portion.
+
+TEST DATA:
+const dogs = [
+  { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
+  { weight: 8, curFood: 200, owners: ['Matilda'] },
+  { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
+  { weight: 32, curFood: 340, owners: ['Michael'] }
+];
+
+GOOD LUCK 😀
+
+
+Julia e Kate ainda estão estudando os cachorros, e desta vez elas estão estudando se os cães estão comendo demais ou de menos.
+Comer demais significa que a porção de comida atual do cachorro é maior do que a porção recomendada, e comer de menos é o oposto.
+Comer uma quantidade adequada significa que a porção atual de comida do cachorro está dentro de um intervalo de 10% acima e 10% abaixo da porção recomendada (veja a dica).
+
+1. Faça um loop sobre o array que contém os objetos de cachorro, 
+e para cada cachorro, calcule a porção recomendada de comida e adicione ao objeto como uma nova propriedade. 
+NÃO crie um novo array, apenas faça o loop sobre o array. Fórmula: porçãoRecomendada = peso ** 0.75 * 28. 
+(O resultado está em gramas de comida, e o peso deve estar em kg)
+
+2. Encontre o cachorro de Sarah e exiba no console se ele está comendo demais ou de menos. 
+DICA: Alguns cães têm múltiplos donos, 
+então primeiro você precisa encontrar Sarah no array de donos, 
+o que pode ser um pouco complicado (de propósito) 🤓
+
+3. Crie um array contendo todos os donos de cães que comem demais ('donosComemDemais') e um array com todos os donos de cães que comem de menos ('donosComemDeMenos').
+4. Exiba no console uma string para cada array criado no item 3, como esta: "Matilda e Alice e Bob têm cães que comem demais!" e "Sarah e John e Michael têm cães que comem de menos!"
+5. Exiba no console se há algum cachorro comendo EXATAMENTE a quantidade recomendada de comida (apenas true ou false)
+6. Exiba no console se há algum cachorro comendo uma quantidade ADEQUADA de comida (apenas true ou false)
+7. Crie um array contendo os cachorros que estão comendo uma quantidade ADEQUADA de comida (tente reutilizar a condição usada no item 6)
+8. Crie uma cópia superficial do array de cachorros e classifique-o pela porção recomendada de comida em ordem crescente (lembre-se de que as porções estão dentro dos objetos do array)
+DICA 1: Use várias ferramentas diferentes para resolver esses desafios, você pode usar a aula de resumo para escolher entre elas 😉
+DICA 2: Estar dentro de um intervalo de 10% acima e abaixo da porção recomendada significa: porçãoAtual > (recomendada * 0.90) && porçãoAtual < (recomendada * 1.10). Basicamente, a porção atual deve estar entre 90% e 110% da porção recomendada.
+
+DADOS DE TESTE:
+
+javascript
+Copiar código
+const cachorros = [
+  { peso: 22, porcaoAtual: 250, donos: ['Alice', 'Bob'] },
+  { peso: 8, porcaoAtual: 200, donos: ['Matilda'] },
+  { peso: 13, porcaoAtual: 275, donos: ['Sarah', 'John'] },
+  { peso: 32, porcaoAtual: 340, donos: ['Michael'] }
+];
 */
 
-console.log(numDeposits1000);
-
-// Operador prefixo ++
-let a = 10;
-console.log(++a);
-console.log(a);
-
-//3.
-
-const sum = accounts.flatMap(acc => acc.movements).reduce((sums, cur) => {
-  cur > 0
-    ? sums.deposits += cur
-    : sums.withdrawals += cur;
-  return sums;
-}, { deposits: 0, withdrawals: 0 });
-
-console.log(sum)
-
-//OU
-
-const { deposits, withdrawals } = accounts.flatMap(acc => acc.movements).reduce((sums, cur) => {
-  /* 
-    cur > 0
-    ? sums.deposits += cur
-    : sums.withdrawals += cur;
-  */
-  sums[cur > 0 ? 'deposits' : 'withdrawals'] += cur;
-  return sums;
-}, { deposits: 0, withdrawals: 0 });
-
-console.log(deposits, withdrawals)
+const cachorros = [
+  { peso: 22, porcaoAtual: 250, donos: ['Alice', 'Bob'] },
+  { peso: 8, porcaoAtual: 200, donos: ['Matilda'] },
+  { peso: 13, porcaoAtual: 275, donos: ['Sarah', 'John'] },
+  { peso: 32, porcaoAtual: 340, donos: ['Michael'] }
+];
 
 
-// 4.
-// this is a nice title -> This Is a Nice Title
-const convertTitleCase = function (title) {
+// 1.
+cachorros.forEach(cachorros => {
+  cachorros.porcaoRecomendada = cachorros.peso ** 0.75 * 28;
+});
 
-  const capitzalize = str => str[0].toUpperCase() + str.slice(1);
-
-  const expections = ['a', 'an', 'the', 'but', 'or', 'on', 'in', 'with'];
-
-  const titleCase = title
-    .toLowerCase()
-    .split(' ')
-    .map(word => (expections
-      .includes(word) ? word : capitzalize(word)))
-    .join(' ');
-  return titleCase;
-}
-console.log(convertTitleCase('this is a nice title'));
-console.log(convertTitleCase('this is a LONG title'));
-
+console.log(cachorros);
 
 
 
