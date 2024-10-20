@@ -1023,8 +1023,12 @@ DICA: Alguns cães têm múltiplos donos,
 então primeiro você precisa encontrar Sarah no array de donos, 
 o que pode ser um pouco complicado (de propósito) 🤓
 
-3. Crie um array contendo todos os donos de cães que comem demais ('donosComemDemais') e um array com todos os donos de cães que comem de menos ('donosComemDeMenos').
-4. Exiba no console uma string para cada array criado no item 3, como esta: "Matilda e Alice e Bob têm cães que comem demais!" e "Sarah e John e Michael têm cães que comem de menos!"
+3. Crie um array contendo todos os donos de cães que comem demais ('donosComemDemais')
+ e um array com todos os donos de cães que comem de menos ('donosComemDeMenos').
+
+4. Exiba no console uma string para cada array criado no item 3, como esta: 
+"Matilda e Alice e Bob têm cães que comem demais!" e "Sarah e John e Michael têm cães que comem de menos!"
+
 5. Exiba no console se há algum cachorro comendo EXATAMENTE a quantidade recomendada de comida (apenas true ou false)
 6. Exiba no console se há algum cachorro comendo uma quantidade ADEQUADA de comida (apenas true ou false)
 7. Crie um array contendo os cachorros que estão comendo uma quantidade ADEQUADA de comida (tente reutilizar a condição usada no item 6)
@@ -1054,16 +1058,32 @@ const cachorros = [
 
 // 1.
 cachorros.forEach(cachorros => {
-  cachorros.porcaoRecomendada = cachorros.peso ** 0.75 * 28;
+  cachorros.porcaoRecomendada = Math.trunc(cachorros.peso ** 0.75 * 28);
 });
 
 console.log(cachorros);
 
+// 2.
+const cachorroDeSarah = cachorros.find(cao => cao.donos.includes('Sarah'));
+console.log(cachorroDeSarah);
+console.log(`O cachorro de sara esta comendo ${cachorroDeSarah.porcaoAtual > cachorroDeSarah.porcaoRecomendada
+  ? 'demais' : 'pouco'}`);
 
 
+// 3.
+const donosDosQueComemMuito = cachorros
+  .filter(cachorro => cachorro.porcaoAtual > cachorro.porcaoRecomendada)
+  .map(cachorro => cachorro.donos)
+  .flat();
 
+console.log(donosDosQueComemMuito);
 
+const donosDosQueComemPouco = cachorros
+  .filter(cachorro => cachorro.porcaoAtual < cachorro.porcaoRecomendada)
+  .map(cachorro => cachorro.donos)
+  .flat();
 
+console.log(donosDosQueComemPouco);
 
 
 
