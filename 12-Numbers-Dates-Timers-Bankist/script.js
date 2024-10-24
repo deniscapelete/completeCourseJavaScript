@@ -463,48 +463,92 @@ btnSort.addEventListener('click', function (e) {
 // console.log(parseInt('230_000')); // 230
 
 
-// // 175. Working With BigInt
+// // // 175. Working With BigInt
 
-console.log(2 ** 53 - 1); // 9007199254740991
-console.log(Number.MAX_SAFE_INTEGER); // 9007199254740991
+// console.log(2 ** 53 - 1); // 9007199254740991
+// console.log(Number.MAX_SAFE_INTEGER); // 9007199254740991
 
-console.log(900719925474099145545478546); // 9.007199254740992e+26
-/* Qualquer número maior que isso não pode ser representado com precisão */
-
-
-// BigInt (n)
-console.log(100000000000000000000000000000000000n) // 100000000000000000000000000000000000n
-console.log(100000000000000000000000000000000000n * 2n) // 200000000000000000000000000000000000n
-
-console.log(222222222222222222222222222222n) // 222222222222222222222222222222n
-
-console.log(BigInt(222222222222222222222222222222)) // 222222222222222211003529035776n (NÃO FUNCIONA)
-
-const huge = 456545654565456545654565456444n;
-const num = 23;
-console.log(huge * BigInt(num));
-/* O calculo so pode ser feito entre dois BigInt's por isso se faz necessario converter
-no caso o BigInt() converte um número de tamanho normal apenas maiores que (9007199254740991) pode dar problema */
-
-//console.log(Math.sqrt(16n)); // (NÃO FUNCIONA)
+// console.log(900719925474099145545478546); // 9.007199254740992e+26
+// /* Qualquer número maior que isso não pode ser representado com precisão */
 
 
-// EXCEÇÕES
-console.log(20n > 15); // true
-console.log(20n < 15); // false
-console.log(20n == 20); // true (nesse caso o JS faz coerção de tipos ex: 20 = '20')
-console.log(20n === 20); /* false 
-(não são exatamente igual pois o JS não faz coerção de tipos, 
-possuem tipos primitivos diferentes um é um 'bigint' e o outro é um 'number' regular)
-*/
-console.log(typeof (20n)); // bigint
-console.log(typeof (20)); // number
+// // BigInt (n)
+// console.log(100000000000000000000000000000000000n) // 100000000000000000000000000000000000n
+// console.log(100000000000000000000000000000000000n * 2n) // 200000000000000000000000000000000000n
 
-console.log(huge + ' is REALLY big!!!');
+// console.log(222222222222222222222222222222n) // 222222222222222222222222222222n
 
-console.log(10n / 3n);
-console.log(10 / 3);
+// console.log(BigInt(222222222222222222222222222222)) // 222222222222222211003529035776n (NÃO FUNCIONA)
 
+// const huge = 456545654565456545654565456444n;
+// const num = 23;
+// console.log(huge * BigInt(num));
+// /* O calculo so pode ser feito entre dois BigInt's por isso se faz necessario converter
+// no caso o BigInt() converte um número de tamanho normal apenas maiores que (9007199254740991) pode dar problema */
+
+// //console.log(Math.sqrt(16n)); // (NÃO FUNCIONA)
+
+
+// // EXCEÇÕES
+// console.log(20n > 15); // true
+// console.log(20n < 15); // false
+// console.log(20n == 20); // true (nesse caso o JS faz coerção de tipos ex: 20 = '20')
+// console.log(20n === 20); /* false 
+// (não são exatamente igual pois o JS não faz coerção de tipos, 
+// possuem tipos primitivos diferentes um é um 'bigint' e o outro é um 'number' regular)
+// */
+// console.log(typeof (20n)); // bigint
+// console.log(typeof (20)); // number
+
+// console.log(huge + ' is REALLY big!!!');
+
+// console.log(10n / 3n); // 3n (remove a parte decimal, não arredonda, apenas remove)
+// console.log(10 / 3); // 3.3333333333333335
+
+
+// // 176. Creating Dates
+
+// // Criar data
+// const now = new Date()
+// console.log(now);
+
+// console.log(new Date('Oct 24 2024 09:17:34')); // (Não recomendado, pode não ser confiável)
+// console.log(new Date('December 24, 2024')); // (Não recomendado, pode não ser confiável)
+// console.log(new Date(account1.movementsDates[0]));
+
+// console.log(new Date(2037, 10, 19, 15, 23, 5)); /* Thu Nov 19 2037 15:23:05 GMT-0300 (Horário Padrão de Brasília)
+// o 10 represanta o mês baseado que se inicia em 0
+// o 19 é o dia, se alteramos para 33 por exemplo e novembro so vai ate 30 ele irá para o dia 03 de dezembro 
+// (é feito um calculo para acertar a diferença) 31 = 01, 32 = 02, 33 = 03 e etc
+// */
+
+// console.log(new Date(0)); /* Wed Dec 31 1969 21:00:00 GMT-0300 (Horário Padrão de Brasília)
+// tempo Unix inical
+// */
+// console.log(new Date(3 * 24 * 60 * 60 * 1000));
+
+// trabalhando com datas
+
+const future = new Date(2037, 10, 19, 15, 23, 5);
+console.log(future)
+console.log(future.getFullYear()); // 2037 - NÃO UTILIZAR getYear(retornaria 137)
+console.log(future.getMonth()); // 10
+console.log(future.getDay()); // 4
+console.log(future.getHours()); // 15
+console.log(future.getMinutes()); // 23
+console.log(future.getSeconds()); // 5
+
+console.log(future.toISOString()); // 2037-11-19T18:23:05.000Z
+
+console.log(future.getTime());//2142267785000
+
+console.log(new Date(2142267785000))
+
+console.log(Date.now())
+
+future.setFullYear(2040);
+future.setMonth(11);
+console.log(future); // Wed Dec 19 2040 15:23:05 GMT-0300 (Horário de Verão de Brasília)
 
 
 
