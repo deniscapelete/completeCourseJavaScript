@@ -315,75 +315,128 @@ btnSort.addEventListener('click', function (e) {
 // console.log(Number.isInteger(23 / 0)); // false
 
 
-// // 172. Math and Rounding
+// // // 172. Math and Rounding
 
-// Raiz quadrada
-console.log(Math.sqrt(25)); // 5
-console.log(25 ** (1 / 2)); // 5
+// // Raiz quadrada
+// console.log(Math.sqrt(25)); // 5
+// console.log(25 ** (1 / 2)); // 5
 
-// Raiz cubica
-console.log(8 ** (1 / 3)); // 2
+// // Raiz cubica
+// console.log(8 ** (1 / 3)); // 2
 
-// Maior número
-console.log(Math.max(5, 18, 23, 11, 2)); // 23
-console.log(Math.max(5, 18, '23', 11, 2)); // 23
-console.log(Math.max(5, 18, '23px', 11, 2)); // NaN
+// // Maior número
+// console.log(Math.max(5, 18, 23, 11, 2)); // 23
+// console.log(Math.max(5, 18, '23', 11, 2)); // 23
+// console.log(Math.max(5, 18, '23px', 11, 2)); // NaN
 
-// Menor número
-console.log(Math.min(5, 18, 23, 11, 2)); // 2
-console.log(Math.min(5, 18, '23', 11, 2)); // 2
-console.log(Math.min(5, 18, '23px', 11, 2)); // NaN
+// // Menor número
+// console.log(Math.min(5, 18, 23, 11, 2)); // 2
+// console.log(Math.min(5, 18, '23', 11, 2)); // 2
+// console.log(Math.min(5, 18, '23px', 11, 2)); // NaN
 
-// Calcular o raio
-console.log(Math.PI * Number.parseFloat('10px') ** 2); // 314.1592653589793
+// // Calcular o raio
+// console.log(Math.PI * Number.parseFloat('10px') ** 2); // 314.1592653589793
 
-// Numeros randômicos
-console.log(Math.random())
-/* Retorna um numéro entre 0 e 1 */
+// // Numeros randômicos
+// console.log(Math.random())
+// /* Retorna um numéro entre 0 e 1 */
 
-console.log(Math.trunc(Math.random() * 6) + 1)
-/* Obtém valor entre 1 e 6 */
+// console.log(Math.trunc(Math.random() * 6) + 1)
+// /* Obtém valor entre 1 e 6 */
 
-/* calculo para pegarmos um valor inteiro randomico entre o mínimo e o máximo*/
-const randomInt = (min, max) => Math.floor(Math.random() * (max - min) + 1) + min;
-// 0...1 -> 0...(max-min) -> min...max
+// /* calculo para pegarmos um valor inteiro randomico entre o mínimo e o máximo*/
+// const randomInt = (min, max) => Math.floor(Math.random() * (max - min) + 1) + min;
+// // 0...1 -> 0...(max-min) -> min...max
 
-console.log(randomInt(13, 20));
-
-
-// Arredondamento de inteiros
-/* Remove a parte decimal */
-console.log(Math.trunc(23.3)); // 23 (Number)
-console.log(Math.trunc(-23.4));
-
-/* Faz o arredondamento 
->=.5 -> arrendonda para cima
-<=.4 -> arrendonda para baixo
-*/
-console.log(Math.round(23.3)) // 23 (Number)
-console.log(Math.round(23.5)) // 24 (Number)
-
-/* Faz o arredondamento para cima */
-console.log(Math.ceil(23.3)) // 24 (Number)
-console.log(Math.ceil(23.5)) // 24 (Number)
-console.log(Math.ceil(-23.5)) // -23 (Number)
-
-/* Faz o arredondamento para cima */
-console.log(Math.floor(23.3)) // 23 (Number)
-console.log(Math.floor('23.5')) // 23 (Number)
-console.log(Math.floor(-23.3)) // 24 (Number)
-
-/* Todos esses metodos faze coerção de tipo ou seja aceita 23 ou '23' */
+// console.log(randomInt(13, 20));
 
 
-// Arredondamento de decimais (são primitivos, portando não tem método ex: Math)
-console.log((2.7).toFixed(0)); // 3 (string)
-console.log((2.7).toFixed(2)); // 2.70 (string)
-console.log((2.7567).toFixed(3)); // 2.757 (string)
+// // Arredondamento de inteiros
+// /* Remove a parte decimal */
+// console.log(Math.trunc(23.3)); // 23 (Number)
+// console.log(Math.trunc(-23.4));
 
-/* arredonda para cima e para baixo, e é possivel definir o número de casas decimais, porém converte em string */
+// /* Faz o arredondamento 
+// >=.5 -> arrendonda para cima
+// <=.4 -> arrendonda para baixo
+// */
+// console.log(Math.round(23.3)) // 23 (Number)
+// console.log(Math.round(23.5)) // 24 (Number)
 
-// convertendo em número com o '+', poderiamos tambem utilizar o 'Number()'.
-console.log(+(2.7).toFixed(0)); // 3 (Number)
-console.log(+(2.7).toFixed(2)); // 2.70 (Number)
-console.log(+(2.7567).toFixed(3)); // 2.757 (Number)
+// /* Faz o arredondamento para cima */
+// console.log(Math.ceil(23.3)) // 24 (Number)
+// console.log(Math.ceil(23.5)) // 24 (Number)
+// console.log(Math.ceil(-23.5)) // -23 (Number)
+
+// /* Faz o arredondamento para cima */
+// console.log(Math.floor(23.3)) // 23 (Number)
+// console.log(Math.floor('23.5')) // 23 (Number)
+// console.log(Math.floor(-23.3)) // 24 (Number)
+
+// /* Todos esses metodos faze coerção de tipo ou seja aceita 23 ou '23' */
+
+
+// // Arredondamento de decimais (são primitivos, portando não tem método ex: Math)
+// console.log((2.7).toFixed(0)); // 3 (string)
+// console.log((2.7).toFixed(2)); // 2.70 (string)
+// console.log((2.7567).toFixed(3)); // 2.757 (string)
+
+// /* arredonda para cima e para baixo, e é possivel definir o número de casas decimais, porém converte em string */
+
+// // convertendo em número com o '+', poderiamos tambem utilizar o 'Number()'.
+// console.log(+(2.7).toFixed(0)); // 3 (Number)
+// console.log(+(2.7).toFixed(2)); // 2.70 (Number)
+// console.log(+(2.7567).toFixed(3)); // 2.757 (Number)
+
+
+// // // 173. The remainder operator
+
+/* 
+% -> retorna o que sobra da divisão (inteiros)
+6 % 2 -> 0 (2 * 3 = 6)
+9 % 2 -> 1 (2 * 4 + 1 = 9)
+9 % 3 -> 0 (3 * 3 = 9)
+8 % 3 -> 2 (2 * 3 + 2 = 8)
+ */
+
+console.log(5 % 2);// 1
+console.log(5 / 2); // 2.5
+// 5 = 2 *2 + 1
+
+console.log(8 % 3);// 2
+console.log(8 / 3); // 2.6666666666666665
+// 5 = 2 * 3 + 2
+
+console.log(6 % 2);// 0
+console.log(6 / 2); // 3
+// 5 = 2 *2 + 1
+
+console.log(7 % 2);// 1
+console.log(7 / 2); // 3.5
+// 5 = 2 *2 + 1
+
+const isEven = n => n % 2 === 0;
+console.log(isEven(8)); // true
+console.log(isEven(13)); // false
+console.log(isEven(43)); // false
+
+
+labelBalance.addEventListener('click', function () {
+  [...document.querySelectorAll('.movements__row')].
+    forEach(function (row, i) {
+      // 0,2,4,6
+      if (i % 2 === 0) row.style.backgroundColor = 'orangered';
+      // 0,3,6,9
+      if (i % 3 === 0) row.style.backgroundColor = 'blue'
+    });
+});
+
+
+// labelBalance.addEventListener('click', function () {
+//   [...document.querySelectorAll('.movements__row')].forEach(function (row, i) {
+//     // 0, 2, 4, 6
+//     if (i % 2 === 0) row.style.backgroundColor = 'orangered';
+//     // 0, 3, 6, 9
+//     if (i % 3 === 0) row.style.backgroundColor = 'blue';
+//   });
+// });
