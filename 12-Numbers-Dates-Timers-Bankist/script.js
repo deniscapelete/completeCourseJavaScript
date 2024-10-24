@@ -391,52 +391,74 @@ btnSort.addEventListener('click', function (e) {
 
 // // // 173. The remainder operator
 
-/* 
-% -> retorna o que sobra da divisão (inteiros)
-6 % 2 -> 0 (2 * 3 = 6)
-9 % 2 -> 1 (2 * 4 + 1 = 9)
-9 % 3 -> 0 (3 * 3 = 9)
-8 % 3 -> 2 (2 * 3 + 2 = 8)
- */
+// /* 
+// % -> retorna o que sobra da divisão (inteiros)
+// 6 % 2 -> 0 (2 * 3 = 6)
+// 9 % 2 -> 1 (2 * 4 + 1 = 9)
+// 9 % 3 -> 0 (3 * 3 = 9)
+// 8 % 3 -> 2 (2 * 3 + 2 = 8)
+//  */
 
-console.log(5 % 2);// 1
-console.log(5 / 2); // 2.5
-// 5 = 2 *2 + 1
+// console.log(5 % 2);// 1
+// console.log(5 / 2); // 2.5
+// // 5 = 2 *2 + 1
 
-console.log(8 % 3);// 2
-console.log(8 / 3); // 2.6666666666666665
-// 5 = 2 * 3 + 2
+// console.log(8 % 3);// 2
+// console.log(8 / 3); // 2.6666666666666665
+// // 5 = 2 * 3 + 2
 
-console.log(6 % 2);// 0
-console.log(6 / 2); // 3
-// 5 = 2 *2 + 1
+// console.log(6 % 2);// 0
+// console.log(6 / 2); // 3
+// // 5 = 2 *2 + 1
 
-console.log(7 % 2);// 1
-console.log(7 / 2); // 3.5
-// 5 = 2 *2 + 1
+// console.log(7 % 2);// 1
+// console.log(7 / 2); // 3.5
+// // 5 = 2 *2 + 1
 
-const isEven = n => n % 2 === 0;
-console.log(isEven(8)); // true
-console.log(isEven(13)); // false
-console.log(isEven(43)); // false
-
-
-labelBalance.addEventListener('click', function () {
-  [...document.querySelectorAll('.movements__row')].
-    forEach(function (row, i) {
-      // 0,2,4,6
-      if (i % 2 === 0) row.style.backgroundColor = 'orangered';
-      // 0,3,6,9
-      if (i % 3 === 0) row.style.backgroundColor = 'blue'
-    });
-});
+// const isEven = n => n % 2 === 0;
+// console.log(isEven(8)); // true
+// console.log(isEven(13)); // false
+// console.log(isEven(43)); // false
 
 
 // labelBalance.addEventListener('click', function () {
-//   [...document.querySelectorAll('.movements__row')].forEach(function (row, i) {
-//     // 0, 2, 4, 6
-//     if (i % 2 === 0) row.style.backgroundColor = 'orangered';
-//     // 0, 3, 6, 9
-//     if (i % 3 === 0) row.style.backgroundColor = 'blue';
-//   });
+//   [...document.querySelectorAll('.movements__row')].
+//     forEach(function (row, i) {
+//       // 0,2,4,6
+//       if (i % 2 === 0) row.style.backgroundColor = 'orangered';
+//       // 0,3,6,9
+//       if (i % 3 === 0) row.style.backgroundColor = 'blue'
+//     });
 // });
+
+
+// // labelBalance.addEventListener('click', function () {
+// //   [...document.querySelectorAll('.movements__row')].forEach(function (row, i) {
+// //     // 0, 2, 4, 6
+// //     if (i % 2 === 0) row.style.backgroundColor = 'orangered';
+// //     // 0, 3, 6, 9
+// //     if (i % 3 === 0) row.style.backgroundColor = 'blue';
+// //   });
+// // });
+
+
+// // 173. Numeric Separators
+
+const diameter = 345_462_500_000;
+console.log(diameter) // 345462500000
+
+const price = 345_99;
+console.log(price); //34599
+
+const tranferFree1 = 15_00;
+console.log(tranferFree1); // 1500
+const tranferFree2 = 1_500;
+console.log(tranferFree1); // 1500
+
+const PI = 3.1415;
+console.log(PI); //3.1415
+
+console.log(Number('230_000')); // NaN
+
+console.log(parseInt('230_000')); // 230
+
