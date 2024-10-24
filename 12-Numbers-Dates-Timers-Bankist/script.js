@@ -442,23 +442,69 @@ btnSort.addEventListener('click', function (e) {
 // // });
 
 
-// // 173. Numeric Separators
+// // // 174. Numeric Separators
 
-const diameter = 345_462_500_000;
-console.log(diameter) // 345462500000
+// const diameter = 345_462_500_000;
+// console.log(diameter) // 345462500000
 
-const price = 345_99;
-console.log(price); //34599
+// const price = 345_99;
+// console.log(price); //34599
 
-const tranferFree1 = 15_00;
-console.log(tranferFree1); // 1500
-const tranferFree2 = 1_500;
-console.log(tranferFree1); // 1500
+// const tranferFree1 = 15_00;
+// console.log(tranferFree1); // 1500
+// const tranferFree2 = 1_500;
+// console.log(tranferFree1); // 1500
 
-const PI = 3.1415;
-console.log(PI); //3.1415
+// const PI = 3.1415;
+// console.log(PI); //3.1415
 
-console.log(Number('230_000')); // NaN
+// console.log(Number('230_000')); // NaN
 
-console.log(parseInt('230_000')); // 230
+// console.log(parseInt('230_000')); // 230
+
+
+// // 175. Working With BigInt
+
+console.log(2 ** 53 - 1); // 9007199254740991
+console.log(Number.MAX_SAFE_INTEGER); // 9007199254740991
+
+console.log(900719925474099145545478546); // 9.007199254740992e+26
+/* Qualquer número maior que isso não pode ser representado com precisão */
+
+
+// BigInt (n)
+console.log(100000000000000000000000000000000000n) // 100000000000000000000000000000000000n
+console.log(100000000000000000000000000000000000n * 2n) // 200000000000000000000000000000000000n
+
+console.log(222222222222222222222222222222n) // 222222222222222222222222222222n
+
+console.log(BigInt(222222222222222222222222222222)) // 222222222222222211003529035776n (NÃO FUNCIONA)
+
+const huge = 456545654565456545654565456444n;
+const num = 23;
+console.log(huge * BigInt(num));
+/* O calculo so pode ser feito entre dois BigInt's por isso se faz necessario converter
+no caso o BigInt() converte um número de tamanho normal apenas maiores que (9007199254740991) pode dar problema */
+
+//console.log(Math.sqrt(16n)); // (NÃO FUNCIONA)
+
+
+// EXCEÇÕES
+console.log(20n > 15); // true
+console.log(20n < 15); // false
+console.log(20n == 20); // true (nesse caso o JS faz coerção de tipos ex: 20 = '20')
+console.log(20n === 20); /* false 
+(não são exatamente igual pois o JS não faz coerção de tipos, 
+possuem tipos primitivos diferentes um é um 'bigint' e o outro é um 'number' regular)
+*/
+console.log(typeof (20n)); // bigint
+console.log(typeof (20)); // number
+
+console.log(huge + ' is REALLY big!!!');
+
+console.log(10n / 3n);
+console.log(10 / 3);
+
+
+
 
