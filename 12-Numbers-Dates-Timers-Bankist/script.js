@@ -153,6 +153,24 @@ const updateUI = function (acc) {
 ///////////////////////////////////////
 // Event handlers
 let currentAccount;
+containerApp.style.opacity = 100;
+
+// FAKE ALWAYS LOGGED IN
+currentAccount = account1;
+updateUI(currentAccount);
+
+// 177. Adding Dates to "Bankist" app
+
+const now = new Date();
+const day = `${now.getDate()}`.padStart(2, 0);
+const month = `${now.getMonth() + 1}`.padStart(2, 0);
+const year = now.getFullYear();
+const hour = `${now.getHours()}`.padStart(2, 0);
+const min = `${now.getMinutes()}`.padStart(2, 0);
+labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
+// day/month/year
+
+
 
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
@@ -529,26 +547,26 @@ btnSort.addEventListener('click', function (e) {
 
 // trabalhando com datas
 
-const future = new Date(2037, 10, 19, 15, 23, 5);
-console.log(future)
-console.log(future.getFullYear()); // 2037 - NÃO UTILIZAR getYear(retornaria 137)
-console.log(future.getMonth()); // 10
-console.log(future.getDay()); // 4
-console.log(future.getHours()); // 15
-console.log(future.getMinutes()); // 23
-console.log(future.getSeconds()); // 5
+// const future = new Date(2037, 10, 19, 15, 23, 5);
+// console.log(future)
+// console.log(future.getFullYear()); // 2037 - NÃO UTILIZAR getYear(retornaria 137)
+// console.log(future.getMonth()); // 10
+// console.log(future.getDay()); // 4
+// console.log(future.getHours()); // 15
+// console.log(future.getMinutes()); // 23
+// console.log(future.getSeconds()); // 5
 
-console.log(future.toISOString()); // 2037-11-19T18:23:05.000Z
+// console.log(future.toISOString()); // 2037-11-19T18:23:05.000Z
 
-console.log(future.getTime());//2142267785000
+// console.log(future.getTime());//2142267785000
 
-console.log(new Date(2142267785000))
+// console.log(new Date(2142267785000))
 
-console.log(Date.now())
+// console.log(Date.now())
 
-future.setFullYear(2040);
-future.setMonth(11);
-console.log(future); // Wed Dec 19 2040 15:23:05 GMT-0300 (Horário de Verão de Brasília)
+// future.setFullYear(2040);
+// future.setMonth(11);
+// console.log(future); // Wed Dec 19 2040 15:23:05 GMT-0300 (Horário de Verão de Brasília)
 
 
 
