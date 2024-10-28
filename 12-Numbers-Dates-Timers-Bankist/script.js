@@ -656,4 +656,36 @@ btnSort.addEventListener('click', function (e) {
 // }
 // // é uma boa pratica não inserir o local manualmente mas sim pegar pelo navegador do usuário
 // const locale = navigator.language
-// labelDate.textContent = new Intl.DateTimeFormat('locale', options).format(now);
+// labelDate.textContent = new Intl.DateTimeFormat('locale', options).format(now); // segunda-feira, 28 de outubro de 2024 às 20:50
+
+
+// 180. Internazionalizing Numbers (Intl)
+
+const num = 3884764.23;
+console.log('BR: ', new Intl.NumberFormat('pt-BR').format(num)); // BR:  3.884.764,23
+console.log('EUA: ', new Intl.NumberFormat('en-US').format(num)); // EUA:  3,884,764.23
+console.log('Browser: ', new Intl.NumberFormat(navigator.language).format(num)); // Browser:  3.884.764,23
+
+
+const options = {
+  style: 'unit',
+  unit: 'mile-per-hour',
+};
+console.log('BR: ', new Intl.NumberFormat('pt-BR', options).format(num)); // BR:  3.884.764,23
+
+
+const options2 = {
+  style: 'unit',
+  unit: 'celsius',
+};
+console.log('BR: ', new Intl.NumberFormat('pt-BR', options2).format(num)); // BR:  3.884.764,23 °C
+
+
+
+const options3 = {
+  style: 'percent',
+  unit: 'celsius', // essa opção é ignorada ppor causa da porcentagem
+};
+console.log('BR: ', new Intl.NumberFormat('pt-BR', options3).format(num)); // BR:  3.884.764,23%
+
+
