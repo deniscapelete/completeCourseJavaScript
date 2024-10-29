@@ -81,6 +81,15 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // Functions
 
+const formatCur = function (value, locale, currency) {
+
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency: currency,
+  }).format(value);
+
+}
+
 const formatMovementDate = function (date, locale) {
 
   const calcDaysPassed = (date1, date2) =>
@@ -110,13 +119,16 @@ const displayMovements = function (acc, sort = false) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     const date = new Date(acc.movementsDates[i]);
-    const displayDate = formatMovementDate(date, acc.locale)
+    const displayDate = formatMovementDate(date, acc.locale);
+
+    const formattedMov = formatCur(mov, acc.locale, acc.currency);
+
     const html = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${i + 1
       } ${type}</div>
       <div class="movements__date">${displayDate}</div>
-        <div class="movements__value">${mov.toFixed(2)}€</div>
+        <div class="movements__value">${formattedMov}</div>
       </div>
     `;
 
@@ -126,19 +138,23 @@ const displayMovements = function (acc, sort = false) {
 
 const calcDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${acc.balance.toFixed(2)}€`;
+
+  const formattedMov = formatCur(acc.balance, acc.locale, acc.currency);
+
+  labelBalance.textContent = `${formattedMov}`;
 };
 
 const calcDisplaySummary = function (acc) {
   const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${incomes.toFixed(2)}€`;
+  labelSumIn.textContent = formatCur(incomes, acc.locale, acc.currency);
 
   const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = `${Math.abs(out.toFixed(2))}€`;
+
+  labelSumOut.textContent = formatCur(out, acc.locale, acc.currency);
 
   const interest = acc.movements
     .filter(mov => mov > 0)
@@ -148,7 +164,7 @@ const calcDisplaySummary = function (acc) {
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = `${interest.toFixed(2)}€`;
+  labelSumInterest.textContent = formatCur(interest, acc.locale, acc.currency);
 };
 
 const createUsernames = function (accs) {
@@ -687,5 +703,13 @@ const options3 = {
   unit: 'celsius', // essa opção é ignorada ppor causa da porcentagem
 };
 console.log('BR: ', new Intl.NumberFormat('pt-BR', options3).format(num)); // BR:  3.884.764,23%
+
+const options4 = {
+  style: 'currency',
+  unit: 'celsius', // essa opção é ignorada ppor causa da porcentagem
+  currency: 'EUR', // A moeda deve ser definida manualmente, pois ela não vem localmente, pois é possivel mostra euro no Brasil.
+  //useGrouping: false, // elimina os separadores  // BR:  € 3884764,23
+};
+console.log('BR: ', new Intl.NumberFormat('pt-BR', options4).format(num)); // BR:  € 3.884.764,23
 
 
