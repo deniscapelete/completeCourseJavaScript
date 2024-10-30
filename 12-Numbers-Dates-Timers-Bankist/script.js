@@ -280,14 +280,15 @@ btnLoan.addEventListener('click', function (e) {
   const amount = Math.floor(inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
-    // Add movement
-    currentAccount.movements.push(amount);
+    setTimeout(function () {// Add movement
+      currentAccount.movements.push(amount);
 
-    // Add loan date
-    currentAccount.movementsDates.push(new Date().toISOString());
+      // Add loan date
+      currentAccount.movementsDates.push(new Date().toISOString());
 
-    // Update UI
-    updateUI(currentAccount);
+      // Update UI
+      updateUI(currentAccount);
+    }, 2500);
   }
   inputLoanAmount.value = '';
 });
@@ -675,41 +676,70 @@ btnSort.addEventListener('click', function (e) {
 // labelDate.textContent = new Intl.DateTimeFormat('locale', options).format(now); // segunda-feira, 28 de outubro de 2024 às 20:50
 
 
-// 180. Internazionalizing Numbers (Intl)
+// // 180. Internazionalizing Numbers (Intl)
 
-const num = 3884764.23;
-console.log('BR: ', new Intl.NumberFormat('pt-BR').format(num)); // BR:  3.884.764,23
-console.log('EUA: ', new Intl.NumberFormat('en-US').format(num)); // EUA:  3,884,764.23
-console.log('Browser: ', new Intl.NumberFormat(navigator.language).format(num)); // Browser:  3.884.764,23
-
-
-const options = {
-  style: 'unit',
-  unit: 'mile-per-hour',
-};
-console.log('BR: ', new Intl.NumberFormat('pt-BR', options).format(num)); // BR:  3.884.764,23
+// const num = 3884764.23;
+// console.log('BR: ', new Intl.NumberFormat('pt-BR').format(num)); // BR:  3.884.764,23
+// console.log('EUA: ', new Intl.NumberFormat('en-US').format(num)); // EUA:  3,884,764.23
+// console.log('Browser: ', new Intl.NumberFormat(navigator.language).format(num)); // Browser:  3.884.764,23
 
 
-const options2 = {
-  style: 'unit',
-  unit: 'celsius',
-};
-console.log('BR: ', new Intl.NumberFormat('pt-BR', options2).format(num)); // BR:  3.884.764,23 °C
+// const options = {
+//   style: 'unit',
+//   unit: 'mile-per-hour',
+// };
+// console.log('BR: ', new Intl.NumberFormat('pt-BR', options).format(num)); // BR:  3.884.764,23
+
+
+// const options2 = {
+//   style: 'unit',
+//   unit: 'celsius',
+// };
+// console.log('BR: ', new Intl.NumberFormat('pt-BR', options2).format(num)); // BR:  3.884.764,23 °C
 
 
 
-const options3 = {
-  style: 'percent',
-  unit: 'celsius', // essa opção é ignorada ppor causa da porcentagem
-};
-console.log('BR: ', new Intl.NumberFormat('pt-BR', options3).format(num)); // BR:  3.884.764,23%
+// const options3 = {
+//   style: 'percent',
+//   unit: 'celsius', // essa opção é ignorada ppor causa da porcentagem
+// };
+// console.log('BR: ', new Intl.NumberFormat('pt-BR', options3).format(num)); // BR:  3.884.764,23%
 
-const options4 = {
-  style: 'currency',
-  unit: 'celsius', // essa opção é ignorada ppor causa da porcentagem
-  currency: 'EUR', // A moeda deve ser definida manualmente, pois ela não vem localmente, pois é possivel mostra euro no Brasil.
-  //useGrouping: false, // elimina os separadores  // BR:  € 3884764,23
-};
-console.log('BR: ', new Intl.NumberFormat('pt-BR', options4).format(num)); // BR:  € 3.884.764,23
+// const options4 = {
+//   style: 'currency',
+//   unit: 'celsius', // essa opção é ignorada ppor causa da porcentagem
+//   currency: 'EUR', // A moeda deve ser definida manualmente, pois ela não vem localmente, pois é possivel mostra euro no Brasil.
+//   //useGrouping: false, // elimina os separadores  // BR:  € 3884764,23
+// };
+// console.log('BR: ', new Intl.NumberFormat('pt-BR', options4).format(num)); // BR:  € 3.884.764,23
 
 
+// 181. Timers: setTimeout and setInterval
+
+// setTimeout
+setTimeout(() => console.log('Here is your pizza 🍕'), 3000); // Here is your pizza 🍕 (após 3 segundos)
+
+// inserindo argumentos
+setTimeout((ing1, ing2) =>
+  console.log(`Here is your pizza with ${ing1} and ${ing2} 🍕`),
+  4000,
+  'olives',
+  'spinach'); // Here is your pizza with olives and spinach 🍕 (após 4 segundos)
+
+
+// cancelando a a contagem do temporizador.
+const ingredients = ['olives', 'spinach'];
+const pizzaTimer = setTimeout((ing1, ing2) =>
+  console.log(`Here is your pizza with ${ing1} and ${ing2} 🍕`),
+  4000,
+  ...ingredients); // Não retorna nada pois foi cancelado no apos o IF
+if (ingredients.includes('spinach')) clearTimeout(pizzaTimer);
+
+console.log('Waiting...');
+
+
+// setInterval
+setInterval(function () {
+  const now = new Date();
+  console.log(now);
+}, 10000); // Tue Oct 29 2024 21:17:44 GMT-0300 (Horário Padrão de Brasília) (repetidamente a cada 10 segundos)
