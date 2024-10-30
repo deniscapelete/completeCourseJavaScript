@@ -189,14 +189,49 @@ const updateUI = function (acc) {
   calcDisplaySummary(acc);
 };
 
+
+// // 182. Implementing a countdown Timer
+const stratLogOutTimer = function () {
+
+  const tick = function () {
+    const min = String(Math.trunc(time / 60)).padStart(2, 0);
+    const sec = String(time % 60).padStart(2, 0);
+
+    // Em cada chamada de retorno imprimir o restante de tempo da interface do usuário
+    labelTimer.textContent = `${min}:${sec}`;
+
+    // Quando o tempo chegar a zero parar o cronometro e fazer logout
+    if (time === 0) {
+      clearInterval(timer);
+
+      labelWelcome.textContent = 'Log in to get started'
+
+      containerApp.style.opacity = 0;
+
+    }
+
+    //diminuir 1 segundo
+    time--;
+
+  };
+  // Tempo 5 minutos
+  let time = 300;
+
+  // Chamar o cronometro a cada segundo
+  tick();
+  const timer = setInterval(tick, 1000);
+  return timer;
+};
+
 ///////////////////////////////////////
 // Event handlers
-let currentAccount;
-containerApp.style.opacity = 100;
+let currentAccount, timer;
+
 
 // FAKE ALWAYS LOGGED IN
-currentAccount = account1;
-updateUI(currentAccount);
+// currentAccount = account1;
+// updateUI(currentAccount);
+// containerApp.style.opacity = 100;
 
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
@@ -241,6 +276,9 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
+    if (timer) clearInterval(timer);
+    timer = stratLogOutTimer();
+
     // Update UI
     updateUI(currentAccount);
   }
@@ -270,7 +308,12 @@ btnTransfer.addEventListener('click', function (e) {
     receiverAcc.movementsDates.push(new Date().toISOString());
 
     // Update UI
-    updateUI(currentAccount);
+    updateUI(currentAccount)
+
+    // Reset timer
+    clearInterval(timer);
+    timer = stratLogOutTimer();
+
   }
 });
 
@@ -288,6 +331,11 @@ btnLoan.addEventListener('click', function (e) {
 
       // Update UI
       updateUI(currentAccount);
+
+      // Reset timer
+      clearInterval(timer);
+      timer = stratLogOutTimer();
+
     }, 2500);
   }
   inputLoanAmount.value = '';
@@ -714,32 +762,32 @@ btnSort.addEventListener('click', function (e) {
 // console.log('BR: ', new Intl.NumberFormat('pt-BR', options4).format(num)); // BR:  € 3.884.764,23
 
 
-// 181. Timers: setTimeout and setInterval
+// // 181. Timers: setTimeout and setInterval
 
-// setTimeout
-setTimeout(() => console.log('Here is your pizza 🍕'), 3000); // Here is your pizza 🍕 (após 3 segundos)
+// // setTimeout
+// setTimeout(() => console.log('Here is your pizza 🍕'), 3000); // Here is your pizza 🍕 (após 3 segundos)
 
-// inserindo argumentos
-setTimeout((ing1, ing2) =>
-  console.log(`Here is your pizza with ${ing1} and ${ing2} 🍕`),
-  4000,
-  'olives',
-  'spinach'); // Here is your pizza with olives and spinach 🍕 (após 4 segundos)
-
-
-// cancelando a a contagem do temporizador.
-const ingredients = ['olives', 'spinach'];
-const pizzaTimer = setTimeout((ing1, ing2) =>
-  console.log(`Here is your pizza with ${ing1} and ${ing2} 🍕`),
-  4000,
-  ...ingredients); // Não retorna nada pois foi cancelado no apos o IF
-if (ingredients.includes('spinach')) clearTimeout(pizzaTimer);
-
-console.log('Waiting...');
+// // inserindo argumentos
+// setTimeout((ing1, ing2) =>
+//   console.log(`Here is your pizza with ${ing1} and ${ing2} 🍕`),
+//   4000,
+//   'olives',
+//   'spinach'); // Here is your pizza with olives and spinach 🍕 (após 4 segundos)
 
 
-// setInterval
-setInterval(function () {
-  const now = new Date();
-  console.log(now);
-}, 10000); // Tue Oct 29 2024 21:17:44 GMT-0300 (Horário Padrão de Brasília) (repetidamente a cada 10 segundos)
+// // cancelando a a contagem do temporizador.
+// const ingredients = ['olives', 'spinach'];
+// const pizzaTimer = setTimeout((ing1, ing2) =>
+//   console.log(`Here is your pizza with ${ing1} and ${ing2} 🍕`),
+//   4000,
+//   ...ingredients); // Não retorna nada pois foi cancelado no apos o IF
+// if (ingredients.includes('spinach')) clearTimeout(pizzaTimer);
+
+// console.log('Waiting...');
+
+
+// // setInterval
+// setInterval(function () {
+//   const now = new Date();
+//   console.log(now);
+// }, 10000); // Tue Oct 29 2024 21:17:44 GMT-0300 (Horário Padrão de Brasília) (repetidamente a cada 10 segundos)
