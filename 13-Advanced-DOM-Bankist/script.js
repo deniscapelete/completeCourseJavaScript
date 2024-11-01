@@ -38,6 +38,8 @@ document.addEventListener('keydown', function (e) {
 ////////////////////////////////////////////////////////////////////////////////////////
 
 
+// ----------------- 187. Selecting, Creating, and Deleting Elements -----------------
+
 // ----------------- Selecionando elements -----------------
 
 console.log(document.documentElement); // retornou todo documento HTML
