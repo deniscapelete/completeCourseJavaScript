@@ -193,7 +193,7 @@ console.log(logo.dataset.testNumber) // 3 (quando separamos no HTML o nome com '
 logo.classList.add('c', 'j');
 logo.classList.remove('c');
 logo.classList.toggle('c');
-logo.classList.contains('c');
+logo.classList.contains('c'); // não inclui, apenas verifica se existe.
 
-// Não usar esse
+// Não usar esse, ele sobrescreve as outras classes já existentes
 // logo.className = 'Jonas'
