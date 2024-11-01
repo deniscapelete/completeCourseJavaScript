@@ -132,3 +132,68 @@ document
     */
     message.parentElement.removeChild(message);
   })
+
+
+
+// ----------------- 188. Styles, Attributes and Classes -----------------
+
+// ----------------- Styles -----------------
+message.style.backgroundColor = '#37383d';
+message.style.height = '50px';
+
+console.log(message.style.width); /*aqui não funciona, só funciona em estilos que já definimos */
+console.log(message.style.backgroundColor);
+
+console.log(getComputedStyle(message)); /* Aparecem todos os estilos mesmo os que não foram definidos manualmente */
+console.log(getComputedStyle(message).color); // rgb(187, 187, 187)
+console.log(getComputedStyle(message).height); // 50px
+
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height, 10) + 25 + 'px';
+/* Alterando a altura */
+
+document.documentElement.style.setProperty('--color-primary', 'orange');
+/* Alterando variavel do css */
+
+
+// ----------------- Atributos -----------------
+const logo = document.querySelector('.nav__logo');
+console.log(logo.alt); // Bankist logo
+
+console.log(logo.className); // nav__logo
+
+logo.alt = 'Beautiful minimalist logo'; /* Reatribuindo o valor */
+
+//Não é atributo padrão
+console.log(logo.designer); // undefined
+console.log(logo.getAttribute('designer')); // Jonas
+
+/* Inserindo atributos */
+logo.setAttribute('name', 'bankist')
+
+/* pegando os atributos */
+console.log(logo.src); // http://127.0.0.1:5500/13-Advanced-DOM-Bankist/img/logo.png (url absoluta)
+console.log(logo.getAttribute('src')); // img/logo.png (url relativa)
+
+
+const link = document.querySelector('.nav__link--btn');
+
+console.log(link.href); // http://127.0.0.1:5500/13-Advanced-DOM-Bankist/index.html#
+console.log(link.getAttribute('href')); // #
+
+
+// Data attributes
+
+console.log(logo.dataset.version_number)// 3
+console.log(logo.dataset.testNumber) // 3 (quando separamos no HTML o nome com '-' no JS chamamos com camelCase)
+
+
+
+// Classes
+logo.classList.add('c', 'j');
+logo.classList.remove('c');
+logo.classList.toggle('c');
+logo.classList.contains('c');
+
+// Não usar esse
+// logo.className = 'Jonas'
