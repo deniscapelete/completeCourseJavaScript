@@ -135,65 +135,117 @@ document
 
 
 
-// ----------------- 188. Styles, Attributes and Classes -----------------
+// // ----------------- 188. Styles, Attributes and Classes -----------------
 
-// ----------------- Styles -----------------
-message.style.backgroundColor = '#37383d';
-message.style.height = '50px';
+// // ----------------- Styles -----------------
+// message.style.backgroundColor = '#37383d';
+// message.style.height = '50px';
 
-console.log(message.style.width); /*aqui não funciona, só funciona em estilos que já definimos */
-console.log(message.style.backgroundColor);
+// console.log(message.style.width); /*aqui não funciona, só funciona em estilos que já definimos */
+// console.log(message.style.backgroundColor);
 
-console.log(getComputedStyle(message)); /* Aparecem todos os estilos mesmo os que não foram definidos manualmente */
-console.log(getComputedStyle(message).color); // rgb(187, 187, 187)
-console.log(getComputedStyle(message).height); // 50px
+// console.log(getComputedStyle(message)); /* Aparecem todos os estilos mesmo os que não foram definidos manualmente */
+// console.log(getComputedStyle(message).color); // rgb(187, 187, 187)
+// console.log(getComputedStyle(message).height); // 50px
 
-message.style.height =
-  Number.parseFloat(getComputedStyle(message).height, 10) + 25 + 'px';
-/* Alterando a altura */
+// message.style.height =
+//   Number.parseFloat(getComputedStyle(message).height, 10) + 25 + 'px';
+// /* Alterando a altura */
 
-document.documentElement.style.setProperty('--color-primary', 'orange');
-/* Alterando variavel do css */
-
-
-// ----------------- Atributos -----------------
-const logo = document.querySelector('.nav__logo');
-console.log(logo.alt); // Bankist logo
-
-console.log(logo.className); // nav__logo
-
-logo.alt = 'Beautiful minimalist logo'; /* Reatribuindo o valor */
-
-//Não é atributo padrão
-console.log(logo.designer); // undefined
-console.log(logo.getAttribute('designer')); // Jonas
-
-/* Inserindo atributos */
-logo.setAttribute('name', 'bankist')
-
-/* pegando os atributos */
-console.log(logo.src); // http://127.0.0.1:5500/13-Advanced-DOM-Bankist/img/logo.png (url absoluta)
-console.log(logo.getAttribute('src')); // img/logo.png (url relativa)
+// document.documentElement.style.setProperty('--color-primary', 'orange');
+// /* Alterando variavel do css */
 
 
-const link = document.querySelector('.nav__link--btn');
+// // ----------------- Atributos -----------------
+// const logo = document.querySelector('.nav__logo');
+// console.log(logo.alt); // Bankist logo
 
-console.log(link.href); // http://127.0.0.1:5500/13-Advanced-DOM-Bankist/index.html#
-console.log(link.getAttribute('href')); // #
+// console.log(logo.className); // nav__logo
+
+// logo.alt = 'Beautiful minimalist logo'; /* Reatribuindo o valor */
+
+// //Não é atributo padrão
+// console.log(logo.designer); // undefined
+// console.log(logo.getAttribute('designer')); // Jonas
+
+// /* Inserindo atributos */
+// logo.setAttribute('name', 'bankist')
+
+// /* pegando os atributos */
+// console.log(logo.src); // http://127.0.0.1:5500/13-Advanced-DOM-Bankist/img/logo.png (url absoluta)
+// console.log(logo.getAttribute('src')); // img/logo.png (url relativa)
 
 
-// Data attributes
+// const link = document.querySelector('.nav__link--btn');
 
-console.log(logo.dataset.version_number)// 3
-console.log(logo.dataset.testNumber) // 3 (quando separamos no HTML o nome com '-' no JS chamamos com camelCase)
+// console.log(link.href); // http://127.0.0.1:5500/13-Advanced-DOM-Bankist/index.html#
+// console.log(link.getAttribute('href')); // #
+
+
+// // Data attributes
+
+// console.log(logo.dataset.version_number)// 3
+// console.log(logo.dataset.testNumber) // 3 (quando separamos no HTML o nome com '-' no JS chamamos com camelCase)
 
 
 
-// Classes
-logo.classList.add('c', 'j');
-logo.classList.remove('c');
-logo.classList.toggle('c');
-logo.classList.contains('c'); // não inclui, apenas verifica se existe.
+// // Classes
+// logo.classList.add('c', 'j');
+// logo.classList.remove('c');
+// logo.classList.toggle('c');
+// logo.classList.contains('c'); // não inclui, apenas verifica se existe.
 
-// Não usar esse, ele sobrescreve as outras classes já existentes
-// logo.className = 'Jonas'
+// // Não usar esse, ele sobrescreve as outras classes já existentes
+// // logo.className = 'Jonas'
+
+
+
+// ----------------- 189. Implementing Smooth Scrolling -----------------
+
+btnScrollTo.addEventListener('click', function (e) {
+  const s1coords = section1.getBoundingClientRect()
+  /* getBoundingClientRect -> pegar as cordenadas, é relativo a janela visível */
+  /*
+  EXEMPLOS
+  console.log(s1coords);
+   console.log(e.target.getBoundingClientRect()); // 'e.target' representa o botao que disparou o evento
+   console.log('Current scroll (X/Y)', window.pageXOffset, pageYOffset);
+ 
+   console.log('Height/width viewport',
+     document.documentElement.clientHeight,
+     document.documentElement.clientWidth
+   );// exibe o tamanho da visivel da janela
+ */
+  //Scrolling
+  /* 
+   Realiza o cálculo para rolar a página até uma seção específica, considerando a posição atual de rolagem da janela.
+   Primeiro, obtemos as coordenadas da seção com o `getBoundingClientRect`, que retorna as posições relativas
+   ao viewport. Em seguida, somamos essas coordenadas à posição atual da janela para obter a posição absoluta.
+ */
+  window.scrollTo(
+    s1coords.left + window.pageXOffset,
+    s1coords.top + window.pageYOffset
+  );
+
+  /* 
+   Este código usa `window.scrollTo` para rolar a página até uma posição específica, calculada manualmente. 
+   Primeiro, somamos `s1coords.left` e `s1coords.top` (as coordenadas da seção em relação ao viewport) com `window.pageXOffset` e `window.pageYOffset` (a posição atual de rolagem da página) para obter a posição absoluta da seção no documento.
+   O parâmetro `behavior: 'smooth'` indica que a rolagem deve ocorrer suavemente, criando uma transição mais agradável para o usuário.
+*/
+  window.scrollTo({
+    left: s1coords.left + window.pageXOffset,
+    top: s1coords.top + window.pageYOffset,
+    behavior: 'smooth'
+  })
+
+  //------------------ MÉTODO MODERNO
+  /* 
+   Este código utiliza o método `scrollIntoView` diretamente no elemento `section1`, simplificando o processo de rolagem até a seção desejada.
+   O método `scrollIntoView` automaticamente calcula a posição da seção no documento e rola a página até ela. 
+   Ao passar `{ behavior: 'smooth' }` como parâmetro, a rolagem é feita de forma suave, assim como no exemplo anterior. 
+   
+   Essa abordagem é mais simples e recomendada para rolar até um elemento específico, já que não requer cálculos manuais.
+*/
+  section1.scrollIntoView({ behavior: 'smooth' });
+
+});
