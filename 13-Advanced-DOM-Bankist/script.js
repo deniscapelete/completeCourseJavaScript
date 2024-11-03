@@ -254,7 +254,6 @@ btnScrollTo.addEventListener('click', function (e) {
 });
 
 
-
 // ----------------- 190. Implementing Smooth Scrolling -----------------
 
 /* três maneiras de chamar um evento */
@@ -274,3 +273,64 @@ setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000);
 // h1.onmouseenter = function (e) {
 //   alert('onmouseenter: Great! You are reading the heading :D');
 // };
+
+
+
+
+// ----------------- 192. Event Propagation in Practice -----------------
+
+// formula para pegar numero inteiro randomico
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+
+const randomColor = () =>
+  `rgb(${randomInt(0, 255)}, ${randomInt(0, 255)}, ${randomInt(0, 255)})`;
+
+document.querySelector('.nav__link').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log('LINK', e.target, e.currentTarget);
+  // target -> onde o evento se originou/aconteceu pela primeira vez
+  // currentTarget -> retorna onde o manipulador está vinculado
+  console.log(e.currentTarget === this);
+
+  // // Parando a propagação -> na pratica não é uma boa ideia interromper
+  // e.stopPropagation();
+});
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log('COINTAINER', e.target, e.currentTarget);
+});
+
+document.querySelector('.nav').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log('NAV', e.target, e.currentTarget);
+  //O parâmetro true no addEventListener ativa a fase de captura para esse evento.
+}, true);
+
+/* 
+.nav >> .nav__links >> .nav__link 
+
+target -> onde o evento se originou/aconteceu pela primeira vez
+  No exemplo quando clicamos em:
+    .nav__link no console é retornado nos três eventos o .nav__link que foi onde se originou.
+    .nav__links no console é retornado nos dois eventos  o .nav__link que foi onde se originou.
+    .nav no console é retornado no evento o .nav que foi onde se originou.
+
+    No caso a propagação ocorre entre pai e filho, não entra irmãos. 
+    Pois na lógica se uma tag esta dentro de outra,
+    quando ocorrer o click na tag filho voce consequentemente esta clicando na tag pai também.
+
+currentTarget -> retorna onde o manipulador está vinculado.
+console.log(e.currentTarget === this); // retorna true pois são exatamente os mesmos
+
+stopPropagation() -> ele cancela a propagação para os elementos pai.
+  Na prática não é uma boa ideia interromper.
+
+Adicionando true ao evento do .nav
+  O parâmetro true no addEventListener ativa a fase de captura para esse evento. 
+  Isso significa que o evento no elemento .nav será tratado antes de qualquer outro evento de clique nos elementos filhos (.nav__links e .nav__link).
+
+  Sem true, o código entraria diretamente na fase de borbulhamento, e o evento nos elementos internos seria tratado primeiro.
+
+*/
