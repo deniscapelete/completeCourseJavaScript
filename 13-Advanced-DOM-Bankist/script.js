@@ -19,7 +19,6 @@ const closeModal = function () {
   overlay.classList.add('hidden');
 };
 
-
 btnsOpenModal.forEach(btn => btn.addEventListener('click', openModal));
 
 for (let i = 0; i < btnsOpenModal.length; i++)
@@ -37,14 +36,13 @@ document.addEventListener('keydown', function (e) {
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
 
-
 // ----------------- 187. Selecting, Creating, and Deleting Elements -----------------
 
 // ----------------- Selecionando elements -----------------
 
 console.log(document.documentElement); // retornou todo documento HTML
 console.log(document.head); // retornou todo o head
-console.log(document.body);// retornou todo o body
+console.log(document.body); // retornou todo o body
 
 const header = document.querySelector('.header');
 
@@ -55,9 +53,8 @@ Ex: se eu inspecionar a página, remover uma das section e chamar o 'allSections
 */
 console.log(allSections); // NodeList(4) [section#section--1.section, section#section--2.section, section#section--3.section, section.section.section--sign-up]
 
-
 const section = document.getElementById('section--1');
-console.log(section);// section#section--1.section
+console.log(section); // section#section--1.section
 
 const allButtons = document.getElementsByTagName('button');
 /* 
@@ -68,8 +65,6 @@ console.log(allButtons); // HTMLCollection(9) [button.btn--text.btn--scroll-to,
 
 const allClassButtons = document.getElementsByClassName('btn');
 console.log(allClassButtons); // HTMLCollection(5) [button.btn.operations__tab.operations__tab--1.operations__tab--active, button.btn.operations__tab.operations__tab--2, button.btn.operations__tab.operations__tab--3, button.btn.btn--show-modal, button.btn]
-
-
 
 // ----------------- Criando e inserindo elementos -----------------
 /*
@@ -90,7 +85,6 @@ message.classList.add('cookie-message');
 message.innerHTML =
   'We use cookied for improved funcionality and analytics. <button class="btn btn--close--cookie">Got it!</button>';
 console.log(message);
-
 
 /* 
 o MESSAGE é um 'elemento de vida do DOM' portanto não pode estar em varios lugares ao mesmo tempo 
@@ -131,9 +125,7 @@ document
     esse metódo de mover para cima e para baixo na árvore é chamado de travessia DOM
     */
     message.parentElement.removeChild(message);
-  })
-
-
+  });
 
 // // ----------------- 188. Styles, Attributes and Classes -----------------
 
@@ -155,7 +147,6 @@ document
 // document.documentElement.style.setProperty('--color-primary', 'orange');
 // /* Alterando variavel do css */
 
-
 // // ----------------- Atributos -----------------
 // const logo = document.querySelector('.nav__logo');
 // console.log(logo.alt); // Bankist logo
@@ -175,19 +166,15 @@ document
 // console.log(logo.src); // http://127.0.0.1:5500/13-Advanced-DOM-Bankist/img/logo.png (url absoluta)
 // console.log(logo.getAttribute('src')); // img/logo.png (url relativa)
 
-
 // const link = document.querySelector('.nav__link--btn');
 
 // console.log(link.href); // http://127.0.0.1:5500/13-Advanced-DOM-Bankist/index.html#
 // console.log(link.getAttribute('href')); // #
 
-
 // // Data attributes
 
 // console.log(logo.dataset.version_number)// 3
 // console.log(logo.dataset.testNumber) // 3 (quando separamos no HTML o nome com '-' no JS chamamos com camelCase)
-
-
 
 // // Classes
 // logo.classList.add('c', 'j');
@@ -198,15 +185,13 @@ document
 // // Não usar esse, ele sobrescreve as outras classes já existentes
 // // logo.className = 'Jonas'
 
-
-
 // ----------------- 189. Implementing Smooth Scrolling -----------------
 
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
 
 btnScrollTo.addEventListener('click', function (e) {
-  const s1coords = section1.getBoundingClientRect()
+  const s1coords = section1.getBoundingClientRect();
   /* getBoundingClientRect -> pegar as cordenadas, é relativo a janela visível */
   /*
   EXEMPLOS
@@ -238,8 +223,8 @@ btnScrollTo.addEventListener('click', function (e) {
   window.scrollTo({
     left: s1coords.left + window.pageXOffset,
     top: s1coords.top + window.pageYOffset,
-    behavior: 'smooth'
-  })
+    behavior: 'smooth',
+  });
 
   //------------------ MÉTODO MODERNO
   /* 
@@ -250,9 +235,7 @@ btnScrollTo.addEventListener('click', function (e) {
    Essa abordagem é mais simples e recomendada para rolar até um elemento específico, já que não requer cálculos manuais.
 */
   section1.scrollIntoView({ behavior: 'smooth' });
-
 });
-
 
 // ----------------- 190. Implementing Smooth Scrolling -----------------
 
@@ -273,9 +256,6 @@ setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000);
 // h1.onmouseenter = function (e) {
 //   alert('onmouseenter: Great! You are reading the heading :D');
 // };
-
-
-
 
 // ----------------- 192. Event Propagation in Practice -----------------
 
@@ -302,11 +282,15 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
   console.log('COINTAINER', e.target, e.currentTarget);
 });
 
-document.querySelector('.nav').addEventListener('click', function (e) {
-  this.style.backgroundColor = randomColor();
-  console.log('NAV', e.target, e.currentTarget);
-  //O parâmetro true no addEventListener ativa a fase de captura para esse evento.
-}, true);
+document.querySelector('.nav').addEventListener(
+  'click',
+  function (e) {
+    this.style.backgroundColor = randomColor();
+    console.log('NAV', e.target, e.currentTarget);
+    //O parâmetro true no addEventListener ativa a fase de captura para esse evento.
+  },
+  true
+);
 
 /* 
 .nav >> .nav__links >> .nav__link 
@@ -335,7 +319,6 @@ Adicionando true ao evento do .nav
 
 */
 
-
 // ------------ 193. Event Delegation: Implementing Page Navigation ------------
 
 // Page navigation
@@ -352,7 +335,6 @@ Adicionando true ao evento do .nav
 //   });
 // });
 
-
 // 1. Add Event Listener to common parent element
 // 2. Determine what element originated the event
 document.querySelector('.nav__links').addEventListener('click', function (e) {
@@ -364,7 +346,37 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
 
     const id = e.target.getAttribute('href');
     document.querySelector(id).scrollIntoView({
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
   }
+});
+
+// ----------------- 194. DOM Traversing -----------------
+
+// Going downwards: child
+const eh1 = document.querySelector('h1');
+
+console.log(eh1.querySelectorAll('.highlight'));
+
+console.log(h1.childNodes);
+
+console.log(eh1.children); // só funciona para filhos diretos
+
+eh1.firstElementChild.style.color = 'white';
+eh1.lastElementChild.style.color = 'orange';
+
+// Going upwards: parents
+console.log(eh1.parentNode);
+
+eh1.closest('.header').style.background = 'var(--gradient-secondary)';
+
+eh1.closest('.h1').style.background = 'var(--gradient-secondary)';
+
+// Going sideways: siblings
+console.log(eh1.previousSibling);
+console.log(h1.nextSibling);
+
+console.log(eh1.parentElement.children);
+[...h1.parentElement.children].forEach(function (el) {
+  if (el !== h1) el.style.transform = 'scale(0.5)';
 });
