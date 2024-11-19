@@ -368,9 +368,9 @@ eh1.lastElementChild.style.color = 'orange';
 // Going upwards: parents
 console.log(eh1.parentNode);
 
-eh1.closest('.header').style.background = 'var(--gradient-secondary)';
+// eh1.closest('.header').style.background = 'var(--gradient-secondary)';
 
-eh1.closest('.h1').style.background = 'var(--gradient-secondary)';
+// eh1.closest('.h1').style.background = 'var(--gradient-secondary)';
 
 // Going sideways: siblings
 console.log(eh1.previousSibling);
@@ -443,3 +443,14 @@ const handleHover = function (e) {
 nav.addEventListener('mouseover', handleHover.bind(0.5));
 
 nav.addEventListener('mouseout', handleHover.bind(1));
+
+// ----------------- 197. Implementing a Sticky Navigation: The Scroll Event -----------------
+
+// Stick navigation
+const initialCoords = section1.getBoundingClientRect();
+
+console.log(initialCoords);
+window.addEventListener('scroll', function (e) {
+  if (this.window.scrollY > initialCoords.top) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+});
