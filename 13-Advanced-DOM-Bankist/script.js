@@ -609,3 +609,23 @@ dotContainer.addEventListener('click', function(e){
 })
 };
 slider();
+
+// só inicia depois de todos html e javascript serem carregados
+// disparado no documento
+document.addEventListener('DOMContentLoaded', function (e){
+  console.log('HTML parsed and DOM tree built!', e)
+});
+
+// só inicia depois de toda a página se carregada, html, css, imagens e etc.
+//disparado na janela
+window.addEventListener('load', function (e){
+  console.log('Page fully loaded', e)
+})
+
+
+// mensagem de onfirmação para sair da página (no deve ser usado se for relamente necessário), a mensagem é padrão, não pode ser alterada.
+// window.addEventListener('beforeunload', function (e){
+//   e.preventDefault();
+//   console.log(e);
+//   e.returnValue = '';
+// });
