@@ -68,3 +68,35 @@ console.log(denis.species, matilda);
 
 console.log(denis.hasOwnProperty('firstName')); // true
 console.log(denis.hasOwnProperty('species')); // false
+console.log(denis.__proto__);
+
+/* --------------------------- 212. Prototypal Inheritance on Built-In Objects --------------------------- */
+// Object.prototype (top of prototype chain)
+
+console.log(denis.__proto__.__proto__);
+console.log(denis.__proto__.__proto__.__proto__);
+
+console.dir(Person.prototype.constructor);
+
+const arr = [3, 6, 6, 5, 6, 9, 3, 3]; // quando criamos um array como esse é a mesma coisa que usar o costrutor new Array === []
+console.log(arr.__proto__);
+console.log(arr.__proto__ === Array.prototype);
+
+console.log(arr.__proto__.__proto__);
+
+
+/* 
+  Não é uma boa pratica ficarmos adicinando métodos, pois, pode haver outros programadores e cada um nomear de uma forma,
+    ou pode haver alguma inclusão ou alteração no javascript que utilize o nome do metodo que voce criou de alguma outra forma 
+    e isso irá quebrar o código.
+*/
+Array.prototype.unique = function (){
+  return [...new Set(this)];
+};
+console.log(arr.unique());
+
+const h1 = document.querySelector('h1');
+
+console.dir(h1);
+
+console.dir(x => x-1);
