@@ -163,13 +163,12 @@ car2.brake();
 car2.brake();
 car2.brake();
 
-
+/* --------------------------- 214. ES6 Classes --------------------------- */
 
 // class expression
   // const PersonCL = class {}
 
 // class declaration
-const jessica = new PersonCl('Jessica', 2000);
   class PersonCl {
     constructor(firstName, birthYear){
       this.firstName = firstName;
@@ -187,7 +186,7 @@ const jessica = new PersonCl('Jessica', 2000);
     }
   }
 
-  
+  const jessica = new PersonCl('Jessica', 2000);
 
   console.log(jessica);
   jessica.calcAge();
