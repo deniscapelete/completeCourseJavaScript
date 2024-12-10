@@ -164,3 +164,44 @@ car2.brake();
 car2.brake();
 
 
+
+// class expression
+  // const PersonCL = class {}
+
+// class declaration
+const jessica = new PersonCl('Jessica', 2000);
+  class PersonCl {
+    constructor(firstName, birthYear){
+      this.firstName = firstName;
+      this.birthYear = birthYear;
+    }
+
+    //Methods will be added to .prototype property
+    //todos os metodos escritos fora do construtor estará no protótipo(prototype), e não no próprio objeto
+    calcAge(){
+      console.log(2024 - this.birthYear);
+    }
+
+   greet(){
+      console.log(`Olá ${this.firstName}`);
+    }
+  }
+
+  
+
+  console.log(jessica);
+  jessica.calcAge();
+
+  console.log(jessica.__proto__ == PersonCl.prototype);
+
+  // PersonCl.prototype.greet = function (){
+  //   console.log(`Olá ${this.firstName}`);
+  // }
+
+  jessica.greet();
+
+  /*
+  1. As classe não são suspensas, não podem ser usadas antes de ser declaradas no código.
+  2. As classes são de primeira classe (podemos transferi-los para as funções e os devolver)
+  3. o Corpo de uma classe é sempre executado estritamente (strict mode).
+  */
