@@ -170,8 +170,8 @@ car2.brake();
 
 // class declaration
   class PersonCl {
-    constructor(firstName, birthYear){
-      this.firstName = firstName;
+    constructor(fullName, birthYear){
+      this.fullName = fullName;
       this.birthYear = birthYear;
     }
 
@@ -182,14 +182,30 @@ car2.brake();
     }
 
    greet(){
-      console.log(`Olá ${this.firstName}`);
+      console.log(`Olá ${this.fullName}`);
     }
+
+      get age(){
+        return 2024 - this.birthYear;    
+      }
+
+  // Set a property that allready exists
+      set fullName(name){
+        console.log(name);
+        if(name.includes(' ')) this._fullName = name;
+        else alert(`${name} is not a full name!`);
+      }
+
+      get fullName(){
+        return this._fullName;
+      }
   }
 
-  const jessica = new PersonCl('Jessica', 2000);
-
+  const jessica = new PersonCl('Jessica Davis', 2000);
+  
   console.log(jessica);
   jessica.calcAge();
+  console.log(jessica.age);
 
   console.log(jessica.__proto__ == PersonCl.prototype);
 
@@ -204,3 +220,23 @@ car2.brake();
   2. As classes são de primeira classe (podemos transferi-los para as funções e os devolver)
   3. o Corpo de uma classe é sempre executado estritamente (strict mode).
   */
+
+  
+/* --------------------------- 225. Setters and Getters --------------------------- */
+
+ const walter = new PersonCl('walter', 1965);
+
+  const account = {
+    owner: 'Denis',
+    movements: [50, 120, 160, 200, 250],
+
+
+    get latest() {
+      return this.movements
+    }
+  }
+
+
+  console.log(account.latest)
+
+  
