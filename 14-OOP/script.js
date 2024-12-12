@@ -102,66 +102,66 @@
 // console.dir(x => x-1);
 
 
-///////////////////////////////////////
-// Coding Challenge #1
+// ///////////////////////////////////////
+// // Coding Challenge #1
 
-/* 
-1. Use a constructor function to implement a Car. A car has a make and a speed property. The speed property is the current speed of the car in km/h;
-2. Implement an 'accelerate' method that will increase the car's speed by 10, and log the new speed to the console;
-3. Implement a 'brake' method that will decrease the car's speed by 5, and log the new speed to the console;
-4. Create 2 car objects and experiment with calling 'accelerate' and 'brake' multiple times on each of them.
+// /* 
+// 1. Use a constructor function to implement a Car. A car has a make and a speed property. The speed property is the current speed of the car in km/h;
+// 2. Implement an 'accelerate' method that will increase the car's speed by 10, and log the new speed to the console;
+// 3. Implement a 'brake' method that will decrease the car's speed by 5, and log the new speed to the console;
+// 4. Create 2 car objects and experiment with calling 'accelerate' and 'brake' multiple times on each of them.
 
-DATA CAR 1: 'BMW' going at 120 km/h
-DATA CAR 2: 'Mercedes' going at 95 km/h
+// DATA CAR 1: 'BMW' going at 120 km/h
+// DATA CAR 2: 'Mercedes' going at 95 km/h
 
-GOOD LUCK 😀
+// GOOD LUCK 😀
 
-1. Use uma função construtora para implementar um Carro. Um carro possui as propriedades marca e velocidade. 
-    A propriedade velocidade é a velocidade atual do carro em km/h.
+// 1. Use uma função construtora para implementar um Carro. Um carro possui as propriedades marca e velocidade. 
+//     A propriedade velocidade é a velocidade atual do carro em km/h.
 
-2. Implemente um método acelerar que aumente a velocidade do carro em 10 e exiba a nova velocidade no console.
+// 2. Implemente um método acelerar que aumente a velocidade do carro em 10 e exiba a nova velocidade no console.
 
-3. Implemente um método frear que diminua a velocidade do carro em 5 e exiba a nova velocidade no console.
+// 3. Implemente um método frear que diminua a velocidade do carro em 5 e exiba a nova velocidade no console.
 
-4. Crie dois objetos de carro e experimente chamar os métodos acelerar e frear várias vezes em cada um deles.
+// 4. Crie dois objetos de carro e experimente chamar os métodos acelerar e frear várias vezes em cada um deles.
 
-DADOS DO CARRO 1: 'BMW' indo a 120 km/h
-DADOS DO CARRO 2: 'Mercedes' indo a 95 km/h
-
-
-*/
+// DADOS DO CARRO 1: 'BMW' indo a 120 km/h
+// DADOS DO CARRO 2: 'Mercedes' indo a 95 km/h
 
 
-const Car = function(make, speed){
-this.make = make;
-this.speed = speed;
-}
-
-const car1 = new Car('BMW', 120);
-const car2 = new Car('Mercedes', 95);
-
-console.log(car1);
-
-Car.prototype.accelerate = function(){
-  this.speed += 10 ;
-console.log(this.make + ' - ' + this.speed + ' km/h');
-};
+// */
 
 
-Car.prototype.brake = function(){
-  (this.speed >= 5) ? (this.speed -= 5) : (this.speed = 0);
-  console.log(this.make + ' - ' + this.speed + ' km/h');
-}
+// const Car = function(make, speed){
+// this.make = make;
+// this.speed = speed;
+// }
 
-car1.accelerate();
-car1.accelerate();
-car1.accelerate();
-car1.brake();
+// const car1 = new Car('BMW', 120);
+// const car2 = new Car('Mercedes', 95);
 
-car2.accelerate();
-car2.brake();
-car2.brake();
-car2.brake();
+// console.log(car1);
+
+// Car.prototype.accelerate = function(){
+//   this.speed += 10 ;
+// console.log(this.make + ' - ' + this.speed + ' km/h');
+// };
+
+
+// Car.prototype.brake = function(){
+//   (this.speed >= 5) ? (this.speed -= 5) : (this.speed = 0);
+//   console.log(this.make + ' - ' + this.speed + ' km/h');
+// }
+
+// car1.accelerate();
+// car1.accelerate();
+// car1.accelerate();
+// car1.brake();
+
+// car2.accelerate();
+// car2.brake();
+// car2.brake();
+// car2.brake();
 
 /* --------------------------- 214. ES6 Classes --------------------------- */
 
@@ -269,3 +269,73 @@ car2.brake();
 
   jose.init('Jose', 1999);  
   jose.message();
+
+
+
+  ///////////////////////////////////////
+// Coding Challenge #2
+
+/* 
+1. Re-create challenge 1, but this time using an ES6 class;
+2. Add a getter called 'speedUS' which returns the current speed in mi/h (divide by 1.6);
+3. Add a setter called 'speedUS' which sets the current speed in mi/h (but converts it to km/h before storing the value, by multiplying the input by 1.6);
+4. Create a new car and experiment with the accelerate and brake methods, and with the getter and setter.
+
+DATA CAR 1: 'Ford' going at 120 km/h
+
+
+
+1. Recrie o desafio 1, mas desta vez usando uma classe ES6;
+
+2. Adicione um getter chamado 'speedUS' que retorna a velocidade atual em mi/h (dividindo por 1.6);
+
+3. Adicione um setter chamado 'speedUS' que define a velocidade atual em mi/h (mas converte para km/h antes de armazenar o valor, 
+multiplicando a entrada por 1.6);
+
+4. Crie um novo carro e experimente os métodos de acelerar e frear, além do getter e setter.
+
+DADOS DO CARRO 1: 'Ford' indo a 120 km/h
+
+
+GOOD LUCK 😀
+*/
+
+
+class Car {
+  constructor(brand, speed) {
+    this.brand = brand;
+    this.speed = speed;
+  }
+
+  accelerate(){
+    this.speed += 10;
+    console.log(this.speed);
+  }
+
+  brake(){
+    this.speed -= 5;
+    console.log(this.speed);
+  }
+
+  get speedUS(){
+    return (this.speed/1.6);
+  }
+
+  set speedUS(speed){    
+    this.speed = speed * 1.6;   
+  }
+
+}
+
+const ford = new Car('Ford', 120);
+
+console.log(ford);
+
+ford.accelerate();
+ford.brake();
+ford.brake();
+
+console.log(ford.speedUS);
+
+ford.speedUS = 40;
+console.log(ford);
