@@ -224,7 +224,7 @@ car2.brake();
   
 /* --------------------------- 225. Setters and Getters --------------------------- */
 
- const walter = new PersonCl('walter', 1965);
+ const walter = new PersonCl('walter jose', 1965);
 
   const account = {
     owner: 'Denis',
@@ -234,9 +234,38 @@ car2.brake();
     get latest() {
       return this.movements
     }
-  }
+  };
 
 
-  console.log(account.latest)
+  console.log(account.latest);
 
   
+  /* --------------------------- 227. Object.create() --------------------------- */
+
+  const PersonProto = {
+    init(name, birthYear){
+      this.name = name;
+      this.birthYear = birthYear;
+    },
+    calcAge(){
+      console.log(2024 - this.birthYear);
+      return (2024 - this.birthYear);
+    },
+    message(){
+      console.log(`Olá meu nome é ${this.name} e tenho ${this.calcAge()} anos.`);
+    }   
+  }
+
+  const steven = Object.create(PersonProto);
+  console.log(steven);
+  steven.name ='Steven';
+  steven.birthYear = 2001;
+  steven.calcAge();
+  steven.message();
+
+  console.log(steven.__proto__ == PersonProto);
+
+  const jose = Object.create(PersonProto);
+
+  jose.init('Jose', 1999);  
+  jose.message();
