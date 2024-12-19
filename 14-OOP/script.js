@@ -414,133 +414,169 @@ DADOS DO CARRO 1: 'Tesla' indo a 120 km/h, com uma carga de 23%
 GOOD LUCK 😀
 */
 
-const Car = function(make, currentSpeed) {
-  this.make = make;
-  this.currentSpeed = currentSpeed;
-};
+// const Car = function(make, currentSpeed) {
+//   this.make = make;
+//   this.currentSpeed = currentSpeed;
+// };
 
-Car.prototype.accelerate = function(){
-  this.currentSpeed += 10;
-  console.log(`${this.make} is goind at ${this.currentSpeed} km/h`);
-}
-Car.prototype.brake = function(){
-  this.currentSpeed -= 5;
-  console.log(`${this.make} is going at ${this.currentSpeed} km/h`);
-}
+// Car.prototype.accelerate = function(){
+//   this.currentSpeed += 10;
+//   console.log(`${this.make} is goind at ${this.currentSpeed} km/h`);
+// }
+// Car.prototype.brake = function(){
+//   this.currentSpeed -= 5;
+//   console.log(`${this.make} is going at ${this.currentSpeed} km/h`);
+// }
 
-const Ev = function(make, currentSpeed, charge){
-  Car.call(this, make, currentSpeed);
-  this.charge = charge;
-};
-
-
-// link the prototypes
-
-Ev.prototype = Object.create(Car.prototype);
-Ev.prototype.chargeBattery = function(chargeTo){
-this.charge = chargeTo;
-};
-
-// deve ficar após linkar os prototypes
-const tesla = new Ev('Tesla', 120, 6);
-console.log(tesla);
+// const Ev = function(make, currentSpeed, charge){
+//   Car.call(this, make, currentSpeed);
+//   this.charge = charge;
+// };
 
 
- Ev.prototype.accelerate = function(){ // essa alteração não afeta o accelerate do objeto Car, apenas o do Ev
-  if(this.charge>0){
-    this.currentSpeed += 20;  
-    this.charge --;    
-  } else {
-      this.currentSpeed = 0;
-      this.charge = 0;
-  }
-  console.log(`Car: ${this.make}, Current Speed: ${this.currentSpeed} km/h, Charge: ${this.charge} %`)
-};
+// // link the prototypes
 
-console.log(tesla);
+// Ev.prototype = Object.create(Car.prototype);
+// Ev.prototype.chargeBattery = function(chargeTo){
+// this.charge = chargeTo;
+// };
 
-tesla.accelerate();
-tesla.accelerate();
-tesla.accelerate();
-tesla.accelerate();
-tesla.accelerate();
-tesla.accelerate();
-tesla.accelerate();
-tesla.chargeBattery(50);
-tesla.accelerate();
-tesla.accelerate();
-tesla.accelerate();
-tesla.brake();
+// // deve ficar após linkar os prototypes
+// const tesla = new Ev('Tesla', 120, 6);
+// console.log(tesla);
 
 
+//  Ev.prototype.accelerate = function(){ // essa alteração não afeta o accelerate do objeto Car, apenas o do Ev
+//   if(this.charge>0){
+//     this.currentSpeed += 20;  
+//     this.charge --;    
+//   } else {
+//       this.currentSpeed = 0;
+//       this.charge = 0;
+//   }
+//   console.log(`Car: ${this.make}, Current Speed: ${this.currentSpeed} km/h, Charge: ${this.charge} %`)
+// };
 
-/* --------------------------- 231. Inheritance Between "Classes": ES6 Classes --------------------------- */
+// console.log(tesla);
 
-// class declaration
-  class PersonCl {
-    constructor(fullName, birthYear){
-      this.fullName = fullName;
+// tesla.accelerate();
+// tesla.accelerate();
+// tesla.accelerate();
+// tesla.accelerate();
+// tesla.accelerate();
+// tesla.accelerate();
+// tesla.accelerate();
+// tesla.chargeBattery(50);
+// tesla.accelerate();
+// tesla.accelerate();
+// tesla.accelerate();
+// tesla.brake();
+
+
+
+// /* --------------------------- 231. Inheritance Between "Classes": ES6 Classes --------------------------- */
+
+// // class declaration
+//   class PersonCl {
+//     constructor(fullName, birthYear){
+//       this.fullName = fullName;
+//       this.birthYear = birthYear;
+//     }
+
+//     //Methods will be added to .prototype property
+//     //todos os metodos escritos fora do construtor estará no protótipo(prototype), e não no próprio objeto
+//     calcAge(){
+//       console.log(2024 - this.birthYear);
+//     }
+
+//    greet(){
+//       console.log(`Olá ${this.fullName}`);
+//     }
+
+//       get age(){
+//         return 2024 - this.birthYear;    
+//       }
+
+//   // Set a property that allready exists
+//       set fullName(name){
+//         console.log(name);
+//         if(name.includes(' ')) this._fullName = name;
+//         else alert(`${name} is not a full name!`);
+//       }
+
+//       get fullName(){
+//         return this._fullName;
+//       }
+//   }
+
+//   const jessica = new PersonCl('Jessica Davis', 2000);
+  
+//   console.log(jessica);
+//   jessica.calcAge();
+//   console.log(jessica.age);
+
+//   console.log(jessica.__proto__ == PersonCl.prototype);
+
+//   // PersonCl.prototype.greet = function (){
+//   //   console.log(`Olá ${this.firstName}`);
+//   // }
+
+//   jessica.greet();
+
+//   class studentCl extends PersonCl {
+//     constructor(fullName, birthYear, course){
+//       // Always needs to happen fisrt! o super deve vir primeiro, pois precisa gravar a palavra chave no disco
+//       super(fullName, birthYear);
+//       this.course = course;
+//     }
+//     introduce(){
+//       console.log(`Meu nome é ${this.fullName} e eu estudo ${this.course}`)
+//     }
+
+//     calcAge(){
+//       console.log((`Olá tenho ${2024-this.birthYear}`));
+//     }
+//   }
+
+//   const marta = new studentCl('marta jones', 2002, 'Computer Science');
+//   console.log(marta);
+
+//   marta.introduce();
+//   marta.calcAge();
+
+
+
+  /* --------------------------- 232. Inheritance Between "Classes": Object.create --------------------------- */
+
+  const PersonProto = {
+    calcAge(){
+      console.log(2037 - this.birthYear);
+    },
+
+    init(firstName, birthYear){
+      this.firstName = firstName;
       this.birthYear = birthYear;
     }
+  };
 
-    //Methods will be added to .prototype property
-    //todos os metodos escritos fora do construtor estará no protótipo(prototype), e não no próprio objeto
-    calcAge(){
-      console.log(2024 - this.birthYear);
-    }
+  const steven = Object.create(PersonProto);
 
-   greet(){
-      console.log(`Olá ${this.fullName}`);
-    }
+const StudentProto = Object.create(PersonProto);
+const jay = Object.create(StudentProto);
 
-      get age(){
-        return 2024 - this.birthYear;    
-      }
+StudentProto.init = function (firstName, birthYear, course){
+  PersonProto.init.call(this, firstName, birthYear);
+  this.course = course
+};
 
-  // Set a property that allready exists
-      set fullName(name){
-        console.log(name);
-        if(name.includes(' ')) this._fullName = name;
-        else alert(`${name} is not a full name!`);
-      }
+StudentProto.introduce = function(){
+  console.log(`My name is ${this.firstName} and I study ${this.course}`);
+}
 
-      get fullName(){
-        return this._fullName;
-      }
-  }
+const joao = Object.create(StudentProto);
 
-  const jessica = new PersonCl('Jessica Davis', 2000);
-  
-  console.log(jessica);
-  jessica.calcAge();
-  console.log(jessica.age);
 
-  console.log(jessica.__proto__ == PersonCl.prototype);
+joao.init('Joao', 1999, 'Adm');
 
-  // PersonCl.prototype.greet = function (){
-  //   console.log(`Olá ${this.firstName}`);
-  // }
-
-  jessica.greet();
-
-  class studentCl extends PersonCl {
-    constructor(fullName, birthYear, course){
-      // Always needs to happen fisrt! o super deve vir primeiro, pois precisa gravar a palavra chave no disco
-      super(fullName, birthYear);
-      this.course = course;
-    }
-    introduce(){
-      console.log(`Meu nome é ${this.fullName} e eu estudo ${this.course}`)
-    }
-
-    calcAge(){
-      console.log((`Olá tenho ${2024-this.birthYear}`));
-    }
-  }
-
-  const marta = new studentCl('marta jones', 2002, 'Computer Science');
-  console.log(marta);
-
-  marta.introduce();
-  marta.calcAge();
-
+joao.introduce();
+joao.calcAge();
