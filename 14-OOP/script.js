@@ -630,3 +630,19 @@ acc1.requestLoan(1000);
 acc1.approveLoan(1000); // esse método não deveria se acessivel aqui (é necessário deixar privado)
 
   console.log(acc1);
+
+
+    /* --------------------------- 234. Encapsulation: Private Class Fields and Methods --------------------------- */
+
+/*
+    1) Public fields (Campos públicos)
+    2) Private fields (Campos privados) - Isso permitira fazer o encapsulamento
+    3)  Public methods (Métodos públicos)
+    4) Private methods (Métodos privados)
+
+    STATIC version od these 4 (Versão estática dos 4) - não é muito importante
+
+    O que é um CAMPO, podemos pensar que é como uma propriedade que estará em otdas as instâncias da classe.
+      Podemos declarar tudo como um campo que desejamos estar presente em todas a instâncias, mas não no protótipo.
+      Ou seja Campos não serão herdados, diferentemente dos métodos que serão adicionados ao protótipo para que as instâncias herdem.
+*/
