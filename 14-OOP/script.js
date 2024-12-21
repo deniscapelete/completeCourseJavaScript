@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 
 // /* --------------------------- 209. Constructor Functions and the new Operator --------------------------- */
 
@@ -10,12 +10,11 @@
 // this.firstName = firstName;
 // this.birthYear = birthYear;
 
-
 // // Nunca criar um método em uma função contrutora, pois se tivessemos mil chamadas  por exemplo teriamos problemas no desempenho
 //   // this.calcAge = function (){
 //   //   console.log(2037 - this.birthYear);
 //   // };
-  
+
 // };
 
 // const denis = new Person('Denis', 1999);
@@ -31,7 +30,6 @@
 
 // // 4. A função retorna automaticamente aquele obkjeto {}
 
-
 // const matilda = new Person('Matilda', 2017);
 // const jack = new Person('Jack', 1975);
 // console.log(matilda, jack);
@@ -41,7 +39,6 @@
 // /* --------------------------- 210. Prototypes --------------------------- */
 // // Prototypes
 // console.log(Person.prototpe);
-
 
 // // adicionando um método
 // Person.prototype.calcAge = function (){
@@ -59,7 +56,6 @@
 // console.log(Person.prototype.isPrototypeOf(Person)); // false
 
 // // prototype = .prototypeOfLinkedObjects (podemos entender dessa forma pois não está ligado ao Person)
-
 
 // // adicionando uma propriedade, ela não fica diretamente ligada ao objeto
 
@@ -84,10 +80,9 @@
 
 // console.log(arr.__proto__.__proto__);
 
-
-// /* 
+// /*
 //   Não é uma boa pratica ficarmos adicinando métodos, pois, pode haver outros programadores e cada um nomear de uma forma,
-//     ou pode haver alguma inclusão ou alteração no javascript que utilize o nome do metodo que voce criou de alguma outra forma 
+//     ou pode haver alguma inclusão ou alteração no javascript que utilize o nome do metodo que voce criou de alguma outra forma
 //     e isso irá quebrar o código.
 // */
 // Array.prototype.unique = function (){
@@ -101,11 +96,10 @@
 
 // console.dir(x => x-1);
 
-
 // ///////////////////////////////////////
 // // Coding Challenge #1
 
-// /* 
+// /*
 // 1. Use a constructor function to implement a Car. A car has a make and a speed property. The speed property is the current speed of the car in km/h;
 // 2. Implement an 'accelerate' method that will increase the car's speed by 10, and log the new speed to the console;
 // 3. Implement a 'brake' method that will decrease the car's speed by 5, and log the new speed to the console;
@@ -116,7 +110,7 @@
 
 // GOOD LUCK 😀
 
-// 1. Use uma função construtora para implementar um Carro. Um carro possui as propriedades marca e velocidade. 
+// 1. Use uma função construtora para implementar um Carro. Um carro possui as propriedades marca e velocidade.
 //     A propriedade velocidade é a velocidade atual do carro em km/h.
 
 // 2. Implemente um método acelerar que aumente a velocidade do carro em 10 e exiba a nova velocidade no console.
@@ -128,9 +122,7 @@
 // DADOS DO CARRO 1: 'BMW' indo a 120 km/h
 // DADOS DO CARRO 2: 'Mercedes' indo a 95 km/h
 
-
 // */
-
 
 // const Car = function(make, speed){
 // this.make = make;
@@ -146,7 +138,6 @@
 //   this.speed += 10 ;
 // console.log(this.make + ' - ' + this.speed + ' km/h');
 // };
-
 
 // Car.prototype.brake = function(){
 //   (this.speed >= 5) ? (this.speed -= 5) : (this.speed = 0);
@@ -186,7 +177,7 @@
 //     }
 
 //       get age(){
-//         return 2024 - this.birthYear;    
+//         return 2024 - this.birthYear;
 //       }
 
 //   // Set a property that allready exists
@@ -202,7 +193,7 @@
 //   }
 
 //   const jessica = new PersonCl('Jessica Davis', 2000);
-  
+
 //   console.log(jessica);
 //   jessica.calcAge();
 //   console.log(jessica.age);
@@ -221,7 +212,6 @@
 //   3. o Corpo de uma classe é sempre executado estritamente (strict mode).
 //   */
 
-  
 // /* --------------------------- 225. Setters and Getters --------------------------- */
 
 //  const walter = new PersonCl('walter jose', 1965);
@@ -230,16 +220,13 @@
 //     owner: 'Denis',
 //     movements: [50, 120, 160, 200, 250],
 
-
 //     get latest() {
 //       return this.movements
 //     }
 //   };
 
-
 //   console.log(account.latest);
 
-  
 //   /* --------------------------- 227. Object.create() --------------------------- */
 
 //   const PersonProto = {
@@ -253,7 +240,7 @@
 //     },
 //     message(){
 //       console.log(`Olá meu nome é ${this.name} e tenho ${this.calcAge()} anos.`);
-//     }   
+//     }
 //   }
 
 //   const steven = Object.create(PersonProto);
@@ -267,12 +254,10 @@
 
 //   const jose = Object.create(PersonProto);
 
-//   jose.init('Jose', 1999);  
+//   jose.init('Jose', 1999);
 //   jose.message();
 
-
-
-  ///////////////////////////////////////
+///////////////////////////////////////
 // Coding Challenge #2
 
 /* 
@@ -300,7 +285,6 @@ DADOS DO CARRO 1: 'Ford' indo a 120 km/h
 GOOD LUCK 😀
 */
 
-
 // class Car {
 //   constructor(brand, speed) {
 //     this.brand = brand;
@@ -321,8 +305,8 @@ GOOD LUCK 😀
 //     return (this.speed/1.6);
 //   }
 
-//   set speedUS(speed){    
-//     this.speed = speed * 1.6;   
+//   set speedUS(speed){
+//     this.speed = speed * 1.6;
 //   }
 
 // }
@@ -340,7 +324,6 @@ GOOD LUCK 😀
 // ford.speedUS = 40;
 // console.log(ford);
 
-
 // const Person = function(firstName, birthYear) {
 //   this.firstName = firstName;
 //   this.birthYear = birthYear;
@@ -349,7 +332,6 @@ GOOD LUCK 😀
 // Person.prototype.calcAge = function(){
 //   return (2024 - this.birthYear);
 // }
-
 
 // const Student = function(firstName, birthYear, course) {
 //    Person.call(this, firstName, birthYear);
@@ -372,18 +354,16 @@ GOOD LUCK 😀
 
 // console.log(lucas.__proto__);
 // console.log(lucas.__proto__.__proto__);
- 
+
 // console.log(lucas instanceof Student);
 
-
 // Student.prototype.constructor = Student;
-//   /* 
-//     é necessario fazer isso, pois como utilizamos o 'Object.create' ele está considerando o 'Person' como o contrutor, 
+//   /*
+//     é necessario fazer isso, pois como utilizamos o 'Object.create' ele está considerando o 'Person' como o contrutor,
 //     porém queremos que seja o próprio 'Student'
 //   */
 
 // console.dir(Student.prototype.constructor); // ƒ Student(firstName, birthYear, course)
-
 
 //   /* --------------------------- 230. CHALLENGE #3 --------------------------- */
 
@@ -433,7 +413,6 @@ GOOD LUCK 😀
 //   this.charge = charge;
 // };
 
-
 // // link the prototypes
 
 // Ev.prototype = Object.create(Car.prototype);
@@ -445,11 +424,10 @@ GOOD LUCK 😀
 // const tesla = new Ev('Tesla', 120, 6);
 // console.log(tesla);
 
-
 //  Ev.prototype.accelerate = function(){ // essa alteração não afeta o accelerate do objeto Car, apenas o do Ev
 //   if(this.charge>0){
-//     this.currentSpeed += 20;  
-//     this.charge --;    
+//     this.currentSpeed += 20;
+//     this.charge --;
 //   } else {
 //       this.currentSpeed = 0;
 //       this.charge = 0;
@@ -472,8 +450,6 @@ GOOD LUCK 😀
 // tesla.accelerate();
 // tesla.brake();
 
-
-
 // /* --------------------------- 231. Inheritance Between "Classes": ES6 Classes --------------------------- */
 
 // // class declaration
@@ -494,7 +470,7 @@ GOOD LUCK 😀
 //     }
 
 //       get age(){
-//         return 2024 - this.birthYear;    
+//         return 2024 - this.birthYear;
 //       }
 
 //   // Set a property that allready exists
@@ -510,7 +486,7 @@ GOOD LUCK 😀
 //   }
 
 //   const jessica = new PersonCl('Jessica Davis', 2000);
-  
+
 //   console.log(jessica);
 //   jessica.calcAge();
 //   console.log(jessica.age);
@@ -544,100 +520,95 @@ GOOD LUCK 😀
 //   marta.introduce();
 //   marta.calcAge();
 
+//   /* --------------------------- 232. Inheritance Between "Classes": Object.create --------------------------- */
 
+//   const PersonProto = {
+//     calcAge(){
+//       console.log(2037 - this.birthYear);
+//     },
 
-  /* --------------------------- 232. Inheritance Between "Classes": Object.create --------------------------- */
+//     init(firstName, birthYear){
+//       this.firstName = firstName;
+//       this.birthYear = birthYear;
+//     }
+//   };
 
-  const PersonProto = {
-    calcAge(){
-      console.log(2037 - this.birthYear);
-    },
+//   const steven = Object.create(PersonProto);
 
-    init(firstName, birthYear){
-      this.firstName = firstName;
-      this.birthYear = birthYear;
-    }
-  };
+// const StudentProto = Object.create(PersonProto);
+// const jay = Object.create(StudentProto);
 
-  const steven = Object.create(PersonProto);
+// StudentProto.init = function (firstName, birthYear, course){
+//   PersonProto.init.call(this, firstName, birthYear);
+//   this.course = course
+// };
 
-const StudentProto = Object.create(PersonProto);
-const jay = Object.create(StudentProto);
+// StudentProto.introduce = function(){
+//   console.log(`My name is ${this.firstName} and I study ${this.course}`);
+// }
 
-StudentProto.init = function (firstName, birthYear, course){
-  PersonProto.init.call(this, firstName, birthYear);
-  this.course = course
-};
+// const joao = Object.create(StudentProto);
 
-StudentProto.introduce = function(){
-  console.log(`My name is ${this.firstName} and I study ${this.course}`);
-}
+// joao.init('Joao', 1999, 'Adm');
 
-const joao = Object.create(StudentProto);
+// joao.introduce();
+// joao.calcAge();
 
+//   /* --------------------------- 233. Another Class Example --------------------------- */
 
-joao.init('Joao', 1999, 'Adm');
+//   class Account {
+//     constructor (owner, currency, pin) {
+//       this.owner = owner;
+//       this.currency = currency;
+//       this.pin = pin;
+//       this.movements = [];
+//       this.locale = navigator.language;
 
-joao.introduce();
-joao.calcAge();
+//       console.log(`Thanks for opening an account, ${owner}`);
+//     }
+// // Public interface
+//     deposit(val) {
+//       this.movements.push(val);
+//     }
 
+//     withdraw(val) {
+//       this.deposit(-val);
+//     }
 
-  /* --------------------------- 233. Another Class Example --------------------------- */
+//     approveLoan(val){
+//       return true;
+//     }
 
-  class Account {
-    constructor (owner, currency, pin) {
-      this.owner = owner;
-      this.currency = currency;
-      this.pin = pin;
-      this.movements = [];
-      this.locale = navigator.language;
+//     requestLoan(val){
+//       if(this.approveLoan(val)){
+//         this.deposit(val);
+//         console.log(`Loan approved`);
+//       }
+//     }
 
-      console.log(`Thanks for opening an account, ${owner}`);      
-    }
-// Public interface
-    deposit(val) {
-      this.movements.push(val);
-    }
+//   }
 
-    withdraw(val) {
-      this.deposit(-val);
-    }
+//   const acc1 = new Account ('Denis', 'EUR', 1111);
+//   console.log(acc1);
 
-    approveLoan(val){
-      return true;
-    }
+//   /*
+//       NÃO É UMA BOA IDEIA FAZER DESSA FORMA, é melhor criar metodos que interagem com essas propriedades
+//     acc1.movements.push(320);
+//     acc1.movements.push(-110);
+//   */
+//   acc1.deposit(135);
+//   acc1.withdraw(135);
+// acc1.requestLoan(1000);
+// acc1.approveLoan(1000); // esse método não deveria se acessivel aqui (é necessário deixar privado)
 
-    requestLoan(val){
-      if(this.approveLoan(val)){
-        this.deposit(val);
-        console.log(`Loan approved`);
-      }
-    }
+//   console.log(acc1);
 
-  }
-
-  const acc1 = new Account ('Denis', 'EUR', 1111);
-  console.log(acc1);
-
-  /*
-      NÃO É UMA BOA IDEIA FAZER DESSA FORMA, é melhor criar metodos que interagem com essas propriedades
-    acc1.movements.push(320);
-    acc1.movements.push(-110); 
-  */
-  acc1.deposit(135);
-  acc1.withdraw(135);
-acc1.requestLoan(1000);
-acc1.approveLoan(1000); // esse método não deveria se acessivel aqui (é necessário deixar privado)
-
-  console.log(acc1);
-
-
-    /* --------------------------- 234. Encapsulation: Private Class Fields and Methods --------------------------- */
+/* --------------------------- 234. Encapsulation: Private Class Fields and Methods --------------------------- */
 
 /*
     1) Public fields (Campos públicos)
     2) Private fields (Campos privados) - Isso permitira fazer o encapsulamento
-    3)  Public methods (Métodos públicos)
+    3) Public methods (Métodos públicos)
     4) Private methods (Métodos privados)
 
     STATIC version od these 4 (Versão estática dos 4) - não é muito importante
@@ -646,3 +617,61 @@ acc1.approveLoan(1000); // esse método não deveria se acessivel aqui (é neces
       Podemos declarar tudo como um campo que desejamos estar presente em todas a instâncias, mas não no protótipo.
       Ou seja Campos não serão herdados, diferentemente dos métodos que serão adicionados ao protótipo para que as instâncias herdem.
 */
+
+class Account {
+  // Public fields
+  locale = navigator.language;
+  bank = "Bankist";
+
+  // Private fields
+  #movements = [];
+  #pin;
+
+  //Private fiels (não podem ser acessados pelo lado de fora)
+
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    this.#pin = pin;
+    // this.movements = [];
+    // this.locale = navigator.language;
+
+    console.log(`Thanks for opening an account, ${owner}`);
+  }
+
+  // Public methods - interface (API)
+  getMovements() {
+    return this.#movements;
+  }
+
+  deposit(val) {
+    this.#movements.push(val);
+  }
+  withdraw(val) {
+    this.deposit(-val);
+  }
+
+  requestLoad(val) {
+    if (this.#approveLoan(val)) {
+      this.deposit(val);
+      console.log(`Loan approved`);
+    }
+  }
+
+  // Private methods
+  #approveLoan(val) {
+    // fake method
+    return true;
+  }
+}
+
+const acc1 = new Account("Denis", "BRL", 1111);
+acc1.deposit(310);
+acc1.withdraw(150);
+/*
+  // acc1.movements = []; // isso gera uma nova propriedade, diferente da que foi criada de forma privada dentro do class '#movements'.
+  // acc1.#movements = []; // só pode ser utilizado dentro do class
+
+  //acc1.#approveLoan(323);
+*/
+console.log(acc1);
