@@ -641,14 +641,16 @@ class Account {
 
   // Public methods - interface (API)
   getMovements() {
-    return this.#movements;
+    return this.#movements;   
   }
 
   deposit(val) {
     this.#movements.push(val);
+    return this;
   }
   withdraw(val) {
     this.deposit(-val);
+    return this;
   }
 
   requestLoad(val) {
@@ -656,6 +658,7 @@ class Account {
       this.deposit(val);
       console.log(`Loan approved`);
     }
+    return this
   }
 
   // Private methods
@@ -675,3 +678,13 @@ acc1.withdraw(150);
   //acc1.#approveLoan(323);
 */
 console.log(acc1);
+
+/* --------------------------- 235. Chaining Methods --------------------------- */
+// basta ajustarmos no metodo para que o return seja this, porém nem todo método pode ser encadeado (aqueles que ja possuem return)
+
+acc1
+  .deposit(20)
+  .deposit(50)
+  .withdraw(80)
+  .deposit(200)
+  .getMovements(); // esse ultimo método funciona apenas no final, pois ele já possui um return para o moviments então não pode ser encadeado
