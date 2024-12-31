@@ -686,47 +686,65 @@ GOOD LUCK 😀
 
 /* --------------------------- 236. ES6 Classes Summary --------------------------- */
 
+// Classe - deve ser criada no "use strict"
 const Person = function (fullName, birthYear) {
   this.fullName = fullName;
   this.birthYear = birthYear;
 };
 
+// Classe filha
 class Student extends Person {
-  university = "Universidade Federal de viçosa";
-  #studyHours = 0;
+  /* extends - configura a herança entre as duas classes incluindo a cadeia de prototipo */
+  university =
+    "Universidade Federal de viçosa"; /* Campo público - é semelhante uma propriedade */
+  #studyHours = 0; /* Campo privado - não são acessiveis fora da classe */
   #course;
-  static numSubjects = 10;
+  static numSubjects = 10; /* Campo estático - não são acessiveis fora da classe */
 
   constructor(fullName, birthYear, startYear, course) {
-    super(fullName, birthYear);
+    /* O método construtor é obrigatório em 
+    qualquer classe regular */
 
-    this.startYear = startYear;
-    this.#course = course;
+    super(fullName, birthYear); /*super - é utilizado para chamar a classe pai, 
+    isso precisa acontecer antes de acessarmos a palavra chave no disco */
+
+    this.startYear = startYear; /* Instanciando a propriedade */
+    this.#course =
+      course; /* Instanciando a propriedade - definindo valor para o campo privado */
   }
 
   introduce() {
+    /* Método público */
     console.log(`Eu estudo ${this.#course} na ${this.university}.`);
   }
 
   study(h) {
+    /* Método público, referindo se a um metodo e campo privados*/
     this.#makeCoffe();
     this.#studyHours += h;
   }
 
   #makeCoffe() {
+    /* Método privado */
     return `Esse café é para você.`;
   }
   get testScore() {
+    /* Método getter - serve para obter um valor */
     return this._testScore;
   }
   set testScore(score) {
+    /* Método setter - define um valor, 
+    se já houver a propriedade definida, deve utilizar o '_' antes do nome */
     this._testScore = score <= 20 ? score : 0;
   }
   static printCurriculum() {
+    /* Método static - disponivel apenas na classe, não pode acessar as propriedade 
+    da instância nem os métodos. */
     console.log(`Existe ${this.numSubjects} assunto(s).`);
   }
 }
 
+/* Criando um novo objeto */
 const student = new Student("Denis", 2016, 2020, "Direito");
 
 console.log(student);
