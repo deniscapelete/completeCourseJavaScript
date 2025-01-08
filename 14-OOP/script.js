@@ -688,3 +688,86 @@ acc1
   .withdraw(80)
   .deposit(200)
   .getMovements(); // esse ultimo método funciona apenas no final, pois ele já possui um return para o moviments então não pode ser encadeado
+
+
+
+
+  /* --------------------------- 237. CHALLENGE #4 --------------------------- */  
+
+// Coding Challenge #4
+
+/* 
+1. Re-create challenge #3, but this time using ES6 classes: create an 'EVCl' child class of the 'CarCl' class
+2. Make the 'charge' property private;
+3. Implement the ability to chain the 'accelerate' and 'chargeBattery' methods of this class, and also update the 'brake' method in the 'CarCl' class. They experiment with chining!
+
+DATA CAR 1: 'Rivian' going at 120 km/h, with a charge of 23%
+
+1. Recrie o desafio #3, mas desta vez usando classes ES6:
+
+Crie uma classe filha chamada 'EVCl' a partir da classe 'CarCl'.
+2. Torne a propriedade 'charge' privada;
+
+A propriedade charge deve ser acessível apenas dentro da classe.
+3. Implemente a capacidade de encadear (chaining) os métodos 'accelerate' e 'chargeBattery'
+
+Permita que os métodos accelerate e chargeBattery possam ser chamados em sequência.
+Atualize também o método brake na classe CarCl para suportar o encadeamento.
+DADOS DO CARRO 1:
+
+'Rivian' a 120 km/h, com 23% de carga.
+
+GOOD LUCK 😀
+*/
+
+class CarCl {
+  constructor(make, currentSpeed) {
+    this.make = make;
+    this.currentSpeed = currentSpeed;
+  }
+
+  accelerate(){
+    this.currentSpeed += 20;   
+    console.log(`${this.make} - speed: ${this.currentSpeed}!`);
+  }
+
+  brake(){
+    this.currentSpeed = this.currentSpeed - 5;
+    console.log(`${this.make} - speed: ${this.currentSpeed}!`);
+    return this
+  }
+}
+
+class EVCl extends CarCl {
+
+  #charge;
+
+  constructor(make, currentSpeed, charge){
+    super(make, currentSpeed);
+    this.#charge = charge;
+  }
+
+  accelerate(){
+    this.currentSpeed += 20;
+    this.#charge--;
+    console.log(`${this.make} - speed: ${this.currentSpeed}, ${this.#charge}!`)
+    return this;
+  }
+  chargeBattery(chargeTo){
+      this.#charge = chargeTo;
+      return this;
+  }
+}
+
+const tesla = new EVCl ('Tesla', 100, 23);
+
+tesla.brake();
+tesla.brake();
+tesla.brake();
+tesla.chargeBattery(50);
+tesla.accelerate();
+tesla.brake();
+console.log(tesla.charge);
+
+tesla.accelerate().accelerate().accelerate().brake().accelerate();
+
