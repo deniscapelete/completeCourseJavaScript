@@ -618,78 +618,135 @@ GOOD LUCK 😀
       Ou seja Campos não serão herdados, diferentemente dos métodos que serão adicionados ao protótipo para que as instâncias herdem.
 */
 
-class Account {
-  // Public fields
-  locale = navigator.language;
-  bank = "Bankist";
+// class Account {
+//   // Public fields
+//   locale = navigator.language;
+//   bank = "Bankist";
 
-  // Private fields
-  #movements = [];
-  #pin;
+//   // Private fields
+//   #movements = [];
+//   #pin;
 
-  //Private fiels (não podem ser acessados pelo lado de fora)
+//   //Private fiels (não podem ser acessados pelo lado de fora)
 
-  constructor(owner, currency, pin) {
-    this.owner = owner;
-    this.currency = currency;
-    this.#pin = pin;
-    // this.movements = [];
-    // this.locale = navigator.language;
+//   constructor(owner, currency, pin) {
+//     this.owner = owner;
+//     this.currency = currency;
+//     this.#pin = pin;
+//     // this.movements = [];
+//     // this.locale = navigator.language;
 
-    console.log(`Thanks for opening an account, ${owner}`);
+//     console.log(`Thanks for opening an account, ${owner}`);
+//   }
+
+//   // Public methods - interface (API)
+//   getMovements() {
+//     return this.#movements;
+//   }
+
+//   deposit(val) {
+//     this.#movements.push(val);
+//     return this;
+//   }
+//   withdraw(val) {
+//     this.deposit(-val);
+//     return this;
+//   }
+
+//   requestLoad(val) {
+//     if (this.#approveLoan(val)) {
+//       this.deposit(val);
+//       console.log(`Loan approved`);
+//     }
+//     return this;
+//   }
+
+//   // Private methods
+//   #approveLoan(val) {
+//     // fake method
+//     return true;
+//   }
+// }
+
+// const acc1 = new Account("Denis", "BRL", 1111);
+// acc1.deposit(310);
+// acc1.withdraw(150);
+// /*
+//   // acc1.movements = []; // isso gera uma nova propriedade, diferente da que foi criada de forma privada dentro do class '#movements'.
+//   // acc1.#movements = []; // só pode ser utilizado dentro do class
+
+//   //acc1.#approveLoan(323);
+// */
+// console.log(acc1);
+// /* --------------------------- 235. Chaining Methods --------------------------- */
+// // basta ajustarmos no metodo para que o return seja this, porém nem todo método pode ser encadeado (aqueles que ja possuem return)
+
+// acc1.deposit(20).deposit(50).withdraw(80).deposit(200).getMovements(); // esse ultimo método funciona apenas no final, pois ele já possui um return para o moviments então não pode ser encadeado
+
+/* --------------------------- 236. ES6 Classes Summary --------------------------- */
+
+// Classe - deve ser criada no "use strict"
+const Person = function (fullName, birthYear) {
+  this.fullName = fullName;
+  this.birthYear = birthYear;
+};
+
+// Classe filha
+class Student extends Person {
+  /* extends - configura a herança entre as duas classes incluindo a cadeia de prototipo */
+  university =
+    "Universidade Federal de viçosa"; /* Campo público - é semelhante uma propriedade */
+  #studyHours = 0; /* Campo privado - não são acessiveis fora da classe */
+  #course;
+  static numSubjects = 10; /* Campo estático - não são acessiveis fora da classe */
+
+  constructor(fullName, birthYear, startYear, course) {
+    /* O método construtor é obrigatório em 
+    qualquer classe regular */
+
+    super(fullName, birthYear); /*super - é utilizado para chamar a classe pai, 
+    isso precisa acontecer antes de acessarmos a palavra chave no disco */
+
+    this.startYear = startYear; /* Instanciando a propriedade */
+    this.#course =
+      course; /* Instanciando a propriedade - definindo valor para o campo privado */
   }
 
-  // Public methods - interface (API)
-  getMovements() {
-    return this.#movements;   
+  introduce() {
+    /* Método público */
+    console.log(`Eu estudo ${this.#course} na ${this.university}.`);
   }
 
-  deposit(val) {
-    this.#movements.push(val);
-    return this;
-  }
-  withdraw(val) {
-    this.deposit(-val);
-    return this;
+  study(h) {
+    /* Método público, referindo se a um metodo e campo privados*/
+    this.#makeCoffe();
+    this.#studyHours += h;
   }
 
-  requestLoad(val) {
-    if (this.#approveLoan(val)) {
-      this.deposit(val);
-      console.log(`Loan approved`);
-    }
-    return this
+  #makeCoffe() {
+    /* Método privado */
+    return `Esse café é para você.`;
   }
-
-  // Private methods
-  #approveLoan(val) {
-    // fake method
-    return true;
+  get testScore() {
+    /* Método getter - serve para obter um valor */
+    return this._testScore;
+  }
+  set testScore(score) {
+    /* Método setter - define um valor, 
+    se já houver a propriedade definida, deve utilizar o '_' antes do nome */
+    this._testScore = score <= 20 ? score : 0;
+  }
+  static printCurriculum() {
+    /* Método static - disponivel apenas na classe, não pode acessar as propriedade 
+    da instância nem os métodos. */
+    console.log(`Existe ${this.numSubjects} assunto(s).`);
   }
 }
 
-const acc1 = new Account("Denis", "BRL", 1111);
-acc1.deposit(310);
-acc1.withdraw(150);
-/*
-  // acc1.movements = []; // isso gera uma nova propriedade, diferente da que foi criada de forma privada dentro do class '#movements'.
-  // acc1.#movements = []; // só pode ser utilizado dentro do class
+/* Criando um novo objeto */
+const student = new Student("Denis", 2016, 2020, "Direito");
 
-  //acc1.#approveLoan(323);
-*/
-console.log(acc1);
-
-/* --------------------------- 235. Chaining Methods --------------------------- */
-// basta ajustarmos no metodo para que o return seja this, porém nem todo método pode ser encadeado (aqueles que ja possuem return)
-
-acc1
-  .deposit(20)
-  .deposit(50)
-  .withdraw(80)
-  .deposit(200)
-  .getMovements(); // esse ultimo método funciona apenas no final, pois ele já possui um return para o moviments então não pode ser encadeado
-
-
+console.log(student);
 
 
   /* --------------------------- 237. CHALLENGE #4 --------------------------- */  
@@ -770,4 +827,3 @@ tesla.brake();
 console.log(tesla.charge);
 
 tesla.accelerate().accelerate().accelerate().brake().accelerate();
-
