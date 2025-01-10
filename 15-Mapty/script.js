@@ -10,3 +10,15 @@ const inputDistance = document.querySelector('.form__input--distance');
 const inputDuration = document.querySelector('.form__input--duration');
 const inputCadence = document.querySelector('.form__input--cadence');
 const inputElevation = document.querySelector('.form__input--elevation');
+
+
+if(navigator.geolocation)
+    navigator.geolocation.getCurrentPosition(function(position){
+       
+        const {latitude} = position.coords
+        const {longitude} = position.coords
+       console.log(`https://www.google.com.br/maps/@${latitude},${longitude}z?entry=ttu&g_ep=EgoyMDI1MDEwOC4wIKXMDSoASAFQAw%3D%3D`)
+        }, function(){
+            alert('Não conseguimos a sua localização')
+        }
+    );
