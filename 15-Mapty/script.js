@@ -13,40 +13,54 @@ const inputElevation = document.querySelector('.form__input--elevation');
 
 let map, mapEvent;
 
-if(navigator.geolocation)
-    navigator.geolocation.getCurrentPosition(function(position){
-       
-        const {latitude} = position.coords
-        const {longitude} = position.coords
-       console.log(`https://www.google.com.br/maps/@${latitude},${longitude}z?entry=ttu&g_ep=EgoyMDI1MDEwOC4wIKXMDSoASAFQAw%3D%3D`);
-       
-       const coords = [latitude, longitude];
 
-       map = L.map('map').setView(coords, 14);
-    //    console.log(map);
 
-            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
+class App {
+    constructor(){
+        this._getPosition();
+    }
 
-            // Handling clicks on map
-            map.on('click', function(mapE){
-                mapEvent = mapE;
-                form.classList.remove('hidden')
-                inputDistance.focus()
-                
-                
+    _getPosition(){
+        if(navigator.geolocation)
+            navigator.geolocation.getCurrentPosition(this._loadMap,
+         function(){
+                    alert('Não conseguimos a sua localização')
+                }
+            );
+    }
+    _loadMap(position){
+      
                
-            });
-
+            const {latitude} = position.coords
+            const {longitude} = position.coords
+           console.log(`https://www.google.com.br/maps/@${latitude},${longitude}z?entry=ttu&g_ep=EgoyMDI1MDEwOC4wIKXMDSoASAFQAw%3D%3D`);
            
+           const coords = [latitude, longitude];
+    
+           map = L.map('map').setView(coords, 14);
+        //    console.log(map);
+    
+                L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(map);
+    
+                // Handling clicks on map
+                map.on('click', function(mapE){
+                    mapEvent = mapE;
+                    form.classList.remove('hidden')
+                    inputDistance.focus()
+                    
+                    
+                   
+                });  
+    }
 
-                
+    _showForm(){}
+    _toggleElevationField(){}
+    _newWorkout(){}
+}
 
-        }, function(){
-            alert('Não conseguimos a sua localização')
-        }
-    );
+const app = new App();
 
    
 
