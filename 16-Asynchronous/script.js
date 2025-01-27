@@ -5,7 +5,10 @@ const countriesContainer = document.querySelector('.countries');
 
 ///////////////////////////////////////
 
- // Maneira antiga de fazer requisição
+
+/*
+
+ // MANEIRA ANTIGA de fazer requisição
 
 const renderCountry = function(data, className){
     const html = `
@@ -43,7 +46,7 @@ const renderCountry = function(data, className){
             const [neighbour] = data.borders;
             console.log(neighbour);
             if(!neighbour) return;
-
+            
             const request2 = new XMLHttpRequest();
             request2.open('GET', `https://restcountries.com/v2/alpha/${neighbour}`);           
             request2.send();
@@ -75,3 +78,9 @@ setTimeout(()=> {
         },1000);
     },1000);
 },1000);
+
+*/
+
+const request = fetch('https://restcountries.com/v2/name/portugal');
+
+console.log(request);
