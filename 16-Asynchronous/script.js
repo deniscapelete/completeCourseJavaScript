@@ -6,10 +6,6 @@ const countriesContainer = document.querySelector('.countries');
 ///////////////////////////////////////
 
 
-/*
-
- // MANEIRA ANTIGA de fazer requisição
-
 const renderCountry = function(data, className){
     const html = `
             <article class="country ${className}">
@@ -27,6 +23,9 @@ const renderCountry = function(data, className){
     countriesContainer.style.opacity = 1;
 }
 
+
+ // MANEIRA ANTIGA de fazer requisição
+/*
     // AJAX call country (1)
  const getCountyAndNeighbour = function(country) {
     const request = new XMLHttpRequest();
@@ -81,6 +80,26 @@ setTimeout(()=> {
 
 */
 
-const request = fetch('https://restcountries.com/v2/name/portugal');
+// const getCountryData = function(country){
+//     fetch(`https://restcountries.com/v2/name/${country}`)
+//      .then(function(response){
+//         console.log(response);
+//         return response.json(); // é preciso chamar o método json para deixar que os dados fiquem disponiveis para serem acessados, porém ele retorna uma promises então é necessario chamar o then novamente.
+//     })
+//         .then(function(data){
+//         console.log(data);
+//         renderCountry(data[0]);
+//     });
+// };
 
-console.log(request);
+// Versão simplificada do que foi apresentado acima
+const getCountryData = function(country){
+    fetch(`https://restcountries.com/v2/name/${country}`)
+     .then((response) => response.json())
+     .then((data) =>renderCountry(data[0])
+    );
+};
+
+getCountryData('portugal');
+getCountryData('brasil');
+getCountryData('argentina');
