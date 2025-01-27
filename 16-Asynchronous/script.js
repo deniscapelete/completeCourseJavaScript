@@ -23,6 +23,8 @@ const renderCountry = function(data, className){
     countriesContainer.style.opacity = 1;
 }
 
+// -----------------------------  258. Our First AJAX Call: XMLHttpRequest -----------------------------
+// -----------------------------  260. Welcome to Callback Hell -----------------------------
 
  // MANEIRA ANTIGA de fazer requisição
 /*
@@ -40,6 +42,7 @@ const renderCountry = function(data, className){
         console.log(data);
 
         renderCountry(data);
+        
 
             // Get neighbour country (2)
             const [neighbour] = data.borders;
@@ -80,6 +83,8 @@ setTimeout(()=> {
 
 */
 
+// -----------------------------  262. Consuming Promises -----------------------------
+
 // const getCountryData = function(country){
 //     fetch(`https://restcountries.com/v2/name/${country}`)
 //      .then(function(response){
@@ -93,13 +98,36 @@ setTimeout(()=> {
 // };
 
 // Versão simplificada do que foi apresentado acima
+// const getCountryData = function(country){
+//     fetch(`https://restcountries.com/v2/name/${country}`)
+//      .then((response) => response.json())
+//      .then((data) =>renderCountry(data[0])
+//     );
+// };
+
+
+// -----------------------------  263. Chaining Promises -----------------------------
 const getCountryData = function(country){
+     // Country 2
     fetch(`https://restcountries.com/v2/name/${country}`)
      .then((response) => response.json())
-     .then((data) =>renderCountry(data[0])
-    );
+     .then((data) => {
+
+         renderCountry(data[0]);
+
+         const neighbour = data[0].borders[0];
+
+         if(!neighbour) return;
+
+         // Country 2
+        return fetch(`https://restcountries.com/v2/alpha/${neighbour}`);          
+    }) // deve ser utilizado o then fora da function de retorno, para não ter função de callback dentro de outra
+    // primeiro deve se retornar a pomises e depois lidar com ela
+        .then((response)=>response.json())
+        .then(data => renderCountry(data, 'neighbour'));    
 };
 
+
 getCountryData('portugal');
+// getCountryData('brasil');
 getCountryData('brasil');
-getCountryData('argentina');
