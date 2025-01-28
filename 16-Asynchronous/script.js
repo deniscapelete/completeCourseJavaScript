@@ -110,7 +110,9 @@ setTimeout(()=> {
 const getCountryData = function(country){
      // Country 2
     fetch(`https://restcountries.com/v2/name/${country}`)
-     .then((response) => response.json())
+     .then((response) => response.json()
+    //  ,err =>alert(err) exemplo 1
+    )
      .then((data) => {
 
          renderCountry(data[0]);
@@ -124,10 +126,25 @@ const getCountryData = function(country){
     }) // deve ser utilizado o then fora da function de retorno, para não ter função de callback dentro de outra
     // primeiro deve se retornar a pomises e depois lidar com ela
         .then((response)=>response.json())
-        .then(data => renderCountry(data, 'neighbour'));    
+        .then(data => renderCountry(data, 'neighbour'))
+        .catch(err => {
+            console.error(`${err}😒`);
+            renderError(`${err.message} tente novamente!`);
+        }) // Exemplo 2 e mais ideal pois captura qualquer lugar que ocorra erro de toda essa cadeia
+        .finally(() => {
+
+        }) // independente de falhar ou não esse método é chamado
 };
 
 
-getCountryData('portugal');
-// getCountryData('brasil');
-getCountryData('brasil');
+
+btn.addEventListener('click', function(){
+
+    getCountryData('portugal');
+    // getCountryData('brasil');
+});
+
+const renderError = function(msg){
+    countriesContainer.insertAdjacentText('beforeend', msg);
+    countriesContainer.style.opacity = 1;
+}
