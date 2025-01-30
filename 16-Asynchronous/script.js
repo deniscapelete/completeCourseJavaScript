@@ -107,44 +107,104 @@ setTimeout(()=> {
 
 
 // -----------------------------  263. Chaining Promises -----------------------------
+
+// const getJSON = function(url, errorMsg = 'Algo deu errado!'){
+//     fetch(url).then(response => {        
+//         if(!response.ok)
+//             throw new Error(`${errorMsg} (${response.status})`);
+
+//         return response.json();    
+//     });
+// };
+
+// const getCountryData = function(country){
+//      // Country 1
+//     fetch(`https://restcountries.com/v2/name/${country}`)
+//      .then(response => {
+//         console.log(response);
+//         if(!response.ok)
+//             throw new Error(`Country not fount (${response.status})`)
+//         return response.json()
+//     //  ,err =>alert(err) exemplo 1
+// })
+//      .then(data => {
+
+//          renderCountry(data[0]);
+
+//          const neighbour = data[0].borders[0];
+
+//          if(!neighbour) return;
+
+//          // Country 2
+//         return fetch(`https://restcountries.com/v2/alpha/${neighbour}`);          
+//     }) // deve ser utilizado o then fora da function de retorno, para não ter função de callback dentro de outra
+//     // primeiro deve se retornar a pomises e depois lidar com ela
+//         .then((response)=>{
+
+//             if(!response.ok)
+//                 throw new Error(`Country not found (${response.status})`)
+//             return response.json()
+
+//             })
+//         .then(data => renderCountry(data, 'neighbour'))
+//         .catch(err => {
+//             console.error(`${err}😒`);
+//             renderError(`${err.message} tente novamente!`);
+//         }) // Exemplo 2 e mais ideal pois captura qualquer lugar que ocorra erro de toda essa cadeia
+//         .finally(() => {
+// countriesContainer.style.opacity = 1;
+//         }) // independente de falhar ou não esse método é chamado
+// };
+
+
+////////////////
+
+const getJSON = function(url, errorMsg = 'Algo deu errado!'){
+    return fetch(url).then(response => {        
+        if(!response.ok)
+            throw new Error(`${errorMsg} (${response.status})`);
+
+        return response.json();    
+    });
+};
+
+const renderError = function(msg){
+    countriesContainer.insertAdjacentText('beforeend', msg);
+    countriesContainer.style.opacity = 1;
+}
+
 const getCountryData = function(country){
-     // Country 2
-    fetch(`https://restcountries.com/v2/name/${country}`)
-     .then((response) => response.json()
-    //  ,err =>alert(err) exemplo 1
-    )
-     .then((data) => {
+    // Country 1
+    getJSON(`https://restcountries.com/v2/name/${country}`, 'Country not fount')    
+    .then(data => {
 
-         renderCountry(data[0]);
+        renderCountry(data[0]);
 
-         const neighbour = data[0].borders[0];
+        const neighbour = data[0].borders[0];      
 
-         if(!neighbour) return;
+        if(!neighbour) throw new Error(`Nenhum vizinho encontrado`);
 
-         // Country 2
-        return fetch(`https://restcountries.com/v2/alpha/${neighbour}`);          
-    }) // deve ser utilizado o then fora da function de retorno, para não ter função de callback dentro de outra
-    // primeiro deve se retornar a pomises e depois lidar com ela
-        .then((response)=>response.json())
-        .then(data => renderCountry(data, 'neighbour'))
-        .catch(err => {
-            console.error(`${err}😒`);
-            renderError(`${err.message} tente novamente!`);
-        }) // Exemplo 2 e mais ideal pois captura qualquer lugar que ocorra erro de toda essa cadeia
-        .finally(() => {
-
-        }) // independente de falhar ou não esse método é chamado
+        // Country 2
+       return getJSON(`https://restcountries.com/v2/alpha/${neighbour}`, 'Country not found');          
+   }) 
+       .then(data => renderCountry(data, 'neighbour'))
+       .catch(err => {
+           console.error(`${err}😒`);
+           renderError(`${err.message} tente novamente!`);
+       }) 
+       .finally(() => {
+countriesContainer.style.opacity = 1;
+       })
 };
 
 
 
 btn.addEventListener('click', function(){
 
-    getCountryData('portugal');
+    getCountryData('australia');
     // getCountryData('brasil');
 });
 
-const renderError = function(msg){
-    countriesContainer.insertAdjacentText('beforeend', msg);
-    countriesContainer.style.opacity = 1;
-}
+
+
+// getCountryData('portugal');
