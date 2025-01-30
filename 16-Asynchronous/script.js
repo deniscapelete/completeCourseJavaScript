@@ -177,11 +177,10 @@ const getCountryData = function(country){
     // Country 1
     getJSON(`https://restcountries.com/v2/name/${country}`, 'Country not fount')    
     .then(data => {
-
         renderCountry(data[0]);
 
-        const neighbour = data[0].borders[0];      
-
+        const neighbour = data[0].borders?.[0] || null;    
+      
         if(!neighbour) throw new Error(`Nenhum vizinho encontrado`);
 
         // Country 2
@@ -189,7 +188,7 @@ const getCountryData = function(country){
    }) 
        .then(data => renderCountry(data, 'neighbour'))
        .catch(err => {
-           console.error(`${err}😒`);
+        //    console.error(`${err}😒`);
            renderError(`${err.message} tente novamente!`);
        }) 
        .finally(() => {
