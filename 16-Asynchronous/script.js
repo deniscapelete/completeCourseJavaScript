@@ -261,6 +261,37 @@ Coordenadas para teste:
 geocodificação reversa
 
 */
+
+
+    const whereAmI = function(lat, lgn){
+    fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lgn}`)
+        .then(response => {
+            if(!response.ok) throw new Error (`Problema com a geocodificação ${response.status}`);
+            return response.json()
+        })
+        .then(data => {
+            console.log(data);
+            console.log(`Você está em ${data.city}, ${data.countryName}`)
+
+
+            return fetch(`https://restcountries.com/v2/name/${data.countryName}`)
+        })
+        .then(res => {
+            if(!res.ok) throw new Error(`Cidade não encontrada (${res.status})`);
+
+            return res.json();
+        })
+        .then(data=> renderCountry(data[0]))
+        .catch(err => console.error(`${err.message} 💥`))
+    };
+
+
+    whereAmI(52.508, 13.381);
+    whereAmI(19.037, 72.873);
+    whereAmI(-33.933, 18.474);
+
+
+
 // PART 1
 // const whereAmI = function(lat, lgn){
 //     fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lgn}`)
@@ -270,52 +301,51 @@ geocodificação reversa
 //     };
 
 
-// PART 2
-const whereAmI = function(lat, lgn){
-    fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lgn}`)
-        .then(function(response) {
+// // PART 2
+// const whereAmI = function(lat, lgn){
+//     fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lgn}`)
+//         .then(function(response) {
 
-            if(!response.ok) throw new Error(`Erro (${response.status})`);
+//             if(!response.ok) throw new Error(`Erro (${response.status})`);
                 
-            return response.json();  
+//             return response.json();  
            
-        })
-        .then(function(data) {
-            console.log(`Você está em ${data.city}, ${data.countryName}`)
+//         })
+//         .then(function(data) {
+//             console.log(`Você está em ${data.city}, ${data.countryName}`)
 
-            return fetch(`https://restcountries.com/v2/name/${data.countryName}`)
-        })
-            .then(response => response.json())
-            .then(function(data2){
-               console.log(data2);
-               renderHTML2(data2[0]);
+//             return fetch(`https://restcountries.com/v2/name/${data.countryName}`)
+//         })
+//             .then(response => response.json())
+//             .then(function(data2){
+//                console.log(data2);
+//                renderHTML2(data2[0]);
 
-            })
-            // .catch(err => alert(err.message))
+//             })
+//             // .catch(err => alert(err.message))
             
-    };
+//     };
     
 
-const renderHTML2 = function(data){
-    const HTML2 = `
-        <article class="country">
-            <img class="country__img" src="${data.flag}" />
-            <div class="country__data">
-                <h3 class="country__name">${data.name}</h3>
-                <h4 class="country__region">${data.region}</h4>
-                <p class="country__row"><span>👫</span>${(+data.population / 1000000).toFixed(1)} people</p>
-                <p class="country__row"><span>🗣️</span>${data.languages[0].name}</p>
-                <p class="country__row"><span>💰</span>${data.currencies[0].code}</p>
-            </div>
-        </article>
-    `
+// const renderHTML2 = function(data){
+//     const HTML2 = `
+//         <article class="country">
+//             <img class="country__img" src="${data.flag}" />
+//             <div class="country__data">
+//                 <h3 class="country__name">${data.name}</h3>
+//                 <h4 class="country__region">${data.region}</h4>
+//                 <p class="country__row"><span>👫</span>${(+data.population / 1000000).toFixed(1)} people</p>
+//                 <p class="country__row"><span>🗣️</span>${data.languages[0].name}</p>
+//                 <p class="country__row"><span>💰</span>${data.currencies[0].code}</p>
+//             </div>
+//         </article>
+//     `
 
-    countriesContainer.insertAdjacentHTML('beforeend', HTML2);
-    countriesContainer.style.opacity = 1;
-};
+//     countriesContainer.insertAdjacentHTML('beforeend', HTML2);
+//     countriesContainer.style.opacity = 1;
+// };
 
-whereAmI(52.508, 13.381);
-
+// whereAmI(52.508, 13.381);
 
 
 
