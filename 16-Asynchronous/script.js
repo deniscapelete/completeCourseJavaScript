@@ -261,22 +261,58 @@ Coordenadas para teste:
 geocodificação reversa
 
 */
-
-// const whereAmI = function(lat, lgn) {
+// PART 1
+// const whereAmI = function(lat, lgn){
 //     fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lgn}`)
-//     .then(function(response) {
-//         console.log(response);
-//     });
-    
-// }
+//         .then(response => console.log(response))
+//         .then(data => console.log(data, `Você está em ${data.city}, ${data.countryName}`))
+//         .catch(err => alert(err.message))
+//     };
 
+
+// PART 2
 const whereAmI = function(lat, lgn){
     fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lgn}`)
-        .then(response => console.log(response))
-        .then(data => console.log(data, `Você está em ${data.city}, ${data.countryName}`))
-        .catch(err => alert(err.message))
+        .then(function(response) {
+
+            if(!response.ok) throw new Error(`Erro (${response.status})`);
+                
+            return response.json();  
+           
+        })
+        .then(function(data) {
+            console.log(`Você está em ${data.city}, ${data.countryName}`)
+
+            return fetch(`https://restcountries.com/v2/name/${data.countryName}`)
+        })
+            .then(response => response.json())
+            .then(function(data2){
+               console.log(data2);
+               renderHTML2(data2[0]);
+
+            })
+            // .catch(err => alert(err.message))
+            
     };
     
+
+const renderHTML2 = function(data){
+    const HTML2 = `
+        <article class="country">
+            <img class="country__img" src="${data.flag}" />
+            <div class="country__data">
+                <h3 class="country__name">${data.name}</h3>
+                <h4 class="country__region">${data.region}</h4>
+                <p class="country__row"><span>👫</span>${(+data.population / 1000000).toFixed(1)} people</p>
+                <p class="country__row"><span>🗣️</span>${data.languages[0].name}</p>
+                <p class="country__row"><span>💰</span>${data.currencies[0].code}</p>
+            </div>
+        </article>
+    `
+
+    countriesContainer.insertAdjacentHTML('beforeend', HTML2);
+    countriesContainer.style.opacity = 1;
+};
 
 whereAmI(52.508, 13.381);
 
